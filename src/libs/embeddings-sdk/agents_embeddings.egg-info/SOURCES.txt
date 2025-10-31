@@ -1,0 +1,14 @@
+setup.py
+agents_embeddings/__init__.py
+agents_embeddings/aios.py
+agents_embeddings/custom.py
+agents_embeddings/embeddings.py
+agents_embeddings.egg-info/PKG-INFO
+agents_embeddings.egg-info/SOURCES.txt
+agents_embeddings.egg-info/dependency_links.txt
+agents_embeddings.egg-info/requires.txt
+agents_embeddings.egg-info/top_level.txt
+agents_embeddings/block/__init__.py
+agents_embeddings/block/block_client.py
+agents_embeddings/block/inference_server.py
+agents_embeddings/block/rest.py

@@ -1,0 +1,5 @@
+flask
+requests
+kubernetes
+redis
+nats-py

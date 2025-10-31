@@ -1,0 +1,4 @@
+redis
+websockets
+requests
+nats-py
