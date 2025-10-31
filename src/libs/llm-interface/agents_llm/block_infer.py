@@ -15,8 +15,8 @@ class PolicyEvaluator:
 
     def __init__(self, block_data, name="agents_pre_processing") -> None:
 
-        policies = self.block_data.get('policies', {})
         self.block_data = block_data
+        policies = self.block_data.get('policies', {})
 
         if name in policies:
             policy_settings = policies[name].get(
@@ -371,7 +371,6 @@ class BlockInferenceSystem:
     ) -> ResultWaiter:
         rw = ResultWaiter()
 
-        data = json.dumps(data)
 
         def _worker():
             try:
