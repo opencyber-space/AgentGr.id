@@ -116,7 +116,8 @@ class AgentsDeployerInstaller:
                 client.V1EnvVar(name="POLICY_DB_URL", value=self.env_POLICY_DB_URL),
                 client.V1EnvVar(name="JOB_SCOUTER_IMAGE_NAME", value=self.env_SCOUTER_IMAGE_NAME),
                 client.V1EnvVar(name="JOB_EXCHANGE_API_URL", value=self.env_JOB_EXCHANGE_API_URL),
-                client.V1EnvVar(name="AGENT_CORE_IMAGE", value=self.env_AGENT_DEPLOYER_IMAGE)
+                client.V1EnvVar(name="AGENT_CORE_IMAGE", value=self.env_AGENT_DEPLOYER_IMAGE),
+                client.V1EnvVar(name="AGENT_DELEGATE_URL", value=os.getenv("AGENT_DELEGATE_URL"))
             ],
         )
 

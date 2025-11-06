@@ -4,9 +4,15 @@ import signal
 import sys
 import time
 from typing import Callable, Dict, Optional, Union
+import logging
 
 import redis
 
+logging.basicConfig(
+    level=os.getenv("LOG_LEVEL", "INFO").upper(),
+    format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+)
+log = logging.getLogger("launcher")
 
 JsonDict = Dict[str, object]
 Message = Union[str, JsonDict]
@@ -49,7 +55,9 @@ class RedisBRPOPWorker:
 
                 while not self._stop:
                     # BRPOP pops from the RIGHT; producers usually LPUSH to the LEFT (LPUSH/BRPOP pattern).
-                    result = self._r.brpop(self.queue_key, timeout=self.block_seconds)
+                    result = self._r.brpop(self.queue_key)
+                    logging.info(f"[RedisWorker] {result}")
+                    
                     if not result:
                         continue  # timeout -> loop
 
@@ -59,7 +67,6 @@ class RedisBRPOPWorker:
                         callback(msg)
                     except Exception as e:
                         self._log(f"Callback failed: {e}")
-                        # NOTE: message is already removed; no retry in this simple worker.
 
             except (redis.ConnectionError, redis.TimeoutError) as e:
                 self._log(f"Redis connection issue: {e}. Retrying in {backoff:.1f}s")

@@ -221,7 +221,7 @@ def create_app() -> Flask:
     def dry_run():
         try:
             payload = request.get_json(force=True) or {}
-            payload = pre_process(payload)
+            # payload = pre_process(payload)
 
             session_id = payload.get("session_id")
             message_data: Dict[str, Any] = payload.get("message_data")

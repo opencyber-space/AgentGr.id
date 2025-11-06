@@ -4,6 +4,7 @@ import os
 
 from typing import Any, Dict, List, Optional
 from .types import AgentTask, AgentResult
+from .delegate import AgentDelegator
 
 from .p2p import PeersManager
 
@@ -46,8 +47,12 @@ def result_to_dict(r: AgentResult) -> Dict[str, Any]:
 
 class Context:
     def __init__(self, p2p_manager: PeersManager) -> None:
-        self.p2p_manager = p2p_manager
-        self.subject_id = os.getenv("SUBJECT_ID")
+        self.p2p_manager: PeersManager = p2p_manager
+        self.subject_id: str = os.getenv("SUBJECT_ID")
+
+        delegation_url = os.getenv("AGENT_DELEGATE_URL")
+        logging.info(f"[Delegator] Using delegation system {delegation_url}")
+        self.delegator: AgentDelegator = AgentDelegator(base_url=delegation_url)
 
 
 class AgentExecutor:

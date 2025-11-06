@@ -211,6 +211,7 @@ class LoadBalancer:
         if conn is not None:
             return conn
         # create & cache
+        logger.info(f"[Redis-Connection] {host} {port}")
         conn = redis.StrictRedis(host=host, port=port, decode_responses=True)  # no auth
         self._redis_conns[key] = conn
         return conn
@@ -228,43 +229,54 @@ class LoadBalancer:
         return False
 
     def _push_to_instance_redis(self, instance_id: Optional[str], message: Message, meta: Dict[str, Any]) -> None:
+        
+        try:
        
-        target = self._make_target(instance_id)
-        if target is None:
-            return
-        if redis is None:
-            return
+            target = self._make_target(instance_id)
+            if target is None:
+                return
+            if redis is None:
+                return
 
-        logger.info(f"[Pushing Message] {message}")
+            logger.info(f"[Pushing Message] {message} --> ({target}) ({self._redis_queue_key})")
 
-        host, port = target
-        key = (host, port)
+            host, port = target
+            key = (host, port)
 
-        payload = message["message_data"].copy()
+            payload = message["message_data"].copy()
 
-    
-        data = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+        
+            data = json.dumps(payload)
 
-        retries = max(1, self._redis_max_retries)
-        delay = self._redis_base_backoff
+            retries = max(1, self._redis_max_retries)
+            delay = self._redis_base_backoff
 
-        for attempt in range(retries):
             r = self._get_redis(host, port)
-            if r is None:
-                return
+            logger.info(f"[RedisConnection] {r}")
+            r.lpush(self._redis_queue_key, data)
 
-            if not self._ping_with_retry(r):
-                self._redis_conns.pop(key, None)
-                time.sleep(delay)
-                delay = min(delay * 2, 5.0)
-                continue
+            logger.info(f"[message pushed] {data}")
 
-            try:
-                r.lpush(self._redis_queue_key, data)
-                return
-            except Exception:
-                self._redis_conns.pop(key, None)
-                time.sleep(delay)
-                delay = min(delay * 2, 5.0)
+            '''for attempt in range(retries):
+                r = self._get_redis(host, port)
+                if r is None:
+                    return
 
-        return
+                if not self._ping_with_retry(r):
+                    self._redis_conns.pop(key, None)
+                    time.sleep(delay)
+                    delay = min(delay * 2, 5.0)
+                    continue
+
+                try:
+                    r.lpush(self._redis_queue_key, data)
+                    return
+                except Exception as ee:
+                    logger.error(f"[RedisError] {ee}")
+                    self._redis_conns.pop(key, None)
+                    time.sleep(delay)
+                    delay = min(delay * 2, 5.0)'''
+
+            return
+        except Exception as e:
+            logger.error(f"[error] {e}")

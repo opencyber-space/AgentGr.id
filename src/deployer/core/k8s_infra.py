@@ -40,7 +40,6 @@ class AgentsExecutorManager:
         # Optional: allow overriding redis image; default to a stable tag
         self.redis_image = os.getenv("REDIS_IMAGE_NAME", "redis:7-alpine")
 
-        # Validate required envs
         missing = [name for name, val in {
             "EXECUTOR_IMAGE_NAME": self.executor_image,
             "SUBJECT_DB_URL": self.subject_db_url,
@@ -327,3 +326,64 @@ class AgentsExecutorManager:
             name = "subject"
         base = f"executor-{name}"
         return (base[:63]).rstrip('-')
+    
+
+    def delete_resources_by_subject_label(self, subject_id: str) -> dict:
+    
+        label_selector = f"subjectId={subject_id}"
+        deleted = {"deployments": [], "services": []}
+
+        try:
+            deps = self.apps.list_namespaced_deployment(
+                namespace=self.NAMESPACE, label_selector=label_selector
+            )
+            for dep in deps.items:
+                name = dep.metadata.name
+                self.logger.info(f"Deleting Deployment '{name}' (subject-id={subject_id})")
+                try:
+                    self.apps.delete_namespaced_deployment(
+                        name=name,
+                        namespace=self.NAMESPACE,
+                        body=client.V1DeleteOptions(
+                            propagation_policy="Foreground",
+                            grace_period_seconds=0,
+                        ),
+                    )
+                    deleted["deployments"].append(name)
+                except ApiException as e:
+                    if e.status == 404:
+                        self.logger.info(f"Deployment '{name}' already gone.")
+                    else:
+                        self.logger.error(f"Failed deleting Deployment '{name}': {e}")
+
+        except ApiException as e:
+            self.logger.error(f"Failed to list Deployments for subject-id={subject_id}: {e}")
+
+        # --- Delete Services ---
+        try:
+            svcs = self.core.list_namespaced_service(
+                namespace=self.NAMESPACE, label_selector=label_selector
+            )
+            for svc in svcs.items:
+                name = svc.metadata.name
+                self.logger.info(f"Deleting Service '{name}' (subject-id={subject_id})")
+                try:
+                    self.core.delete_namespaced_service(
+                        name=name,
+                        namespace=self.NAMESPACE,
+                    )
+                    deleted["services"].append(name)
+                except ApiException as e:
+                    if e.status == 404:
+                        self.logger.info(f"Service '{name}' already gone.")
+                    else:
+                        self.logger.error(f"Failed deleting Service '{name}': {e}")
+
+        except ApiException as e:
+            self.logger.error(f"Failed to list Services for subject-id={subject_id}: {e}")
+
+        self.logger.info(
+            f"Deleted (requested) resources for subject-id={subject_id} in ns={self.NAMESPACE} -> "
+            f"deployments={deleted['deployments']}, services={deleted['services']}"
+        )
+        return deleted

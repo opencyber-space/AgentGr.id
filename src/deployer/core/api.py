@@ -35,9 +35,10 @@ def create_executor(subject_id):
         meshes = allocation_info.get('meshes', [])
         dep_name = manager.create_executor(subject_id, meshes=meshes)
         image_name = get_agent_image(subject_id)
+        delegate_url = allocation_info.get('delegate_api_url')
 
         # deploy agent instances:
-        deployer.deploy_instances(allocation_info["instances"], image_name, meshes=meshes)
+        deployer.deploy_instances(allocation_info["instances"], image_name, meshes=meshes, delegate=delegate_url)
         
 
         return jsonify({
@@ -64,14 +65,16 @@ def remove_executor(subject_id):
     try:
         ok = manager.remove_executor(subject_id)
         if ok:
+            deleted_resources = manager.delete_resources_by_subject_label(subject_id=subject_id)
             return jsonify({
                 "success": True,
-                "message": f"Executor removed for subject_id '{subject_id}'."
+                "message": f"Executor removed for subject_id '{subject_id}'.",
+                "deleted_resources": deleted_resources
             })
         else:
             return jsonify({
                 "success": False,
-                "error": f"Failed to remove executor for subject_id '{subject_id}'."
+                "error": f"Failed to remove executor for subject_id '{subject_id}'.",
             }), 500
     except ApiException as e:
         return jsonify({

@@ -41,7 +41,9 @@ def main():
     # 3) Create the selection engine
     engine = client.create_selector(name="selector", base_query="")
 
- 
+    # 4) Make a selection request
+    #    Only variable per-request params go in extra_data (temperature, max_tokens, tools, etc.).
+    #    The engine builds messages & sets response_format={"type":"json_object"} for JSON-only output.
     result = engine.select(
         entities=entities,
         user_query="I need men's running shoes suitable for daily jogging.",
@@ -49,6 +51,7 @@ def main():
         extra_data={
             "temperature": 0.0,
             "max_tokens": 512,
+            # You could add tools/tool_choice/seed/stop here if you use them.
         },
     )
 

@@ -47,7 +47,7 @@ class AgentsInstanceDeployer:
 
     # -------- Public API --------
 
-    def deploy_instances(self, instances: List[Dict[str, Any]], image_name, meshes={}) -> List[Dict[str, Any]]:
+    def deploy_instances(self, instances: List[Dict[str, Any]], image_name, meshes={}, delegate="") -> List[Dict[str, Any]]:
         
         results = []
         for spec in instances or []:
@@ -68,7 +68,8 @@ class AgentsInstanceDeployer:
                     subject_id=subject_id,
                     node_selector=node_selector,
                     image_name=image_name,
-                    meshes=meshes
+                    meshes=meshes,
+                    delegate=delegate
                 )
                 self._create_or_replace_service(name=name)
 
@@ -136,7 +137,8 @@ class AgentsInstanceDeployer:
         subject_id: str,
         node_selector: Optional[Dict[str, str]] = None,
         image_name: str,
-        meshes: dict = {}
+        meshes: dict = {},
+        delegate: str = ""
     ) -> None:
         labels = {
             "app": "agent-instance",
@@ -159,7 +161,8 @@ class AgentsInstanceDeployer:
             client.V1EnvVar(name="SUBJECT_ID", value=subject_id),
             client.V1EnvVar(name="INSTANCE_ID", value=instance_id),
             client.V1EnvVar(name="SUBJECT_DB_URL", value=self.subject_db_url),
-            client.V1EnvVar(name="MESH_LIST", value=json.dumps({"meshes": meshes}))
+            client.V1EnvVar(name="MESH_LIST", value=json.dumps({"meshes": meshes})),
+            client.V1EnvVar(name="AGENT_DELEGATE_URL", value=delegate)
         ]
         core_container = client.V1Container(
             name="agent-core",

@@ -1,7 +1,9 @@
 import json
 import logging
 import os
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
+from .exchange_reporter import OutputReporter
+from .p2p import PeersManager
 
 import redis
 from websockets.sync.server import serve 
@@ -19,16 +21,6 @@ if not log.handlers:
     )
 
 
-import json
-import os
-from typing import Any, Dict, List, Optional, Union
-
-import redis
-from .exchange_reporter import OutputReporter
-from .p2p import PeersManager
-
-
-
 def start_redis_listener(
     *,
     executor: "AgentExecutor",
@@ -42,9 +34,6 @@ def start_redis_listener(
     reporter = OutputReporter()
     reporter.start()
   
-    redis_url = redis_url or os.getenv("REDIS_URL") or "redis://localhost:6379/0"
-    r = redis.from_url(redis_url, decode_responses=True)
-
     queue_key = stream  # same param name reused as list key
     block_seconds = max(1, int(block_ms / 1000))
 
@@ -92,6 +81,19 @@ def start_redis_listener(
                             "is_error": is_error,
                             "error_data": error_data
                     })
+    
+                elif task.output_ptr.get("type") == "redis":
+                    r = redis.Redis(host=task.output_ptr.get("host"), port=task.output_ptr.get('port'))
+                    logging.info(f"[Pushing redis output] {task.output_ptr}")
+                    op_queue = task.output_ptr.get('output_queue')
+                    r.lpush(op_queue, json.dumps({
+                            "task_id": task.task_id,
+                            "job_output": job_output_data,
+                            "job_output_metadata": job_output_metadata,
+                            "job_output_trace_data": job_tracing_data,
+                            "is_error": is_error,
+                            "error_data": error_data
+                    }))
     
             else:
                 log.info(f"[OutputReporter] task_id={task.task_id} has no exchange_id specified")
