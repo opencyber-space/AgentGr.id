@@ -50,7 +50,7 @@ class RESTBlockInference:
             "seq_no": seq_no,
             "graph": graph if graph is not None else None,
             "selection_query": selection_query if selection_query is not None else None,
-            "data": data,
+            "data": json.loads(data),
             "files": payload_files,
         }
 

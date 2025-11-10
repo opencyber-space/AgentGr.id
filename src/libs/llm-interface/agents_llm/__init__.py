@@ -1,1 +1,1 @@
-from .executor import PolicyFunctionExecutor as LocalPolicyEvaluator
+from .infer import AIGridClient

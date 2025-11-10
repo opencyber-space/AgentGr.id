@@ -212,7 +212,7 @@ class LoadBalancer:
             return conn
         # create & cache
         logger.info(f"[Redis-Connection] {host} {port}")
-        conn = redis.StrictRedis(host=host, port=port, decode_responses=True)  # no auth
+        # conn = redis.StrictRedis(host=host, port=port, decode_responses=True)  # no auth
         self._redis_conns[key] = conn
         return conn
 
@@ -251,7 +251,7 @@ class LoadBalancer:
             retries = max(1, self._redis_max_retries)
             delay = self._redis_base_backoff
 
-            r = self._get_redis(host, port)
+            r = redis.Redis(host=host, port=int(port))
             logger.info(f"[RedisConnection] {r}")
             r.lpush(self._redis_queue_key, data)
 

@@ -17,7 +17,6 @@ class AbstractBlockInferenceSystem(ABC):
         *,
         model: str,
         block_data: Optional[Dict[str, Any]] = None,
-        # "grpc" | "rest" | "auto" (interpretation left to subclass)
         mode: str = "auto",
     ):
         self.model = model
@@ -469,12 +468,7 @@ class OpenAIBlockInferenceSystem(AbstractBlockInferenceSystem):
         frame_ptr: Optional[Union[str, bytes]],
         output_ptr: Optional[Union[str, Dict[str, Any]]],
     ) -> Dict[str, Any]:
-        """
-        Heuristic router driven entirely by `data`:
-          - If `data` is dict with 'messages' -> Chat Completions
-          - If `data` is list[dict(role,content)] -> Chat Completions
-          - Else if `data` is dict with 'prompt' or a plain str/list[str] -> Completions
-        """
+       
         try:
             # messages path (dict)
             if isinstance(data, dict) and "messages" in data and isinstance(data["messages"], list):

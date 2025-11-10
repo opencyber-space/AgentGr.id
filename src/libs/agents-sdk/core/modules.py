@@ -31,35 +31,17 @@ class AgentModule(ABC):
 
     @abstractmethod
     def execute(self, data: Dict[str, Any]) -> Any:
-        """
-        Execute the main function of the agent module.
-
-        Args:
-            data: Input data payload for execution.
-
-        Returns:
-            Execution result.
-        """
+        
         pass
 
     @abstractmethod
     def get_searchable_representation(self) -> Dict[str, Any]:
-        """
-        Return a representation of the module that can be indexed/searched.
-
-        Returns:
-            Dictionary with searchable metadata.
-        """
+       
         pass
 
     @abstractmethod
     def set_parameters(self, parameters: Dict[str, Any]) -> None:
-        """
-        Update the runtime parameters of the agent module.
-
-        Args:
-            parameters: Key-value parameters to update.
-        """
+        
         pass
 
 

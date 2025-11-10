@@ -40,9 +40,7 @@ class RedisOutputListener:
 
     def _ensure_client(self):
         self._client = redis.from_url(
-            self.redis_url,
-            socket_timeout=self.socket_timeout,
-            decode_responses=self.decode_responses,
+            self.redis_url
         )
 
     def close(self):

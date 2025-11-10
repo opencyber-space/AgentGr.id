@@ -1,5 +1,6 @@
 # sample_agent.py
 import logging
+import uuid
 from typing import List, Optional
 
 from core.agent_executor import AgentTask, AgentResult
@@ -33,10 +34,19 @@ class SampleAgent:
 
             if self.context.subject_id == "uppercase-002":
 
+                # agent P2P
+                op_x = {}
+
                 op_x = self.context.p2p_manager.send_and_wait_sync(
                     task.task_id, subject_id="uppercase-003",
                     task_data={"text": out + "World!"}
                 )
+
+                # agent direct (doesn't return the result to the caller)
+                self.context.direct.submit(to="uppercase-003", session_id=str(uuid.uuid4()), task=task, job_data={
+                    "text": "out " + "World!"
+                })
+
 
                 return AgentResult(
                     task_id=task.task_id,

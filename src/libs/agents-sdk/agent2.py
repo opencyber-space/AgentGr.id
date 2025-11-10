@@ -1,6 +1,8 @@
 # sample_agent.py
 import logging
 from typing import List, Optional
+import uuid
+import os
 
 from core.agent_executor import AgentTask, AgentResult
 from core.main import main
@@ -29,32 +31,27 @@ class SampleAgent:
 
         try:
             text = task.job_data["text"]
-            out = text.upper()
+            out = text.upper() + "-HELLO "
 
-            if self.context.subject_id == "uppercase-002":
+            if os.getenv("SUBJECT_ID") == "meeting-2":
 
-                op_x = self.context.delegator.submit_and_wait(
-                    subject_id="subject-2", session_id="session-123",
-                    task_id=task.task_id, task_data={
-                        "text": "What's up?"
-                    }
+                op2 = self.context.delegator.submit_and_wait(
+                    subject_id="meeting-3", session_id=str(uuid.uuid4()), task_id=task.task_id, task_data={"text": out}
                 )
 
                 return AgentResult(
                     task_id=task.task_id,
-                    job_output=op_x,
-                    job_output_metadata={"length": len(out)},
+                    job_output={"output": op2},
+                    job_output_metadata={"length": len(op2)},
                     is_error=False,
                 )
 
-            else:
-
-                return AgentResult(
-                    task_id=task.task_id,
-                    job_output={"text": out},
-                    job_output_metadata={"length": len(out)},
-                    is_error=False,
-                )
+            return AgentResult(
+                task_id=task.task_id,
+                job_output={"output": out},
+                job_output_metadata={"length": len(out)},
+                is_error=False,
+            )
 
         except Exception as e:
             log.exception("Error processing task %s: %s", task.task_id, e)

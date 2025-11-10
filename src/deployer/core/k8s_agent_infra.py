@@ -71,10 +71,10 @@ class AgentsInstanceDeployer:
                     meshes=meshes,
                     delegate=delegate
                 )
-                self._create_or_replace_service(name=name)
+                self._create_or_replace_service(name=name, instance_id=instance_id, subject_id=subject_id)
 
                 # Optionally wait for service ClusterIP assignment (usually immediate)
-                svc = self.core.read_namespaced_service(name=name, namespace=self.NAMESPACE)
+                svc = self.core.read_namespaced_service(name=name, namespace=self.NAMESPACE, instance_id=instance_id)
                 results.append({
                     "ok": True,
                     "name": name,
@@ -141,7 +141,7 @@ class AgentsInstanceDeployer:
         delegate: str = ""
     ) -> None:
         labels = {
-            "app": "agent-instance",
+            "app": instance_id + "-" + subject_id,
             "component": "agent-core",
             "subjectId": subject_id,
             "instanceId": instance_id,
@@ -209,17 +209,24 @@ class AgentsInstanceDeployer:
             else:
                 raise
 
-    def _create_or_replace_service(self, *, name: str) -> None:
+    def _create_or_replace_service(self, *, name: str, instance_id: str, subject_id: str) -> None:
+
+        labels = {
+            "app": instance_id + "-" + subject_id,
+            "component": "agent-core",
+            "subjectId": subject_id,
+            "instanceId": instance_id,
+        }
        
         svc = client.V1Service(
             api_version="v1",
             kind="Service",
             metadata=client.V1ObjectMeta(
                 name=name,
-                labels={"app": "agent-instance"},
+                labels=labels,
             ),
             spec=client.V1ServiceSpec(
-                selector={"app": "agent-instance"},
+                selector={"app": instance_id + "-" + subject_id},
                 type="ClusterIP",
                 ports=[
                     client.V1ServicePort(

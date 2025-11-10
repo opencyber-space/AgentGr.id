@@ -521,7 +521,6 @@ class PeersManager:
             except Exception:
                 pass
 
-    # ---------------------------- Introspection ------------------------------
 
     def list_meshes(self) -> Dict[str, Dict[str, str]]:
         return {mid: {"http_url": m.http_url, "nats_url": m.nats_url} for mid, m in self._meshes.items()}
@@ -529,7 +528,6 @@ class PeersManager:
     def list_agents(self) -> Dict[str, Dict[str, Any]]:
         return self.agents
 
-    # -------------- Mesh init functions -----------------------------------------
     async def initialize_meshes(self, meshes: Optional[List[Dict[str, str]]] = None) -> None:
         try:
             if meshes is None:

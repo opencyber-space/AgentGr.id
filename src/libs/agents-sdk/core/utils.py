@@ -53,7 +53,7 @@ def start_redis_listener(
 
             if exchange_id:
 
-                job_output_data = result.get('job_output_metadata', {})
+                job_output_data = result.get('job_output', {})
                 job_tracing_data = result.get('job_output_trace_data', {})
                 is_error = result.get('is_error', False)
                 error_data = result.get('error_data', {})

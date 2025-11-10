@@ -33,6 +33,7 @@ class AIGridClient:
             urls=urls,
         )
         self._systems[key] = system
+    
 
     def add_custom_block(self, name: Optional[str], system: AbstractBlockInferenceSystem) -> None:
         key = name or "default"
@@ -196,5 +197,7 @@ class AIGridClient:
             frame_ptr=None,
             files=None,
         )
+
+    
 
     
