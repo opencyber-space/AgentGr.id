@@ -34,20 +34,31 @@ class SampleAgent:
             out = text.upper() + "-HELLO "
 
 
-            result = self.context.p2p_manager.send_and_wait_sync(
+            '''result = self.context.p2p_manager.send_and_wait_sync(
                 task_id=str(uuid.uuid4()),
                 subject_id="p2p-test-002",
                 task_data={"text": out},
                 timeout=None
+            )'''
+
+            '''self.context.direct.submit(
+                to="p2p-test-002", session_id=str(uuid.uuid4()),
+                task=task, job_data={"text": out}
+            )'''
+
+            self.context.p2p_manager.send_sync(
+                task=task, subject_id="p2p-test-002",
+                job_data={"text": out}, 
+                session_id=str(uuid.uuid4())
             )
 
-            logging.info(f"[Agent Response] {result}")
 
             return AgentResult(
                 task_id=task.task_id,
-                job_output={"output": result},
+                job_output={"output": ""},
                 job_output_metadata={"length": len(out)},
                 is_error=False,
+                skip=True
             )
 
         except Exception as e:

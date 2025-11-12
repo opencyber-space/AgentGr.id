@@ -39,11 +39,12 @@ class SampleAgent:
                     subject_id="meeting-3", session_id=str(uuid.uuid4()), task_id=task.task_id, task_data={"text": out}
                 )
 
+                self.context.direct.submit(to="subject-11", task=task, job_data={
+                    "text": "hello"
+                })
+
                 return AgentResult(
-                    task_id=task.task_id,
-                    job_output={"output": op2},
-                    job_output_metadata={"length": len(op2)},
-                    is_error=False,
+                    skip=True
                 )
 
             return AgentResult(

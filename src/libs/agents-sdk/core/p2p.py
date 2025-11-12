@@ -2,20 +2,20 @@
 import os
 import json
 import asyncio
-
 import time
 import uuid
 import logging
 import threading
 from dataclasses import dataclass, field
 from typing import Any, Awaitable, Callable, Dict, List, Optional
-from asyncio import TimeoutError as AsyncTimeout
 
 from nats.aio.client import Client as NATS
 from nats.aio.msg import Msg
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
+
+from .types import AgentTask
 
 TaskHandler = Callable[[str, Dict[str, Any]], Dict[str, Any]] 
 MeshMessageHandler = Callable[[str, Any], None]
@@ -205,16 +205,17 @@ class PeersManager:
         subject_id: str,
         task_data: Dict[str, Any],
         timeout: Optional[float] = None,
-        internal_task_id: Optional[str] = None,
-        session_id: Optional[str] = None,
+        internal_task_id=None,
+        session_id=None,
     ) -> Dict[str, Any]:
         if not internal_task_id:
             internal_task_id = str(uuid.uuid4())
 
+        # prepare packet (keep your existing shape)
         packet = {
-            "event": "task",
+            "event_type": "task",
             "task_id": task_id,
-            "correlation_id": internal_task_id,   # kept for future responders
+            "task": task_data,
             "session_id": session_id or str(uuid.uuid4()),
             "origin": {
                 "internal_task_id": internal_task_id,
@@ -222,32 +223,29 @@ class PeersManager:
                 "exchange_id": "x",
                 "type": "mesh",
             },
-            "task": task_data,
-            "event_type": "task",
         }
 
-        if internal_task_id in self._pending_tasks:
-            raise ValueError(f"internal_task_id '{internal_task_id}' is already pending")
+        # initialize pending slot
+        self._pending_tasks[internal_task_id] = None
 
-        fut: asyncio.Future = self.loop.create_future()
-        self._pending_tasks[internal_task_id] = fut
-        t0 = time.time()
-        try:
-            await self.send(subject_id, packet)
-            try:
-                reply = await (asyncio.wait_for(fut, timeout) if timeout else fut)
-            except AsyncTimeout:
-                # Log everything you’d need to diagnose races
-                logger.warning(
-                    "send_and_wait TIMEOUT: internal_task_id=%s task_id=%s subject_id=%s "
-                    "elapsed=%.3fs pending_keys=%s",
-                    internal_task_id, task_id, subject_id, time.time() - t0, list(self._pending_tasks.keys())
-                )
-                raise
-            # Return the useful payload by default (still allow callers to access the full reply if needed)
-            return reply.get("data", reply)
-        finally:
-            self._pending_tasks.pop(internal_task_id, None)
+        # send it
+        await self.send(subject_id, packet)
+
+        # simple polling loop (50ms) until result is set or timeout
+        deadline = (time.monotonic() + timeout) if timeout else None
+        while True:
+            result = self._pending_tasks.get(internal_task_id)
+            if result is not None:
+                # cleanup and return
+                self._pending_tasks.pop(internal_task_id, None)
+                return result
+
+            if deadline is not None and time.monotonic() >= deadline:
+                # cleanup and raise on timeout
+                self._pending_tasks.pop(internal_task_id, None)
+                raise asyncio.TimeoutError(f"send_and_wait timed out after {timeout} seconds")
+
+            await asyncio.sleep(0.05)
 
     async def reply(
         self,
@@ -291,18 +289,17 @@ class PeersManager:
 
     # ---- Blocking wrappers ----
 
-    def send_sync(self, task_id: str, subject_id: str, task_data: Dict[str, Any], internal_task_id=None) -> None:
+    def send_sync(self, task: AgentTask, subject_id: str, job_data: Dict[str, Any], session_id: str, internal_task_id=None) -> None:
 
-        if not internal_task_id:
-            internal_task_id = str(uuid.uuid4())
+        if not session_id:
+            session_id = str(uuid.uuid4())
 
         task_data = {
-            "task_id": task_id,
-            "task": task_data,
-            "origin": {
-                "internal_task_id": internal_task_id,
-                "sender_subject_id": os.getenv("SUBJECT_ID")
-            }
+            "event_type": "task",
+            "task_id": task.task_id,
+            "task": job_data,
+            "origin": task.output_ptr,
+            "session_id": session_id
         }
 
         self._ensure_loop_running()
@@ -414,24 +411,10 @@ class PeersManager:
                             self._register_seen_agent(psid, pdata, mesh_id)
 
             if isinstance(payload, dict) and payload.get("event") == "reply":
-                cid = payload.get("correlation_id") or payload.get("task_id")
+                logger.info(f"[P2P Processing reply] {payload}; pending_tasks={self._pending_tasks}; task_id={payload['task_id']}")
+                tid = payload.get("task_id")
+                self._pending_tasks[tid] = payload
 
-                logger.info(
-                    f"[P2P Processing reply] {payload}; "
-                    f"pending_tasks={self._pending_tasks}; task_id={payload.get('task_id')}; cid={cid}"
-                )
-
-                fut = self._pending_tasks.get(cid)
-                if fut and not fut.done():
-                    try:
-                        self.loop.call_soon_threadsafe(fut.set_result, payload)
-                    except Exception as e:
-                        logger.exception(f"[{mesh_id}] failed to set task result for {cid}: {e}")
-                else:
-                    logger.debug(f"[{mesh_id}] no pending future for cid={cid} (done={fut.done() if fut else None})")
-
-
-            # ---- User-provided async message handler (optional) ----
             if self._handler:
                 try:
                     await self._handler(mesh_id, msg)
