@@ -9,4 +9,4 @@ RUN pip3 install -r requirements.txt
 
 COPY . /app/
 
-ENTRYPOINT [ "python3", "agent2.py" ]
+ENTRYPOINT [ "python3", "subj1.py" ]

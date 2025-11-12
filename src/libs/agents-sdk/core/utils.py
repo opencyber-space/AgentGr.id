@@ -47,6 +47,9 @@ def start_redis_listener(
         for result in results:
             logging.info(f"[task_data] {result}")
 
+            if result.get('skip', False):
+                continue
+
             # obtain task output:
             output_ptr = task.output_ptr
             exchange_id = output_ptr.get('exchange_id')

@@ -2,11 +2,14 @@
 import os
 import json
 import asyncio
+
+import time
 import uuid
 import logging
 import threading
 from dataclasses import dataclass, field
 from typing import Any, Awaitable, Callable, Dict, List, Optional
+from asyncio import TimeoutError as AsyncTimeout
 
 from nats.aio.client import Client as NATS
 from nats.aio.msg import Msg
@@ -27,6 +30,7 @@ class Mesh:
     sub_sid: Optional[int] = None
     sub_sid_executor: Optional[int] = None
     sub_sid_events: Optional[int] = None
+    sub_sid_replies: Optional[int] = None
 
 
 class PeersManager:
@@ -133,6 +137,8 @@ class PeersManager:
 
             mesh.sub_sid_events = await mesh.nc.subscribe(events_topic, cb=self._mk_on_msg(mesh_id))
 
+            mesh.sub_sid_replies = await mesh.nc.subscribe(subject_id, cb=self._mk_on_msg(mesh_id))
+
             mesh.sub_sid = sub_sid
             self._meshes[mesh_id] = mesh
 
@@ -199,21 +205,25 @@ class PeersManager:
         subject_id: str,
         task_data: Dict[str, Any],
         timeout: Optional[float] = None,
-        internal_task_id = None
+        internal_task_id: Optional[str] = None,
+        session_id: Optional[str] = None,
     ) -> Dict[str, Any]:
-
         if not internal_task_id:
             internal_task_id = str(uuid.uuid4())
 
-        # prepare packet:
-        task_data = {
+        packet = {
+            "event": "task",
             "task_id": task_id,
-            "task": task_data,
+            "correlation_id": internal_task_id,   # kept for future responders
+            "session_id": session_id or str(uuid.uuid4()),
             "origin": {
                 "internal_task_id": internal_task_id,
                 "sender_subject_id": os.getenv("SUBJECT_ID"),
-                "exchange_id": "x"
-            }
+                "exchange_id": "x",
+                "type": "mesh",
+            },
+            "task": task_data,
+            "event_type": "task",
         }
 
         if internal_task_id in self._pending_tasks:
@@ -221,9 +231,21 @@ class PeersManager:
 
         fut: asyncio.Future = self.loop.create_future()
         self._pending_tasks[internal_task_id] = fut
+        t0 = time.time()
         try:
-            await self.send(subject_id, task_data)
-            return await asyncio.wait_for(fut, timeout=timeout) if timeout else await fut
+            await self.send(subject_id, packet)
+            try:
+                reply = await (asyncio.wait_for(fut, timeout) if timeout else fut)
+            except AsyncTimeout:
+                # Log everything you’d need to diagnose races
+                logger.warning(
+                    "send_and_wait TIMEOUT: internal_task_id=%s task_id=%s subject_id=%s "
+                    "elapsed=%.3fs pending_keys=%s",
+                    internal_task_id, task_id, subject_id, time.time() - t0, list(self._pending_tasks.keys())
+                )
+                raise
+            # Return the useful payload by default (still allow callers to access the full reply if needed)
+            return reply.get("data", reply)
         finally:
             self._pending_tasks.pop(internal_task_id, None)
 
@@ -339,20 +361,31 @@ class PeersManager:
             try:
                 payload = json.loads(msg.data.decode("utf-8"))
             except Exception:
-                payload = None  # leave as None if not JSON
+                payload = None 
 
-            # ---- Presence + Events ----
+            
+            logger.info(f"[Received p2p mesh message] {payload}")
+
             if isinstance(payload, dict) and "event" in payload:
                 evt = payload.get("event")
 
-                # 1) Presence: join/remove
                 if evt in ("join", "remove"):
                     sid = payload.get("subject_id")
                     if sid and sid != self.self_subject_id:
                         if evt == "join":
                             data = payload.get("peer") or {}
                             self._register_seen_agent(sid, data, mesh_id)
-                        else:  # "remove"
+
+                            try:
+                                await self._send_presence(to_subject_id=sid, mesh_id=mesh_id)
+                            except Exception as e:
+                                logger.exception(f"[{mesh_id}] failed sending presence to {sid}: {e}")
+
+                            '''try:
+                                await self._send_roster(to_subject_id=sid, mesh_id=mesh_id)
+                            except Exception as e:
+                                logger.exception(f"[{mesh_id}] failed sending roster to {sid}: {e}")'''
+                        else: 
                             self._unregister_seen_agent(sid, mesh_id)
 
                 elif evt == "custom_event":
@@ -364,16 +397,39 @@ class PeersManager:
                         except Exception as e:
                             logger.exception(f"[{mesh_id}] event handler error: {e}")
 
-            # ---- Task replies (resolve pending futures) ----
-            if isinstance(payload, dict) and "event" in payload and payload["event"] == "reply":
+                # 3) A peer unicasted its existence (full subject dict)
+                elif evt == "presence":
+                    peer_sid = payload.get("subject_id")
+                    peer_data = payload.get("peer") or {}
+                    if peer_sid and peer_sid != self.self_subject_id:
+                        self._register_seen_agent(peer_sid, peer_data, mesh_id)
 
-                tid = payload.get("task_id")
-                fut = self._pending_tasks.get(tid)
+                # 4) Bulk roster snapshot (full subject dicts)
+                elif evt == "roster":
+                    peers = payload.get("peers") or []
+                    for p in peers:
+                        psid = p.get("subject_id")
+                        pdata = p.get("peer") or {}
+                        if psid and psid != self.self_subject_id:
+                            self._register_seen_agent(psid, pdata, mesh_id)
+
+            if isinstance(payload, dict) and payload.get("event") == "reply":
+                cid = payload.get("correlation_id") or payload.get("task_id")
+
+                logger.info(
+                    f"[P2P Processing reply] {payload}; "
+                    f"pending_tasks={self._pending_tasks}; task_id={payload.get('task_id')}; cid={cid}"
+                )
+
+                fut = self._pending_tasks.get(cid)
                 if fut and not fut.done():
                     try:
-                        fut.set_result(payload)
+                        self.loop.call_soon_threadsafe(fut.set_result, payload)
                     except Exception as e:
-                        logger.exception(f"[{mesh_id}] failed to set task result for {tid}: {e}")
+                        logger.exception(f"[{mesh_id}] failed to set task result for {cid}: {e}")
+                else:
+                    logger.debug(f"[{mesh_id}] no pending future for cid={cid} (done={fut.done() if fut else None})")
+
 
             # ---- User-provided async message handler (optional) ----
             if self._handler:
@@ -389,6 +445,7 @@ class PeersManager:
                     logger.info(f"[{mesh_id}] {msg.subject}: {msg.data!r}")
 
         return _on_msg
+
 
     
     async def broadcast_event(
@@ -452,16 +509,26 @@ class PeersManager:
         fut = asyncio.run_coroutine_threadsafe(coro, self.loop)
         fut.result()
 
-
+    def _is_richer(self, new: Dict[str, Any], old: Dict[str, Any]) -> bool:
+    
+        if not old:
+            return True
+        if not new:
+            return False
+        try:
+            return len(json.dumps(new, sort_keys=True)) > len(json.dumps(old, sort_keys=True))
+        except Exception:
+            return len(new.keys()) > len(old.keys())
 
     def _register_seen_agent(self, subject_id: str, data: Dict[str, Any], mesh_id: str) -> None:
         entry = self.agents.get(subject_id)
         if entry is None:
-            self.agents[subject_id] = {"data": data, "mesh_ids": [mesh_id]}
+            self.agents[subject_id] = {"data": data or {}, "mesh_ids": [mesh_id]}
             return
-        entry["data"] = data or entry.get("data", {})
-        if mesh_id not in entry["mesh_ids"]:
-            entry["mesh_ids"].append(mesh_id)
+
+        mesh_ids = entry.setdefault("mesh_ids", [])
+        if mesh_id not in mesh_ids:
+            mesh_ids.append(mesh_id)
 
     def _unregister_seen_agent(self, subject_id: str, mesh_id: str) -> None:
         entry = self.agents.get(subject_id)
@@ -481,6 +548,8 @@ class PeersManager:
         return list(self._meshes.keys())
 
     async def _publish_raw(self, mesh_id: str, subject: str, obj: Dict[str, Any]) -> None:
+
+        logger.info(f"[p2p raw publish] {obj} --> {mesh_id} ({subject})")
         mesh = self._meshes.get(mesh_id)
         if not mesh:
             raise ValueError(f"Mesh '{mesh_id}' is not registered")
@@ -510,6 +579,34 @@ class PeersManager:
         except Exception:
             pass
         await self._safe_close(mesh.nc)
+
+    async def _send_presence(self, *, to_subject_id: str, mesh_id: str) -> None:
+        topic = f"{to_subject_id}__events"
+        payload = {
+            "event": "presence",
+            "subject_id": self.self_subject_id,
+            "peer": self.subject, 
+        }
+        await self._publish_raw(mesh_id, topic, payload)
+
+    async def _send_roster(self, *, to_subject_id: str, mesh_id: str) -> None:
+        topic = f"{to_subject_id}__events"
+
+        peers = [{"subject_id": self.self_subject_id, "peer": self.subject}]
+        for sid, ent in self.agents.items():
+            if not sid:
+                continue
+            peers.append({
+                "subject_id": sid,
+                "peer": ent.get("data", {}) or {},
+            })
+
+        payload = {
+            "event": "roster",
+            "from_subject_id": self.self_subject_id,
+            "peers": peers,
+        }
+        await self._publish_raw(mesh_id, topic, payload)
 
     async def _safe_close(self, nc: NATS) -> None:
         try:
