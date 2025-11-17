@@ -180,8 +180,21 @@ class AgentExecutor:
         task.task_metadata = pre_policy_output.get("task_metadata", task.task_metadata) or task.task_metadata
         task.output_ptr = pre_policy_output.get("output_ptr", task.output_ptr) or task.output_ptr
 
+        pre = None
+
         try:
-            pre = self.agent.on_preprocess(task)
+    
+            muxer = self.agent.get_muxer()
+            if muxer:
+                ret_entry = muxer.add(task)
+                if not ret_entry:
+                    return []
+                task_for_pre = ret_entry
+            else:
+                task_for_pre = task
+
+            pre = self.agent.on_preprocess(task_for_pre)
+        
         except Exception as e:
             log.exception("on_preprocess failed (task_id=%s): %s", task.task_id, e)
             return [AgentResult(
@@ -197,15 +210,7 @@ class AgentExecutor:
         results: List[AgentResult] = []
         for entry in pre:
             try:
-
-                ret_entry = entry
-                muxer = self.agent.get_muxer()
-                if muxer:
-                    ret_entry = muxer.add(ret_entry)
-                    if not ret_entry:
-                        continue
-
-                res = self.agent.on_data(ret_entry)
+                res = self.agent.on_data(entry)
             except Exception as e:
                 log.exception("on_data failed (subtask_id=%s): %s", entry.task_id, e)
                 res = AgentResult(
