@@ -10,12 +10,34 @@ from core.agent_executor import Context
 
 log = logging.getLogger(__name__)
 
+class Muxer:
+
+    def __init__(self, N) -> None:
+        self.packets = {}
+    
+    def add(self, key, task: AgentTask):
+        self.packets[key] = self.packets.get(key, [])
+        self.packets[key].append(task)
+
+        if len(self.packets[key]) == 2:
+
+            # combine logic here
+            return self.packets[key]
+        
+        return None
+
 
 class SampleAgent:
 
     def __init__(self, subject, context: Context) -> None:
         self.subject = subject
         self.context = context
+        self.muxer = Muxer(N=2)
+
+
+    def get_muxer(self):
+        return self.muxer
+
 
     def on_preprocess(self, task: AgentTask) -> Optional[List[AgentTask]]:
 

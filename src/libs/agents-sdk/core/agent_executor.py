@@ -197,7 +197,13 @@ class AgentExecutor:
         results: List[AgentResult] = []
         for entry in pre:
             try:
-                res = self.agent.on_data(entry)
+
+                ret_entry = entry
+                muxer = self.agent.get_muxer()
+                if muxer:
+                    ret_entry = muxer.add(ret_entry)
+
+                res = self.agent.on_data(ret_entry)
             except Exception as e:
                 log.exception("on_data failed (subtask_id=%s): %s", entry.task_id, e)
                 res = AgentResult(
