@@ -202,6 +202,8 @@ class AgentExecutor:
                 muxer = self.agent.get_muxer()
                 if muxer:
                     ret_entry = muxer.add(ret_entry)
+                    if not ret_entry:
+                        continue
 
                 res = self.agent.on_data(ret_entry)
             except Exception as e:
