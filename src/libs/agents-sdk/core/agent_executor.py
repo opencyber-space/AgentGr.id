@@ -186,7 +186,7 @@ class AgentExecutor:
     
             muxer = self.agent.get_muxer()
             if muxer:
-                ret_entry = muxer.add(task)
+                ret_entry = muxer.add(task.task_id, task)
                 if not ret_entry:
                     return []
                 task_for_pre = ret_entry
