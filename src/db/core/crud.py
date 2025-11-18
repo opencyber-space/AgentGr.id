@@ -235,6 +235,29 @@ class SubjectsDB:
             logger.exception("Failed to delete subject id=%s", subject_id)
             raise SubjectsDBError(f"Failed to delete subject: {e}") from e
 
+    def query_subjects(
+        self,
+        query: Dict[str, Any],
+        *,
+        projection: Optional[Dict[str, int]] = None,
+        sort: Optional[List[Tuple[str, int]]] = None,
+        limit: int = 50,
+        skip: int = 0,
+    ) -> List[RuntimeSubject]:
+       
+        try:
+            cursor = self.col.find(query, projection=projection or {})
+            if sort:
+                cursor = cursor.sort(sort)
+            if skip:
+                cursor = cursor.skip(skip)
+            if limit:
+                cursor = cursor.limit(limit)
+            return [self._doc_to_subject(doc) for doc in cursor]
+        except PyMongoError as e:
+            logger.exception("Generic query (runtime_subjects) failed: %s", e)
+            raise RuntimeSubjectsDBError(f"Failed query: {e}") from e
+
     # ---------- Listing & Search ----------
     def list_subjects(
         self,

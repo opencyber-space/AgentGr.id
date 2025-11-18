@@ -26,8 +26,6 @@ class SubjectDBClient:
             resp.raise_for_status()
             payload = resp.json()
 
-            logging.info(f"[AgentData] {payload}")
-
             if payload.get("success") and payload.get("data"):
                 return Subject.from_dict(payload["data"])
             return None
