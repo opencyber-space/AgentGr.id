@@ -21,7 +21,6 @@ class KnownAgent:
 
     @property
     def id(self) -> str:
-        """Return subject_id from SubjectIdentity."""
         if getattr(self.subject, "identity", None) is not None:
             sid = getattr(self.subject.identity, "subject_id", None)
             if sid:
@@ -64,6 +63,9 @@ class KnownAgent:
         traits = ", ".join(metadata.subject_traits) if metadata.subject_traits else "none"
 
         return f"""
+    
+[AGENT]
+ID: {self.id}
 Agent [{identity.subject_name}] (ID: {self.id})
 Type: {identity.subject_type or "unknown"}
 Version: {identity.subject_version.version}
@@ -74,7 +76,7 @@ Traits: {traits}
 
 Persona Role: {persona.role or "unspecified"}
 Goal: {persona.goal or "unspecified"}
-""".strip()
+"""
 
    
     def _full_representation(self) -> str:
@@ -92,7 +94,7 @@ Goal: {persona.goal or "unspecified"}
         def _join(values):
             return ", ".join(values) if values else "none"
 
-        def _preview(ids, attr, max_n=5):
+        def _preview(ids, attr, max_n=1000):
             vals = []
             for it in ids[:max_n]:
                 v = getattr(it, attr, "")
@@ -112,6 +114,7 @@ Goal: {persona.goal or "unspecified"}
         subsystems_preview = _preview(integrations.sub_systems, "sub_system_id")
 
         text = f"""
+
 [AGENT]
 ID: {self.id}
 Name: {identity.subject_name}
@@ -159,7 +162,7 @@ Capabilities:
 - Addons: {len(integrations.addons)}
 - Builtin Modules: {len(integrations.builtin_modules)}
 """
-        return text.strip()
+        return text
 
 
 

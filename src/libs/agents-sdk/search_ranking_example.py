@@ -1,0 +1,42 @@
+from core.known_agents import KnownAgents
+from agents_search.search import AgentSearchRanker
+
+
+INFERENCE_SERVER_REGISTRY_URL = "http://<AIOS-INFERENCE-REGISTRY>/api"
+BLOCKS_DB_URL = "http://34.58.1.86:30100"
+INFERENCE_SERVER_ID = "http://35.232.150.117:31504"
+
+
+known_agents = KnownAgents(default_compact=True)
+
+# known_agents.add_by_id(subject_id="consensus-synthesizer")
+# known_agents.add_by_id(subject_id="con-argument-generator")
+
+known_agents.query_and_add(query={
+    "metadata.subject_search_tags": "help-desk"
+})
+
+print([agent.id for agent in known_agents.list_all()])
+
+mgr = AgentSearchRanker()
+mgr.register_new_ranker(
+    name="default",
+    model="qwen3-1-7b-vllm-block",
+    inference_server_id=INFERENCE_SERVER_ID,
+    aios_url_map={
+        "inference_server_url": INFERENCE_SERVER_REGISTRY_URL,
+        "blocks_db_url": BLOCKS_DB_URL,
+    }
+)
+
+result = mgr.rank_from_objects(
+    name="default",
+    objects=known_agents.list_all(),
+    query = (
+        "Select the MOST relevant specialist agent for technical product issues. "
+        "Prefer agents whose primary domain is technical / engineering, "
+        "NOT generic routing or other domains."
+    ),
+)
+
+print(result)
