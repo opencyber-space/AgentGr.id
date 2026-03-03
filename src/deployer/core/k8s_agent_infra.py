@@ -74,7 +74,7 @@ class AgentsInstanceDeployer:
                 self._create_or_replace_service(name=name, instance_id=instance_id, subject_id=subject_id)
 
                 # Optionally wait for service ClusterIP assignment (usually immediate)
-                svc = self.core.read_namespaced_service(name=name, namespace=self.NAMESPACE, instance_id=instance_id)
+                svc = self.core.read_namespaced_service(name=name, namespace=self.NAMESPACE)
                 results.append({
                     "ok": True,
                     "name": name,

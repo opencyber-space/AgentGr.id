@@ -7,7 +7,6 @@ class AgentTask:
     job_data: Dict[str, Any] = field(default_factory=dict)
     output_ptr: Dict[str, Any] = field(default_factory=dict)
     task_metadata: Dict[str, Any] = field(default_factory=dict)
-    skip: bool = field(default=False)
 
     def to_dict(self):
         return asdict(self)
@@ -31,5 +30,4 @@ class AgentResult:
     job_output_metadata: Dict[str, Any] = field(default_factory=dict)
     job_output_trace_data: Dict[str, Any] = field(default_factory=dict)
     is_error: bool = False
-    skip: bool = False
     error_data: Dict[str, Any] = field(default_factory=dict)

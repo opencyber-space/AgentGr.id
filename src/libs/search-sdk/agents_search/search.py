@@ -1,11 +1,11 @@
 from __future__ import annotations
 
 import logging
-from typing import Dict, Optional, Any, List, Sequence, Tuple
+from typing import Dict, Optional, Any, List, Sequence
 
-from .aios import AIOSSearchSelectorAPI, AIOSSearchRankerAPI
-from .custom import BaseSearchSelector, BaseSearchRanker
-from .policy_executor import AgentSearchPolicyExecutor
+from .aios import AIOSSearchSelectorAPI
+from .custom import BaseSearchSelector  # your abstract base for selectors
+
 
 class AgentSearchSelector:
    
@@ -28,7 +28,9 @@ class AgentSearchSelector:
         overwrite: bool = False,
         logger: Optional[logging.Logger] = None,
     ) -> BaseSearchSelector:
-        
+        """
+        Create and register an AIOS-backed selector under `name`.
+        """
         if not overwrite and name in self._registry:
             raise ValueError(f"Selector '{name}' already exists")
 
@@ -51,7 +53,9 @@ class AgentSearchSelector:
         selector: BaseSearchSelector,
         overwrite: bool = False,
     ) -> None:
-        
+        """
+        Register a preconstructed selector that implements BaseSearchSelector.
+        """
         if not isinstance(selector, BaseSearchSelector):
             raise TypeError("selector must be an instance of BaseSearchSelector")
 
@@ -165,172 +169,3 @@ class AgentSearchSelector:
             **provider_kwargs,
         )
 
-
-
-class AgentSearchRanker:
-  
-
-    def __init__(self, logger: Optional[logging.Logger] = None) -> None:
-        self._logger = logger or logging.getLogger(self.__class__.__name__)
-        self._registry: Dict[str, BaseSearchRanker] = {}
-
-    # ---------- Registration ----------
-
-    def register_new_ranker(
-        self,
-        *,
-        name: str,
-        model: str,
-        inference_server_id: str,
-        aios_url_map: Dict[str, str],
-        system_message: str = "",
-        session_id: Optional[str] = None,
-        overwrite: bool = False,
-        logger: Optional[logging.Logger] = None,
-    ) -> BaseSearchRanker:
-        """
-        Create and register an AIOS-backed ranker under `name`.
-        """
-        if not overwrite and name in self._registry:
-            raise ValueError(f"Ranker '{name}' already exists")
-
-        ranker = AIOSSearchRankerAPI(
-            model=model,
-            inference_server_id=inference_server_id,
-            aios_url_map=aios_url_map,
-            system_message=system_message,
-            session_id=session_id,
-            logger=logger or self._logger.getChild(f"ranker:{name}"),
-        )
-        self._registry[name] = ranker
-        self._logger.debug("Registered AIOSSearchRankerAPI as '%s'", name)
-        return ranker
-
-    def register_custom_ranker(
-        self,
-        *,
-        name: str,
-        ranker: BaseSearchRanker,
-        overwrite: bool = False,
-    ) -> None:
-        """
-        Register a preconstructed ranker that implements BaseSearchRanker.
-        """
-        if not isinstance(ranker, BaseSearchRanker):
-            raise TypeError("ranker must be an instance of BaseSearchRanker")
-
-        if not overwrite and name in self._registry:
-            raise ValueError(f"Ranker '{name}' already exists")
-
-        self._registry[name] = ranker
-        self._logger.debug(
-            "Registered custom ranker as '%s' (%s)", name, ranker.__class__.__name__
-        )
-
-    # ---------- Accessors ----------
-
-    def get_ranker(self, name: str) -> BaseSearchRanker:
-        try:
-            return self._registry[name]
-        except KeyError:
-            raise KeyError(f"Ranker '{name}' not found")
-
-    def has_ranker(self, name: str) -> bool:
-        return name in self._registry
-
-    def list_rankers(self) -> List[str]:
-        return list(self._registry.keys())
-
-    # ---------- Removal ----------
-
-    def unregister_ranker(self, name: str) -> None:
-        try:
-            del self._registry[name]
-            self._logger.debug("Unregistered ranker '%s'", name)
-        except KeyError:
-            raise KeyError(f"Ranker '{name}' not found")
-
-    def clear_rankers(self) -> None:
-        self._registry.clear()
-        self._logger.debug("Cleared all registered rankers")
-
-    # ---------- Ranking APIs ----------
-
-    def rank_items(
-        self,
-        *,
-        name: str,
-        items: Sequence[Dict[str, Any]],
-        id_key: str = "id",
-        query: Optional[str] = None,
-        fields_to_show: Optional[List[str]] = None,
-        # model params
-        temperature: float = 0.0,
-        top_p: float = 0.95,
-        max_tokens: int = 512,
-        system_message: Optional[str] = None,
-        # passthrough to provider (e.g., seq_no, extra_headers):
-        **provider_kwargs: Any,
-    ) -> List[Tuple[str, float]]:
-        """
-        Rank a list of item dicts using the named ranker.
-
-        Returns:
-            List of (id, score) tuples sorted by score DESC.
-        """
-        ranker = self.get_ranker(name)
-        self._logger.debug(
-            "Ranking items using '%s' with items=%d, id_key=%s, query_present=%s",
-            name, len(items), id_key, bool(query),
-        )
-        return ranker.rank_items(
-            items=items,
-            id_key=id_key,
-            query=query,
-            fields_to_show=fields_to_show,
-            temperature=temperature,
-            top_p=top_p,
-            max_tokens=max_tokens,
-            system_message=system_message,
-            **provider_kwargs,
-        )
-
-    def rank_from_objects(
-        self,
-        *,
-        name: str,
-        objects: Sequence[Any],
-        id_attr: str = "id",
-        query: Optional[str] = None,
-        fields_to_show: Optional[List[str]] = None,
-        temperature: float = 0.0,
-        top_p: float = 0.95,
-        max_tokens: int = 512,
-        system_message: Optional[str] = None,
-        **provider_kwargs: Any,
-    ) -> List[Tuple[str, float]]:
-       
-        items: List[Dict[str, Any]] = []
-        for i, obj in enumerate(objects):
-            if not hasattr(obj, id_attr):
-                raise ValueError(f"Object {i} missing required attr '{id_attr}'")
-            if not hasattr(obj, "get_searchable_representation"):
-                raise ValueError(f"Object {i} missing get_searchable_representation()")
-
-            items.append({
-                "id": str(getattr(obj, id_attr)),
-                "representation": obj.get_searchable_representation(),
-            })
-
-        return self.rank_items(
-            name=name,
-            items=items,
-            id_key="id",
-            query=query,
-            fields_to_show=(fields_to_show or ["representation"]),
-            temperature=temperature,
-            top_p=top_p,
-            max_tokens=max_tokens,
-            system_message=system_message,
-            **provider_kwargs,
-        )

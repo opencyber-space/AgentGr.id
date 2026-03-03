@@ -16,6 +16,9 @@ from .crud import RuntimeSubjectsDB, RuntimeSubjectsDBError
 
 from .schema import AgentDeployer
 from .deployer import create_agent_deployer, remove_agent_deployer
+from .workflow_crud import WorkflowsDB, RuntimeWorkflowsDB, WorkflowsDBError, RuntimeWorkflowsDBError
+from .workflow_schema import Workflow, RuntimeWorkflow
+
 from dataclasses import asdict
 
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
@@ -38,6 +41,9 @@ AGENTS_COLL_NAME = os.getenv("AGENT_DEPLOYERS_COLLECTION", "agent_deployers")
 subjects_db = SubjectsDB(mongo_uri=MONGODB_URI, db_name=SUBJECTS_DB_NAME, collection_name="subjects")
 runtime_db = RuntimeSubjectsDB(mongo_uri=MONGODB_URI, db_name=RUNTIME_DB_NAME, collection_name="runtime_subjects")
 deployers_db = AgentDeployersDB(mongo_uri=MONGODB_URI, db_name=AGENTS_DB_NAME, collection_name=AGENTS_COLL_NAME)
+workflows_db = WorkflowsDB(mongo_uri=MONGODB_URI)
+runtime_workflows_db = RuntimeWorkflowsDB(mongo_uri=MONGODB_URI)
+
 
 # ---------------------------
 # Helpers
@@ -453,6 +459,165 @@ def query_deployers():
         items = deployers_db.query_deployers(query, projection=projection, sort=sort, limit=limit, skip=skip)
         return response(True, [i.to_dict() for i in items])
     except AgentDeployersDBError as e:
+        return response(False, message=str(e), status=400)
+
+@app.route("/api/workflows", methods=["POST"])
+def create_workflow():
+    try:
+        data = request.get_json(force=True) or {}
+        wf = Workflow.from_dict(data)
+        created = workflows_db.create_workflow(wf)
+        return response(True, created.to_dict())
+    except WorkflowsDBError as e:
+        return response(False, message=str(e), status=400)
+    except Exception as e:
+        return response(False, message=str(e), status=400)
+
+
+@app.route("/api/workflows/<string:workflow_uri>", methods=["GET"])
+def get_workflow(workflow_uri: str):
+    try:
+        wf = workflows_db.get_workflow(workflow_uri)
+        if not wf:
+            return response(False, message="Workflow not found", status=404)
+        return response(True, wf.to_dict())
+    except WorkflowsDBError as e:
+        return response(False, message=str(e), status=400)
+
+
+@app.route("/api/workflows/<string:workflow_uri>", methods=["PUT"])
+def replace_workflow(workflow_uri: str):
+    try:
+        data = request.get_json(force=True) or {}
+        wf = Workflow.from_dict(data)
+        res = workflows_db.replace_workflow(workflow_uri, wf)
+        if not res:
+            return response(False, message="Workflow not found", status=404)
+        return response(True, res.to_dict())
+    except WorkflowsDBError as e:
+        return response(False, message=str(e), status=400)
+
+
+@app.route("/api/workflows/<string:workflow_uri>", methods=["PATCH"])
+def update_workflow(workflow_uri: str):
+    try:
+        body = request.get_json(force=True) or {}
+        update_fields: Dict[str, Any] = body.get("update") or {}
+
+        if not isinstance(update_fields, dict):
+            raise BadRequest("Body must contain 'update' dict.")
+
+        res = workflows_db.update_workflow_fields(workflow_uri, update_fields)
+        if not res:
+            return response(False, message="Workflow not found", status=404)
+
+        return response(True, res.to_dict())
+    except WorkflowsDBError as e:
+        return response(False, message=str(e), status=400)
+
+
+@app.route("/api/workflows/<string:workflow_uri>", methods=["DELETE"])
+def delete_workflow(workflow_uri: str):
+    try:
+        deleted = workflows_db.delete_workflow(workflow_uri)
+        if not deleted:
+            return response(False, message="Workflow not found", status=404)
+        return response(True, data="deleted successfully")
+    except WorkflowsDBError as e:
+        return response(False, message=str(e), status=400)
+
+
+@app.route("/api/workflows", methods=["GET"])
+def list_workflows():
+    try:
+        limit = int(request.args.get("limit", 50))
+        skip = int(request.args.get("skip", 0))
+        items = workflows_db.list_workflows(limit=limit, skip=skip)
+        return response(True, [i.to_dict() for i in items])
+    except WorkflowsDBError as e:
+        return response(False, message=str(e), status=400)
+
+
+@app.route("/api/workflows/query", methods=["POST"])
+def query_workflows():
+    try:
+        body = request.get_json(force=True) or {}
+        query = body.get("query") or {}
+        projection = body.get("projection")
+        sort = body.get("sort")
+        limit = int(body.get("limit", 50))
+        skip = int(body.get("skip", 0))
+
+        items = workflows_db.query_workflows(
+            query,
+            projection=projection,
+            sort=sort,
+            limit=limit,
+            skip=skip,
+        )
+
+        return response(True, [i.to_dict() for i in items])
+    except WorkflowsDBError as e:
+        return response(False, message=str(e), status=400)
+
+
+# =========================================================
+# RUNTIME WORKFLOW CRUD APIs
+# Primary Key: id
+# =========================================================
+
+@app.route("/api/runtime-workflows", methods=["POST"])
+def create_runtime_workflow():
+    try:
+        data = request.get_json(force=True) or {}
+        rt = RuntimeWorkflow.from_dict(data)
+        created = runtime_workflows_db.create_runtime(rt)
+        return response(True, created.to_dict())
+    except RuntimeWorkflowsDBError as e:
+        return response(False, message=str(e), status=400)
+    except Exception as e:
+        return response(False, message=str(e), status=400)
+
+
+@app.route("/api/runtime-workflows/<string:runtime_id>", methods=["GET"])
+def get_runtime_workflow(runtime_id: str):
+    try:
+        rt = runtime_workflows_db.get_runtime(runtime_id)
+        if not rt:
+            return response(False, message="RuntimeWorkflow not found", status=404)
+        return response(True, rt.to_dict())
+    except RuntimeWorkflowsDBError as e:
+        return response(False, message=str(e), status=400)
+
+
+@app.route("/api/runtime-workflows/<string:runtime_id>", methods=["DELETE"])
+def delete_runtime_workflow(runtime_id: str):
+    try:
+        deleted = runtime_workflows_db.delete_runtime(runtime_id)
+        if not deleted:
+            return response(False, message="RuntimeWorkflow not found", status=404)
+        return response(True, data="deleted successfully")
+    except RuntimeWorkflowsDBError as e:
+        return response(False, message=str(e), status=400)
+
+
+@app.route("/api/runtime-workflows", methods=["GET"])
+def list_runtime_workflows():
+    try:
+        workflow_uri = request.args.get("workflow_uri")
+        cluster_id = request.args.get("cluster_id")
+        limit = int(request.args.get("limit", 50))
+        skip = int(request.args.get("skip", 0))
+
+        items = runtime_workflows_db.list_runtimes(
+            workflow_uri=workflow_uri,
+            cluster_id=cluster_id,
+            limit=limit,
+            skip=skip,
+        )
+
+        return response(True, [i.to_dict() for i in items])
+    except RuntimeWorkflowsDBError as e:
         return response(False, message=str(e), status=400)
 
 def run_server():

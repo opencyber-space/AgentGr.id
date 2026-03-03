@@ -1,0 +1,68 @@
+{
+    "header": {
+        "workflow_id": {
+            "name": "patient-risk-assessment",
+            "version": "1.0.0",
+            "release": "stable"
+        },
+        "metadata": {
+            "description": "Assesses patient risk by running policy checks and an AI agent summary",
+            "owner": "clinical-ops-team",
+            "created_at": "2026-03-03"
+        }
+    },
+    "body": {
+        "nodes": [
+            {
+                "nodeID": "marketing-agent",
+                "type": "policy",
+                "id": "urn:policy:input-validator",
+                "policyType": "local",
+                "settings": {},
+                "parameters": {}
+            },
+            {
+                "nodeID": "developer-agent",
+                "type": "policy",
+                "id": "urn:policy:eligibility-check",
+                "policyType": "central",
+                "settings": {},
+                "parameters": {}
+            },
+            {
+                "nodeID": "ceo-agent",
+                "type": "policy",
+                "id": "fraud-detection-fn",
+                "policyType": "function",
+                "settings": {},
+                "parameters": {}
+            },
+            {
+                "nodeID": "coo-agent",
+                "type": "policy",
+                "id": "urn:policy:risk-score",
+                "policyType": "job",
+                "settings": {},
+                "parameters": {}
+            },
+            {
+                "nodeID": "testing-agent",
+                "type": "agent",
+                "id": "p2p-risk-summarizer",
+                "settings": {}
+            },
+            {
+                "nodeID": "coordinator-agent",
+                "type": "policy",
+                "id": "p2p-risk-summarizer",
+                "settings": {},
+                "policyType": "function"
+            }
+        ],
+        
+        "graph": {
+            "type": "agent",
+            "nodeID": "coordinator-agent"
+        }
+    }
+}

@@ -214,7 +214,6 @@ class AgentPersona:
     goal: str = ""
     persona: str = ""
     default_system_message: str = ""
-    config: Dict[str, str] = field(default_factory=dict)
 
     def to_dict(self): return _serialize(self)
     @classmethod
@@ -364,7 +363,6 @@ class RuntimeConfig:
     management_commands: List[ManagementCommandItem] = field(
         default_factory=list)
     exchanges: List[str] = field(default_factory=list)
-
 
     def to_dict(self):
         return {

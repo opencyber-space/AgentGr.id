@@ -38,6 +38,7 @@ def main():
         Shoe(id="C3", title="Black Formal Shoes", tags=["formal", "office", "mens"],   brand="Eleganz"),
     ]
 
+
     # 3) Create the selection engine
     engine = client.create_selector(name="selector", base_query="")
 

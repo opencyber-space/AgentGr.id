@@ -33,9 +33,7 @@ result = mgr.rank_from_objects(
     name="default",
     objects=known_agents.list_all(),
     query = (
-        "Select the MOST relevant specialist agent for technical product issues. "
-        "Prefer agents whose primary domain is technical / engineering, "
-        "NOT generic routing or other domains."
+        "Select an agent that is best for resolving customer experience issues, identify the tone and escalations"
     ),
 )
 

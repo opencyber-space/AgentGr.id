@@ -1,6 +1,6 @@
 import os
 import logging
-from typing import Optional, Dict, List, Any
+from typing import Optional
 
 import requests
 from .schema import Subject  
@@ -26,50 +26,13 @@ class SubjectDBClient:
             resp.raise_for_status()
             payload = resp.json()
 
+            logging.info(f"[AgentData] {payload}")
+
             if payload.get("success") and payload.get("data"):
                 return Subject.from_dict(payload["data"])
             return None
         except requests.RequestException as e:
             self.logger.error("Failed to fetch subject %s: %s", subject_id, e)
-            raise
-    
-
-    def query(
-        self,
-        query: Optional[Dict[str, Any]] = None,
-        projection: Optional[Dict[str, int]] = None,
-        sort: Optional[List[Dict[str, Any]]] = None,
-        limit: int = 50,
-        skip: int = 0,
-    ) -> List[Subject]:
-        
-        url = f"{self.base_url}/api/subjects/query"
-
-        payload = {
-            "query": query or {},
-            "projection": projection,
-            "sort": sort,
-            "limit": limit,
-            "skip": skip,
-        }
-
-        payload = {k: v for k, v in payload.items() if v is not None}
-
-        try:
-            self.logger.debug("POST %s : %s", url, payload)
-            resp = self.session.post(url, json=payload, timeout=self.timeout)
-            resp.raise_for_status()
-
-            result = resp.json()
-
-            if not result.get("success"):
-                raise ValueError(f"Query failed: {result.get('message')}")
-
-            items = result.get("data") or []
-            return [Subject.from_dict(item) for item in items]
-
-        except requests.RequestException as e:
-            self.logger.error("Failed to query subjects: %s", e)
             raise
 
     def health_check(self) -> bool:
