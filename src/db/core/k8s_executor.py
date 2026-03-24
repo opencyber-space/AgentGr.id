@@ -117,7 +117,8 @@ class AgentsDeployerInstaller:
                 client.V1EnvVar(name="JOB_SCOUTER_IMAGE_NAME", value=self.env_SCOUTER_IMAGE_NAME),
                 client.V1EnvVar(name="JOB_EXCHANGE_API_URL", value=self.env_JOB_EXCHANGE_API_URL),
                 client.V1EnvVar(name="AGENT_CORE_IMAGE", value=self.env_AGENT_DEPLOYER_IMAGE),
-                client.V1EnvVar(name="AGENT_DELEGATE_URL", value=os.getenv("AGENT_DELEGATE_URL"))
+                client.V1EnvVar(name="AGENT_DELEGATE_URL", value=os.getenv("AGENT_DELEGATE_URL")),
+                client.V1EnvVar(name="WORKFLOW_EXECUTOR_IMAGE_NAME", value=os.getenv("WORKFLOW_EXECUTOR_IMAGE_NAME", "35.223.239.192:31280/agents/workflow:latest"))
             ],
         )
 

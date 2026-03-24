@@ -620,5 +620,84 @@ def list_runtime_workflows():
     except RuntimeWorkflowsDBError as e:
         return response(False, message=str(e), status=400)
 
+@app.route("/api/deploy-workflow/<string:deployer_id>", methods=["POST"])
+def deploy_workflow(deployer_id: str):
+    try:
+        req: dict = request.get_json() or {}
+
+        workflow_id: str = req.get("workflow_id")
+        workflow_uri: str = req.get("workflow_uri")
+        cluster_id: str = req.get("cluster_id")
+        deployment_name: str = req.get("deployment_name")
+        allocation: dict = req.get("allocation", {})
+
+        if not workflow_id or not deployment_name:
+            return response(False, message="workflow_id and deployment_name are required", status=400)
+
+        ad = deployers_db.get_deployer(deployer_id)
+        if not ad:
+            return response(False, message="WorkflowDeployer not found", status=404)
+
+        # Push allocation to deployer
+        url: str = ad.deployer_public_url + f"/workflows/{workflow_uri}"
+
+        logger.info(f"[Workflow Deploy] pushing allocation: {allocation}")
+        resp = requests.post(url, json={
+            **allocation,
+            "deployment_name": deployment_name
+        })
+        resp.raise_for_status()
+
+        response_data = resp.json()
+        deployment = response_data["deployment"]
+
+        node_port = deployment["node_port"]
+        workflow_url = f"http://{ad.deployer_ip}:{node_port}"
+
+        # Build runtime object
+        runtime = RuntimeWorkflow(
+            id=workflow_id,
+            workflow_uri=workflow_uri,
+            cluster_id=cluster_id,
+            deployer_id=deployer_id,
+            deployment_name=deployment_name,
+            url=workflow_url,
+        )
+
+        runtime_workflows_db.create_runtime(runtime)
+
+        return response(True, data=runtime.to_dict())
+
+    except Exception as e:
+        logger.exception("Workflow deployment failed")
+        return response(False, message=str(e), status=400)
+
+
+@app.route("/api/remove-workflow/<string:deployer_id>/<string:workflow_id>", methods=["POST"])
+def remove_workflow(deployer_id: str, workflow_id: str):
+    try:
+        runtime = runtime_workflows_db.get_runtime(workflow_id)
+        if not runtime:
+            return response(False, message="RuntimeWorkflow not found", status=404)
+
+        ad = deployers_db.get_deployer(deployer_id)
+        if not ad:
+            return response(False, message="WorkflowDeployer not found", status=404)
+
+        url: str = ad.deployer_public_url + f"/workflows/{workflow_id}"
+
+        resp = requests.delete(url, json={
+            "deployment_name": runtime.deployment_name
+        })
+        resp.raise_for_status()
+
+        runtime_workflows_db.delete_runtime(workflow_id)
+
+        return response(True, data="Workflow removed successfully")
+
+    except Exception as e:
+        logger.exception("Workflow removal failed")
+        return response(False, message=str(e), status=400)
+
 def run_server():
     app.run(host='0.0.0.0', port=9000)

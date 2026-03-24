@@ -191,4 +191,6 @@ class RuntimeWorkflow:
             workflow_uri=data.get("workflow_uri", ""),
             cluster_id=data.get("cluster_id", ""),
             deployer_id=data.get("deployer_id", ""),
+            deployment_name=data.get("deployment_name", ""),
+            url=data.get("url", "")
         )

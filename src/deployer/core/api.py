@@ -164,7 +164,6 @@ def remove_workflow_executor(workflow_id: str):
         )
 
         ok: bool = manager.remove_executor(
-            workflow_id=workflow_id,
             deployment_name=deployment_name,
         )
 

@@ -2,6 +2,7 @@ import os
 import re
 import time
 import logging
+import traceback
 from typing import Optional, Dict, Any
 
 from kubernetes import client, config
@@ -18,11 +19,24 @@ class WorkflowExecutorManager:
         policy_db_url: str,
         logger: Optional[logging.Logger] = None,
     ) -> None:
-        self.logger = logger or logging.getLogger(self.__class__.__name__)
-        if not self.logger.handlers:
-            logging.basicConfig(level=os.getenv("LOG_LEVEL", "INFO").upper())
 
-        config.load_incluster_config()
+        self.logger = logger or logging.getLogger(self.__class__.__name__)
+
+        if not self.logger.handlers:
+            logging.basicConfig(
+                level=os.getenv("LOG_LEVEL", "INFO").upper(),
+                format="%(asctime)s [%(levelname)s] %(name)s - %(message)s",
+            )
+
+        self.logger.info("Initializing WorkflowExecutorManager")
+
+        try:
+            config.load_incluster_config()
+            self.logger.info("Loaded in-cluster Kubernetes config")
+        except Exception:
+            self.logger.error("Failed loading in-cluster config")
+            self.logger.error(traceback.format_exc())
+            raise
 
         self.core = client.CoreV1Api()
         self.apps = client.AppsV1Api()
@@ -65,9 +79,12 @@ class WorkflowExecutorManager:
         name: str = self._sanitize_name(deployment_name)
         service_name: str = f"{name}-svc"
 
+        self.logger.info(
+            f"Creating executor for workflow_id={workflow_id}, deployment={name}"
+        )
+
         labels = {
             "app": "workflow-executor",
-            "workflow-id": workflow_id,
             "deployment-name": name,
         }
 
@@ -112,29 +129,73 @@ class WorkflowExecutorManager:
             spec=deployment_spec,
         )
 
-        # Create or replace deployment
+        # ------------------------------------------------------
+        # DEPLOYMENT CREATE / REPLACE
+        # ------------------------------------------------------
         try:
-            self.apps.read_namespaced_deployment(name=name, namespace=self.NAMESPACE)
-            self.logger.info(f"Deployment '{name}' exists; replacing...")
+            self.logger.info(f"Checking existing Deployment '{name}'")
+
+            self.apps.read_namespaced_deployment(
+                name=name,
+                namespace=self.NAMESPACE,
+            )
+
+            self.logger.info(f"Deployment '{name}' exists. Replacing.")
+
             self.apps.replace_namespaced_deployment(
                 name=name,
                 namespace=self.NAMESPACE,
                 body=deployment,
             )
+
+            self.logger.info(f"Deployment '{name}' replaced successfully.")
+
         except ApiException as e:
             if e.status == 404:
-                self.logger.info(f"Creating Deployment '{name}'...")
-                self.apps.create_namespaced_deployment(
-                    namespace=self.NAMESPACE,
-                    body=deployment,
-                )
+                try:
+                    self.logger.info(f"Deployment '{name}' not found. Creating.")
+
+                    self.apps.create_namespaced_deployment(
+                        namespace=self.NAMESPACE,
+                        body=deployment,
+                    )
+
+                    self.logger.info(f"Deployment '{name}' created successfully.")
+
+                except ApiException as create_error:
+                    self.logger.error("Deployment creation failed")
+                    self.logger.error(
+                        f"Status={create_error.status} Reason={create_error.reason}"
+                    )
+                    self.logger.error(f"Kubernetes body: {create_error.body}")
+                    self.logger.error(traceback.format_exc())
+                    raise
             else:
+                self.logger.error("Deployment read/replace failed")
+                self.logger.error(f"Status={e.status} Reason={e.reason}")
+                self.logger.error(f"Kubernetes body: {e.body}")
+                self.logger.error(traceback.format_exc())
                 raise
 
-        # ============================
-        # SERVICE
-        # ============================
-        existing_nodeport = self._get_existing_nodeport(service_name)
+        # ------------------------------------------------------
+        # SERVICE CREATION
+        # ------------------------------------------------------
+        try:
+            self.logger.info(f"Checking existing Service '{service_name}'")
+            existing_nodeport = self._get_existing_nodeport(service_name)
+        except Exception:
+            self.logger.error("Failed retrieving existing nodeport")
+            self.logger.error(traceback.format_exc())
+            raise
+
+        service_port = client.V1ServicePort(
+            name="workflow-port",
+            port=9100,
+            target_port=9100,
+        )
+
+        if existing_nodeport:
+            service_port.node_port = existing_nodeport
 
         service = client.V1Service(
             api_version="v1",
@@ -146,39 +207,60 @@ class WorkflowExecutorManager:
             spec=client.V1ServiceSpec(
                 selector=labels,
                 type="NodePort",
-                ports=[
-                    client.V1ServicePort(
-                        name="workflow-port",
-                        port=9100,
-                        target_port=9100,
-                        node_port=existing_nodeport,
-                    )
-                ],
+                ports=[service_port],
             ),
         )
 
         try:
+            self.logger.info(f"Checking if Service '{service_name}' exists")
+
             self.core.read_namespaced_service(
                 name=service_name,
                 namespace=self.NAMESPACE,
             )
-            self.logger.info(f"Service '{service_name}' exists; replacing...")
+
+            self.logger.info(f"Service '{service_name}' exists. Replacing.")
+
             self.core.replace_namespaced_service(
                 name=service_name,
                 namespace=self.NAMESPACE,
                 body=service,
             )
+
+            self.logger.info(f"Service '{service_name}' replaced successfully")
+
         except ApiException as e:
             if e.status == 404:
-                self.logger.info(f"Creating Service '{service_name}'...")
-                self.core.create_namespaced_service(
-                    namespace=self.NAMESPACE,
-                    body=service,
-                )
+                try:
+                    self.logger.info(f"Service '{service_name}' not found. Creating.")
+
+                    self.core.create_namespaced_service(
+                        namespace=self.NAMESPACE,
+                        body=service,
+                    )
+
+                    self.logger.info(f"Service '{service_name}' created successfully")
+
+                except ApiException as create_error:
+                    self.logger.error("Service creation failed")
+                    self.logger.error(
+                        f"Status={create_error.status} Reason={create_error.reason}"
+                    )
+                    self.logger.error(f"Kubernetes body: {create_error.body}")
+                    self.logger.error(traceback.format_exc())
+                    raise
             else:
+                self.logger.error("Service read/replace failed")
+                self.logger.error(f"Status={e.status} Reason={e.reason}")
+                self.logger.error(f"Kubernetes body: {e.body}")
+                self.logger.error(traceback.format_exc())
                 raise
 
         service_obj = self._wait_for_nodeport(service_name)
+
+        self.logger.info(
+            f"Executor ready: deployment={name} node_port={service_obj.spec.ports[0].node_port}"
+        )
 
         return {
             "deployment_name": name,
@@ -201,6 +283,8 @@ class WorkflowExecutorManager:
         name: str = self._sanitize_name(deployment_name)
         service_name: str = f"{name}-svc"
 
+        self.logger.info(f"Removing executor deployment={name}")
+
         try:
             self.apps.delete_namespaced_deployment(
                 name=name,
@@ -210,8 +294,14 @@ class WorkflowExecutorManager:
                     grace_period_seconds=0,
                 ),
             )
+            self.logger.info(f"Deployment '{name}' deleted")
+
         except ApiException as e:
             if e.status != 404:
+                self.logger.error("Deployment deletion failed")
+                self.logger.error(f"Status={e.status} Reason={e.reason}")
+                self.logger.error(f"Kubernetes body: {e.body}")
+                self.logger.error(traceback.format_exc())
                 raise
 
         try:
@@ -219,11 +309,16 @@ class WorkflowExecutorManager:
                 name=service_name,
                 namespace=self.NAMESPACE,
             )
+            self.logger.info(f"Service '{service_name}' deleted")
+
         except ApiException as e:
             if e.status != 404:
+                self.logger.error("Service deletion failed")
+                self.logger.error(f"Status={e.status} Reason={e.reason}")
+                self.logger.error(f"Kubernetes body: {e.body}")
+                self.logger.error(traceback.format_exc())
                 raise
 
-        self.logger.info(f"Deployment '{name}' and Service '{service_name}' removed.")
         return True
 
     # ==========================================================
@@ -236,9 +331,17 @@ class WorkflowExecutorManager:
                 namespace=self.NAMESPACE,
             )
             if svc.spec and svc.spec.ports:
-                return svc.spec.ports[0].node_port
+                nodeport = svc.spec.ports[0].node_port
+                self.logger.info(
+                    f"Existing nodeport found for service '{service_name}': {nodeport}"
+                )
+                return nodeport
         except ApiException as e:
             if e.status != 404:
+                self.logger.error("Error reading existing service")
+                self.logger.error(f"Status={e.status} Reason={e.reason}")
+                self.logger.error(f"Kubernetes body: {e.body}")
+                self.logger.error(traceback.format_exc())
                 raise
         return None
 
@@ -249,15 +352,25 @@ class WorkflowExecutorManager:
         interval_s: float = 0.5,
     ) -> client.V1Service:
 
+        self.logger.info(f"Waiting for nodePort allocation for service '{service_name}'")
+
         deadline = time.time() + timeout_s
+
         while time.time() < deadline:
             svc = self.core.read_namespaced_service(
                 service_name,
                 self.NAMESPACE,
             )
+
             if svc.spec and svc.spec.ports and svc.spec.ports[0].node_port:
+                self.logger.info(
+                    f"NodePort allocated: {svc.spec.ports[0].node_port}"
+                )
                 return svc
+
             time.sleep(interval_s)
+
+        self.logger.warning("Timeout waiting for nodePort allocation")
 
         return self.core.read_namespaced_service(
             service_name,
@@ -266,17 +379,32 @@ class WorkflowExecutorManager:
 
     def _ensure_namespace(self) -> None:
         try:
+            self.logger.info(f"Ensuring namespace '{self.NAMESPACE}' exists")
+
             self.core.read_namespace(self.NAMESPACE)
+
+            self.logger.info(f"Namespace '{self.NAMESPACE}' already exists")
+
         except ApiException as e:
             if e.status == 404:
+                self.logger.info(f"Namespace '{self.NAMESPACE}' not found. Creating.")
+
                 ns = client.V1Namespace(
                     metadata=client.V1ObjectMeta(
                         name=self.NAMESPACE,
                         labels={"managed-by": "workflow-executor-manager"},
                     )
                 )
+
                 self.core.create_namespace(ns)
+
+                self.logger.info(f"Namespace '{self.NAMESPACE}' created")
+
             else:
+                self.logger.error("Namespace check failed")
+                self.logger.error(f"Status={e.status} Reason={e.reason}")
+                self.logger.error(f"Kubernetes body: {e.body}")
+                self.logger.error(traceback.format_exc())
                 raise
 
     @staticmethod

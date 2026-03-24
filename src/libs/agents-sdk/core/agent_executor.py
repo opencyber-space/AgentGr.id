@@ -54,7 +54,7 @@ class Context:
         delegation_url = os.getenv("AGENT_DELEGATE_URL")
         logging.info(f"[Delegator] Using delegation system {delegation_url}")
         self.delegator: AgentDelegator = AgentDelegator(base_url=delegation_url)
-        agent_runtime_db_url = os.getenv("SUBJECTS_DB_URL")
+        agent_runtime_db_url = os.getenv("SUBJECT_DB_URL")
         logging.info(f"[AgentDirect] Using delegation system {delegation_url}")
         self.direct: AgentDirect = AgentDirect(runtime_db_url=agent_runtime_db_url)
 

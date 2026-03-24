@@ -125,6 +125,13 @@ class SubjectsDB:
         payload.pop("created_at", None)
         payload.pop("updated_at", None)
         return Subject.from_dict(payload)
+    
+    def _doc_to_rs(self, doc: Dict[str, Any]) -> RuntimeSubject:
+        payload = dict(doc)
+        payload.pop("_id", None)
+        payload.pop("created_at", None)
+        payload.pop("updated_at", None)
+        return Subject.from_dict(payload)
 
     # ---------- CRUD ----------
     def create_subject(self, subject: "Subject") -> "Subject":
@@ -236,6 +243,31 @@ class SubjectsDB:
             raise SubjectsDBError(f"Failed to delete subject: {e}") from e
 
     # ---------- Listing & Search ----------
+
+    def query_subjects(
+        self,
+        query: Dict[str, Any],
+        *,
+        projection: Optional[Dict[str, int]] = None,
+        sort: Optional[List[Tuple[str, int]]] = None,
+        limit: int = 50,
+        skip: int = 0,
+    ) -> List[RuntimeSubject]:
+       
+        try:
+            cursor = self.col.find(query, projection=projection or {})
+            if sort:
+                cursor = cursor.sort(sort)
+            if skip:
+                cursor = cursor.skip(skip)
+            if limit:
+                cursor = cursor.limit(limit)
+            return [self._doc_to_rs(doc) for doc in cursor]
+        except PyMongoError as e:
+            logger.exception("Generic query (runtime_subjects) failed: %s", e)
+            raise RuntimeSubjectsDBError(f"Failed query: {e}") from e
+
+
     def list_subjects(
         self,
         *,
