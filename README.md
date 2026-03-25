@@ -1,7 +1,149 @@
-# 🚀 Intelligent Agents Execution & Delegation Framework
+# 🌐 AgentGrid: Open Agentic Web 
 
-**A modular, LLM-powered system for reasoning, planning, delegating, and executing complex tasks using autonomous agents, tools, DSLs, and real-time coordination infrastructure.**
-Scalable, pluggable, and built for modern, decentralized AI workloads.
+**AgentGrid is the third generation of agent architectures (Gen-3).**  
+It subsumes strengths of **Gen-1: AI Agents** (autonomous intelligent entities) and **Gen-2: Multi-Agent Systems (MAS)** (distributed problem solvers), while overcoming their limits.  
+
+Where Gen-1 solves as lone agent and Gen-2 organizes coordinated teams, **AgentGrid operationalizes a decentralized society of agents** like the **Internet of agents** - billions of interconnected agents that can discover each other, negotiate, form ad-hoc collaborations, exchange knowledge, and coordinate actions across open environments.  
+
+**Key Idea:** AgentGrid is foundational infrastructure for the **Open Agentic Web** - enabling agents to pursue individual and collective goals under shared norms, policies, and guarantees. It transforms isolated agents into participants of a large, cooperative, and dynamic ecosystem that spans trust, adversarial settings, and large-scale distributed problem solving.  
+
+---
+
+### 🧩 A Simple Analogy
+
+- **Gen-1 (AI Agent):** Like a **skilled individual worker** - they can perceive, decide, act, and learn, but they work mostly alone.  
+- **Gen-2 (MAS):** Like a **project team** - several workers with different roles (planner, doer, verifier) coordinating through set rules to solve a shared problem.  
+- **Gen-3 (AgentGrid):** Like a **Civilization** - billions of people, organizations, and services interacting freely: forming organizations, coalitions, negotiating contracts, delegating tasks, sharing knowledge, competing and collaborating at scale. No central control, yet society functions through shared norms, infrastructure, and governance.  
+
+AgentGrid is this **Civilization for AI agents** - a digital society where diverse agents can meet, trust, collaborate, and evolve collective intelligence.  
+
+---
+
+🚧 **Project Status: Alpha**  
+_Not production-ready. See [Project Status](#project-status) for details._
+
+---
+
+## 🌍 AgentGrid as a Digital Civilization
+
+AgentGrid does everything a single agent can do: be goal driven, perceive its environment, reason, plan, decide, act through tools, and learn from feedback to pursue goals under constraints.  
+
+It also provides everything a Multi-Agent System (MAS) can do:  
+- Coordinate autonomous agents to achieve outcomes no single agent can.  
+- Solve distributed problems where each agent has incomplete information, no global control, and decentralized data.  
+- Organize agents into roles (planner, doer, verifier, broker), exchanging intents, proposals, and receipts.  
+- Leverage composition, workflows and orchestration. 
+- Collaborate by uniform protocols
+- Use LLMs as agent “brains,” and tools for actuation.
+
+But **AgentGrid goes beyond both**. It delivers what an open environment - a true *society of agents* or *Internet of Agents* demands:  
+
+
+## 🌐 What AgentGrid Delivers  
+
+AgentGrid integrates with several key projects, each contributing a unique piece of the Open Agentic Web: 
+
+| Capability | Brief Description |
+|------------|------------------|
+| **🔍 Discovery** | Agents must find and recognize each other across vast, dynamic networks. |
+| **📡 Communication Systems** | Decentralized communication mesh with diverse channels and messaging for rich, asynchronous, large-scale interaction. |
+| **📜 Open Protocols** | Flexible, interoperable standards for any transaction — no enforced uniformity, since billion-scale ecosystems cannot rely on a single format. |
+| **🔐 Trust & Identity** | Verifiable identity, reputation, and guarantees even in adversarial conditions. |
+| **💱 Economy & Exchange** | Marketplaces, task exchanges, and resource-sharing infrastructures for trade, pricing, and value transfer among agents. |
+| **🤝 Negotiation & Contracts** | Mechanisms to form, validate, and enforce agreements at scale. |
+| **🏛️ Collective Governance** | Norms, institutions, and policy frameworks that balance autonomy with shared order. |
+| **🌍 Civilizational Systems** | Meta-structures (law, culture, governance) that sustain large-scale cooperation across heterogeneous agents. |
+| **🔗 Knowledge & Context Sharing** | Seamless exchange of data, context, and insights across diverse agents and environments. |
+| **👥 Agency & Coalitions** | Ability for agents to join or form agencies, roles, groups, and alliances for common or competitive goals. |
+| **🧭 Strategies Decision & Behavior** | Adaptive mechanisms for deliberation, decision, competition, cooperation, or divergence in complex settings. |
+| **⚖️ Scalability** | Billions of heterogeneous agents interacting without central control. |
+
+
+
+---
+
+## 🏗️ Core Building Blocks of AgentGrid  
+
+The **AgentGrid** is not a single system but a **constellation of key projects** that together form the foundation of the Open Agentic Web.  
+
+The **AgentGrid** is built upon the following key projects, each contributing a unique piece of the Open Agentic Web:  
+
+| Project        | Intuitive Brief |
+|----------------|-----------------|
+| 🤖 **AIOS**        | Operating system for AI & agents; runtime, orchestration, and execution environment. |
+| 🛡️ **PolicyGrid**  | Trust and governance layer; aligns AI & agents with shared norms, ethics, and rules. |
+| 🎮 **OpenArcade**  | Framework to shape agent populations; enables strategies for interaction, collaboration, cooperation, negotiation, and social decision-making. |
+| 🔌 **ServiceGrid** | Service, tool discovery and composition; connects agents to distributed services & tools. |
+| 🔐 **Xchange.id**  | Decentralized task exchange for agents & AI; routes tasks to specialist agents or agencies. |
+| 🌐 **OpenMe.sh**   | Open, protocol-native communication mesh; enables signaling, message exchange, and shared context across groups, orgs, and geographies. |
+| 📜 **ContractGr.id** | Contracts and agreements for AI-first society; formalizes negotiation, commitments, and enforcement. |
+| 🔗 **Pervasive.Link** | Meta-protocol that binds heterogeneous systems; encodes, translates protocols, context, languages, and strategies into interoperable structures. |
+| 🚉 **OpenHub.ai**  | Market hub for decentralized intelligence; backbone for sourcing, distribution, and routing of networked intelligence. |
+| 🏛️ **AgencyGr.id** | Societal layer; defines roles, structures, and institutions for collective organization. |
+
+
+---
+
+## 📚 Contents
+
+* **Getting Started**
+
+  * [Specifying an Agent](https://docs.agentgr.id/agents/agent-specification)
+  * [Creating an Agent](https://docs.agentgr.id/agents/agent-creation)
+  * [Using LLMs and other AI models](https://docs.agentgr.id/agents/agent-llm-interface)
+  * [Using Memory](https://docs.agentgr.id/agents/agent-memory)
+  * [Managing and calling DSL Workflows](https://docs.agentgr.id/agents/agent-dsl-manager)
+  * [Generating runtime code using Code Generator SDK](https://docs.agentgr.id/agents/agent-code-generator)
+  * [Calling Functions and Tools](https://docs.agentgr.id/agents/agent-tools)
+  * [Using Embedding Models](https://docs.agentgr.id/agents/agent-eembeddings)
+  * [Accessing Graph Databases](https://docs.agentgr.id/agents/agent-graph-storage)
+  * [Accessing Vector Databases](https://docs.agentgr.id/agents/agent-vector-storage)
+  * [Chat and P2P Communication with other agents](https://docs.agentgr.id/agents/agent-chat-p2p)
+  * [A2A - Agent to Agent Communication Protocol](https://docs.agentgr.id/agents/a2a)
+  * [Accessing S3 Compatible Object Storage](https://docs.agentgr.id/agents/agent-object-storage)
+
+---
+
+* **Advanced**
+  * [DSL Workflows for Agents](https://docs.agentgr.id/agents/workflows/index)
+  * [Task Delegation, Behavior Planning, Verification](https://docs.agentgr.id/agents/agent-sub-systems)
+  * [Association with other Agents](https://docs.agentgr.id/agents/agent-association)
+  * [Configuration Store](https://docs.agentgr.id/agents/agent-config-store)
+  * [Metrics](https://docs.agentgr.id/agents/agent-metrics)
+
+---
+
+* **Concepts**
+
+  * [Agent Context Cache](https://docs.agentgr.id/agents/concepts/agent-context-cache)
+  * [Agent LLM Interaction](https://docs.agentgr.id/agents/concepts/agent-llm-interaction)
+  * [Agent Planning System](https://docs.agentgr.id/agents/concepts/agent-planning-system)
+  * [Agent Task Delegation](https://docs.agentgr.id/agents/concepts/agent-task-delegation)
+  * [Agent Verification System](https://docs.agentgr.id/agents/concepts/agent-verification-system)
+  * [Agent Workflow Execution](https://docs.agentgr.id/agents/concepts/agent-workflow-execution)
+  * [Behavior Controller](https://docs.agentgr.id/agents/concepts/behaviour-controller)
+  * [Communication System](https://docs.agentgr.id/agents/concepts/communication-system)
+
+---
+
+## 🔗 Links
+
+* 🌐 [Website](https://www.agentgr.id)
+* 📄 [Vision Paper](https://resources.agentgr.id/)
+* 📚 [Documentation](https://docs.agentgr.id)
+* 💻 [GitHub](https://github.com/opencyber-space/AgentGr.id)
+
+---
+
+## 🏗 Architecture Diagrams
+
+* 🧠 [Agent Context Cache](images/agent-context-cache.png)
+* 🤖 [LLM Interface](images/ai-instance-sdk.png)
+* 📌 [Task Delegation](images/delegation-agents.png)
+* ✅ [Verification System Client](images/agents-verification.png)
+* 🎛 [Behavior Controller Sub-System](images/behavior-controller.png)
+* 📡 [Agent Communication Fanout](images/agent-communication.png)
+
 
 ---
 
@@ -9,10 +151,11 @@ Scalable, pluggable, and built for modern, decentralized AI workloads.
 
 ### 🧠 Multi-Stage Agent Planning & Reasoning
 
-* Two-phase planning system using LLMs: task decomposition → action selection
+* Nested workflow driven planning system
+* Mindlink support - contextually link diverse AI systems as dynamic and on-demand minds for agents.
 * Dynamically creates structured, executable task graphs (`PlannerTask`s)
-* Supports context-aware, memory-driven planning with FrameDB integration
-* Uses prompt planners to guide selection across DSLs, tools, agents, and LLMs
+* Supports context-aware, memory-driven planning with MemoryGrid integration
+* Uses planners to guide selection across DSLs, tools, agents, and LLMs
 
 ### 🔀 Delegation & Verification Workflows
 
@@ -23,7 +166,7 @@ Scalable, pluggable, and built for modern, decentralized AI workloads.
 
 ### ⚙️ Modular Execution Engine
 
-* Executes validated task DAGs with support for parallelism and recursion
+* Executes validated task DAGs & cyclic graphs with support for parallelism and recursion
 * Dynamically dispatches to tool executors, LLMs, DSL workflows, or agent APIs
 * Sandboxed code execution for runtime-generated Python logic
 * Retry, fallback, and dry-run estimation modes supported
@@ -32,7 +175,7 @@ Scalable, pluggable, and built for modern, decentralized AI workloads.
 
 * Unified registry for **tools**, **functions**, and **DSL workflows**
 * Supports remote REST/gRPC-based tools and local logic executors
-* Provides searchable metadata for LLM-based discoverability and selection
+* Provides searchable metadata & metrics for LLM-based discoverability and selection
 * Allows versioning, validation, and dynamic schema inspection
 
 ### 🧠 LLM & Optimizer Abstraction
@@ -49,7 +192,7 @@ Scalable, pluggable, and built for modern, decentralized AI workloads.
 
 ---
 
-## ✨ Features
+## ✨ Select Features
 
 | Feature                            | Description                                                                |
 | ---------------------------------- | -------------------------------------------------------------------------- |
@@ -95,77 +238,42 @@ Scalable, pluggable, and built for modern, decentralized AI workloads.
 
 ---
 
-## 🧠 Subsystems Overview
+# Project Status 🚧
 
-| Subsystem                  | Role                                                                |
-| -------------------------- | ------------------------------------------------------------------- |
-| `behavior_controller`      | Phase 1 (plan) + Phase 2 (select) LLM-powered task orchestration    |
-| `executor`                 | Runs validated task graphs, manages parallelism and recursion       |
-| `functions_tools_registry` | Registers tools/functions, validates schemas, supports remote/local |
-| `dsl_manager`              | Manages DSL workflows, schema description, and planner formatting   |
-| `delegation_system`        | Delegates sub-tasks via auction, voting, or plan-and-retrieve       |
-| `verification_system`      | Verifies tasks via agents or humans, tracks status via WebSockets   |
-| `agent_context_cache`      | Key-value cache with topic-based broadcasting and backup control    |
-| `agent_tasks_db`           | Stores and queries tasks across meta → sub → behavior layers        |
-| `agent_llm_interface`      | Unified LLM inference + optimizer abstraction                       |
-| `code_generator_sdk`       | Dynamically generates and safely executes Python logic              |
-| `agents_db`                | Registers and searches subject metadata and runtime instances       |
-| `communication_layer`      | NATS and WebSocket-based priority messaging and coordination        |
+> ⚠️ **Development Status**  
+> The project is nearing full completion of version 1.0.0, with minor updates & optimization still being delivered.
+> 
+> ⚠️ **Alpha Release**  
+> Early access version. Use for testing only. Breaking changes may occur.  
+>
+> 🧪 **Testing Phase**  
+> Features are under active validation. Expect occasional issues and ongoing refinements.  
+>
+> ⛔ **Not Production-Ready**  
+> We do not recommend using this in production (or relying on it) right now. 
+> 
+> 🔄 **Compatibility**  
+> APIs, schemas, and configuration may change without notice.  
+>
+> 💬 **Feedback Welcome**  
+> Early feedback helps us stabilize future releases.  
 
----
-
-## 📁 Source Tree
-
-```
-src/
-├── agents_sdk/
-│   ├── behavior_controller
-│   ├── executor
-│   ├── context_cache
-│   ├── tasks_db
-│   ├── communication
-│   ├── delegation
-│   ├── verification
-│   ├── dsl_manager
-│   ├── functions_tools_registry
-│   ├── llm_interface
-│   ├── embeddings
-│   ├── code_generator_sdk
-│   └── db
-```
 
 ---
 
-## 📚 Documentation & Links
+## 📢 Communications
 
-* 📖 [Full Documentation](docs/)
-* 🧠 [Behavior Planning](./src/agents_sdk/behavior_controller/)
-* 🧪 \[Tools, Functions, DSLs]\(./src/agents\_sdk/functions\_tools\_registry/, ./src/agents\_sdk/dsl\_manager/)
-* ⚙️ [Task Executor](./src/agents_sdk/executor/)
-* 🔁 [Delegation System](./src/agents_sdk/delegation/)
-* ✅ [Verification System](./src/agents_sdk/verification/)
-* 🧬 [Context Cache](./src/agents_sdk/context_cache/)
-* 📊 [Agents DB & Search](./src/agents_sdk/db/)
-* 🔍 \[LLM + Code SDKs]\(./src/agents\_sdk/llm\_interface/, ./src/agents\_sdk/code\_generator\_sdk/)
+1. 📧 Email: [community@opencyberspace.org](mailto:community@opencyberspace.org)  
+2. 💬 Discord: [OpenCyberspace](https://discord.gg/W24vZFNB)  
+3. 🐦 X (Twitter): [@opencyberspace](https://x.com/opencyberspace)
 
 ---
 
-## 📜 License
+## 🤝 Join Us!
 
-Released under [Apache 2.0 License](./LICENSE).
-Use it, extend it, and contribute to open agent infrastructure.
+AIGrid is **community-driven**. Theory, Protocol, implementations - All contributions are welcome.
 
----
+### Get Involved
 
-## 🗣️ Get Involved
-
-We’re building the most flexible orchestration system for autonomous agents and LLM-integrated AI workloads.
-
-* 💬 Submit proposals for new executor types or DSLs
-* ⚒️ Contribute modules, planners, tool integrations
-* 🧪 Experiment with LLM-augmented workflows in your pipelines
-* 🐛 Report bugs, suggest features, or contribute docs
-
-Let’s build the AI coordination layer for the future—one agent at a time.
-
----
+- 💬 [Join our Discord](https://discord.gg/W24vZFNB)  
+- 📧 Email us: [community@opencyberspace.org](mailto:community@opencyberspace.org)
