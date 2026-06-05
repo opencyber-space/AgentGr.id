@@ -1,9 +1,29 @@
 from core.his import HisClient
+import os
+from dotenv import load_dotenv
+
+# Find .env by walking up to the directory containing .git
+def find_git_root(path):
+    current = os.path.abspath(path)
+    while True:
+        if os.path.exists(os.path.join(current, '.git')):
+            return current
+        parent = os.path.dirname(current)
+        if parent == current:
+            return None
+        current = parent
+
+_git_root = find_git_root(__file__)
+if _git_root:
+    load_dotenv(os.path.join(_git_root, '.env'))
+else:
+    load_dotenv()
+
 import time
 import json
 
 
-BASE_URL = "http://35.223.239.192:30608"
+BASE_URL = os.environ["HIS_BASE_URL"]
 
 
 def main():

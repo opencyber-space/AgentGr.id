@@ -43,6 +43,7 @@ def result_to_dict(r: AgentResult) -> Dict[str, Any]:
         "job_output_trace_data": r.job_output_trace_data,
         "is_error": r.is_error,
         "error_data": r.error_data,
+        "skip": r.skip
     }
 
 
@@ -179,8 +180,21 @@ class AgentExecutor:
         task.task_metadata = pre_policy_output.get("task_metadata", task.task_metadata) or task.task_metadata
         task.output_ptr = pre_policy_output.get("output_ptr", task.output_ptr) or task.output_ptr
 
+        pre = None
+
         try:
-            pre = self.agent.on_preprocess(task)
+    
+            muxer = self.agent.get_muxer()
+            if muxer:
+                ret_entry = muxer.add(task.task_id, task)
+                if not ret_entry:
+                    return []
+                task_for_pre = ret_entry
+            else:
+                task_for_pre = task
+
+            pre = self.agent.on_preprocess(task_for_pre)
+        
         except Exception as e:
             log.exception("on_preprocess failed (task_id=%s): %s", task.task_id, e)
             return [AgentResult(
