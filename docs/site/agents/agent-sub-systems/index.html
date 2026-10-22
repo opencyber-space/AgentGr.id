@@ -1,0 +1,2330 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../agent-object-storage/">
+      
+      
+        <link rel="next" href="../agent-association/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>Task Delegation, Behavior Planning, Verification - AgentGr.id</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#agent-sub-systems" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AgentGr.id" class="md-header__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AgentGr.id
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Task Delegation, Behavior Planning, Verification
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AgentGr.id" class="md-nav__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AgentGr.id
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🧠 AgentGr.id
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            🧠 AgentGr.id
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-specification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Specifying an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-creation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-llm-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using LLMs and other AI models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-dsl-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Managing and calling DSL Workflows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-code-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Generating runtime code using Code Generator SDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Calling Functions and Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-eembeddings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Embedding Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-graph-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Graph Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-vector-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Vector Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-chat-p2p/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chat and P2P Communication with other agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../a2a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    A2A - Agent to Agent Communication Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-object-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing S3 Compatible Object Storage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Task Delegation, Behavior Planning, Verification
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task Delegation, Behavior Planning, Verification
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-association/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Association with other Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-config-store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_5" id="__nav_2_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Workflows
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Workflows
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/creating_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/onboarding_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Onboarding Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/writing_sample_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sample workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced Agent Memories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced Agent Memories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/agentic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agentic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Memory Types
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Memory Types
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/episodic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Episodic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/semantic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/procedural-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Procedural Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/reflective-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reflective Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/reward-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reward Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/context-kv-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Context KV Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/agent-fs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent FS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/learner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learner
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/incorporator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Incorporator & Feedback
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/end-to-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    End-to-End Example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Architecture & Concepts
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture & Concepts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-context-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Context Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-llm-interaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent LLM Interaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-planning-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Planning System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-task-delegation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Task Delegation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-verification-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Verification System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-workflow-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Workflow Execution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/behaviour-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Behavior Controller
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/communication-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Communication System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="agent-sub-systems">Agent Sub-Systems</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Agent sub-systems are modular components that extend an agent’s capabilities in a distributed AI environment.
+By integrating different sub-systems, agents can delegate tasks, plan and execute behaviors, verify results, collaborate via voting, exchange messages in real time, and even communicate directly with other agents over peer-to-peer connections.</p>
+<p>These sub-systems can be <strong>selectively enabled</strong> and <strong>individually configured</strong> in the agent’s Subject Specification, allowing a tailored setup that matches the agent’s role and responsibilities.
+With them, we can achieve:</p>
+<ul>
+<li><strong>Scalable task delegation and orchestration</strong></li>
+<li><strong>LLM-powered behavior planning and decision-making</strong></li>
+<li><strong>Result verification workflows</strong> for quality control</li>
+<li><strong>Collaborative decision-making</strong> through voting systems</li>
+<li><strong>Real-time communication</strong> via chat and event streaming</li>
+<li><strong>Direct peer-to-peer communication</strong> without central brokers</li>
+</ul>
+<hr />
+<table>
+<thead>
+<tr>
+<th>Sub-System Name</th>
+<th>Purpose / Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Delegation System</strong></td>
+<td>Allows an agent to delegate sub-tasks to other agents, track their execution status, and receive results. Supports REST APIs for CRUD operations and NATS for real-time task/result events.</td>
+</tr>
+<tr>
+<td><strong>Behavior Controller</strong></td>
+<td>Generates and executes structured behavior plans using LLMs in two phases (planning &amp; selection). Supports context-aware reasoning, integrates with AIOS or OpenAI, and persists results for reuse.</td>
+</tr>
+<tr>
+<td><strong>Verification System</strong></td>
+<td>Manages verification workflows for delegated tasks, storing results in MongoDB, and broadcasting live status via WebSocket. Supports single-agent and multi-agent verification with NATS for ad-hoc checks.</td>
+</tr>
+<tr>
+<td><strong>Social Choice &amp; Voting System</strong></td>
+<td>Coordinates collaborative decision-making among multiple agents using voting strategies (majority, weighted, etc.). Provides REST APIs for social tasks and NATS for real-time result streaming.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="agents-task-delegation-client-developer-documentation">Agents Task Delegation — Client Developer Documentation</h1>
+<h2 id="introduction_1">Introduction</h2>
+<p>The <strong>Agents Task Delegation</strong> system allows one agent (the sender) to delegate sub-tasks to another agent (the target) in a distributed, event-driven environment.
+It provides:</p>
+<ul>
+<li><strong>REST APIs</strong> to create, update, query, and delete delegation records.</li>
+<li><strong>Status tracking</strong> for live workflow stages.</li>
+<li><strong>NATS-based real-time communication</strong> to send tasks and receive results.</li>
+</ul>
+<p>A typical client workflow is:</p>
+<ol>
+<li><strong>Create a delegation</strong> via REST API.</li>
+<li><strong>Notify the target agent</strong> by publishing a <code>delegation_task</code> event on NATS.</li>
+<li><strong>Track progress</strong> through REST queries or WebSocket updates.</li>
+<li><strong>Submit results</strong> via REST or publish a <code>delegation_result</code> event.</li>
+</ol>
+<hr />
+<h2 id="registering-delegation-system-in-subject-specification">Registering Delegation System in Subject Specification</h2>
+<p>The <strong>delegation system</strong> can be registered as a sub-module in an agent’s <strong>Subject Specification</strong> by adding an entry of type <code>SubSystemItem</code>.
+This configuration tells the agent where to reach the Delegations API, how to connect to the NATS messaging bus, and what defaults to apply when a delegation request does not specify all parameters.</p>
+<hr />
+<h3 id="data-class-reference">Data Class Reference</h3>
+<pre><code class="language-python">@dataclass
+class SubSystemItem:
+    sub_system_id: str
+    sub_system_type: str = &quot;&quot;
+    sub_system_config: Dict[str, Any] = field(default_factory=dict)
+</code></pre>
+<hr />
+<h3 id="minimal-required-configuration">Minimal Required Configuration</h3>
+<p>Below is the minimal JSON block you need to include in the subject specification to enable the delegation system.</p>
+<pre><code class="language-json">{
+  &quot;sub_system_id&quot;: &quot;delegation-system-01&quot;,
+  &quot;sub_system_type&quot;: &quot;delegation-system&quot;,
+  &quot;sub_system_config&quot;: {
+    &quot;api_base_url&quot;: &quot;http://delegations-api.default.svc.cluster.local:8080/delegations&quot;,
+    &quot;nats_url&quot;: &quot;nats://nats.default.svc.cluster.local:4222&quot;,
+    &quot;default_workflow_level&quot;: 1,
+    &quot;default_delegation_type&quot;: &quot;manual&quot;,
+    &quot;default_deadline_seconds&quot;: 3600
+  }
+}
+</code></pre>
+<hr />
+<h3 id="field-descriptions">Field Descriptions</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Location</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>sub_system_id</strong></td>
+<td>root</td>
+<td><code>str</code></td>
+<td>Unique identifier for this subsystem entry in the subject spec.</td>
+</tr>
+<tr>
+<td><strong>sub_system_type</strong></td>
+<td>root</td>
+<td><code>str</code></td>
+<td>Must be <code>"delegation-system"</code> for the delegation sub-module.</td>
+</tr>
+<tr>
+<td><strong>sub_system_config.api_base_url</strong></td>
+<td>config</td>
+<td><code>str</code></td>
+<td>Base REST API URL for the Delegations service. All HTTP calls (create, update, query) will be sent here.</td>
+</tr>
+<tr>
+<td><strong>sub_system_config.nats_url</strong></td>
+<td>config</td>
+<td><code>str</code></td>
+<td>NATS server connection string used for sending and receiving real-time delegation events.</td>
+</tr>
+<tr>
+<td><strong>sub_system_config.default_workflow_level</strong></td>
+<td>config</td>
+<td><code>int</code></td>
+<td>Default workflow stage for delegations when none is specified in a request.</td>
+</tr>
+<tr>
+<td><strong>sub_system_config.default_delegation_type</strong></td>
+<td>config</td>
+<td><code>str</code></td>
+<td>Default delegation type (<code>manual</code>, <code>system</code>, <code>auction</code>, etc.) when not specified.</td>
+</tr>
+<tr>
+<td><strong>sub_system_config.default_deadline_seconds</strong></td>
+<td>config</td>
+<td><code>int</code></td>
+<td>Default allowed time (in seconds) before a delegated task expires.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="example-in-a-subject-specification">Example in a Subject Specification</h3>
+<p>If your <strong>Subject Specification</strong> is a JSON or YAML file that lists subsystems, you would add this as one entry in the <code>sub_systems</code> list:</p>
+<pre><code class="language-json">{
+  &quot;subject_id&quot;: &quot;agent-alpha&quot;,
+  &quot;subject_type&quot;: &quot;agent&quot;,
+  &quot;sub_systems&quot;: [
+    {
+      &quot;sub_system_id&quot;: &quot;delegation-system-01&quot;,
+      &quot;sub_system_type&quot;: &quot;delegation-system&quot;,
+      &quot;sub_system_config&quot;: {
+        &quot;api_base_url&quot;: &quot;http://delegations-api.default.svc.cluster.local:8080/delegations&quot;,
+        &quot;nats_url&quot;: &quot;nats://nats.default.svc.cluster.local:4222&quot;,
+        &quot;default_workflow_level&quot;: 1,
+        &quot;default_delegation_type&quot;: &quot;manual&quot;,
+        &quot;default_deadline_seconds&quot;: 3600
+      }
+    }
+  ]
+}
+</code></pre>
+<p>This ensures that when the agent needs to delegate a sub-task, it knows exactly <strong>where</strong> to send the API requests and <strong>how</strong> to communicate over NATS for event-driven updates, with safe defaults for workflow level, delegation type, and deadlines.</p>
+<hr />
+<h2 id="import-and-setup">Import and Setup</h2>
+<h3 id="rest-client">REST Client</h3>
+<p>You can use <code>requests</code> or any HTTP library of your choice.</p>
+<pre><code class="language-python">import requests
+
+BASE_URL = &quot;http://&lt;delegations-api-url&gt;/delegations&quot;
+</code></pre>
+<h3 id="nats-client">NATS Client</h3>
+<p>Use the provided <code>NATSAPI</code> helper or <code>nats-py</code> directly.</p>
+<pre><code class="language-python">from delegation_tasks_pusher import NATSAPI
+
+nats = NATSAPI(nats_url=&quot;nats://localhost:4222&quot;)
+</code></pre>
+<hr />
+<h2 id="usage-guide">Usage Guide</h2>
+<h3 id="creating-a-delegation">Creating a Delegation</h3>
+<pre><code class="language-python">payload = {
+    &quot;task_id&quot;: &quot;task123&quot;,
+    &quot;sub_task_id&quot;: &quot;sub456&quot;,
+    &quot;workflow_level&quot;: 1,
+    &quot;delegation_type&quot;: &quot;manual&quot;,
+    &quot;target_subject_id&quot;: &quot;agentB&quot;,
+    &quot;sender_subject_id&quot;: &quot;agentA&quot;,
+    &quot;sub_task_data&quot;: {&quot;param&quot;: &quot;value&quot;}
+}
+
+resp = requests.post(f&quot;{BASE_URL}&quot;, json=payload)
+print(resp.json())
+</code></pre>
+<p><strong>Expected Output:</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Delegation created successfully&quot;
+}
+</code></pre>
+<hr />
+<h3 id="sending-a-delegation-event">Sending a Delegation Event</h3>
+<pre><code class="language-python">nats.push_event(
+    topic=&quot;agentB&quot;,
+    sender_subject_id=&quot;agentA&quot;,
+    event_type=&quot;delegation_task&quot;,
+    event_data={
+        &quot;task_id&quot;: &quot;task123&quot;,
+        &quot;sub_task_id&quot;: &quot;sub456&quot;,
+        &quot;delegation_id&quot;: &quot;del789&quot;,
+        &quot;data&quot;: {&quot;info&quot;: &quot;Execute this subtask&quot;}
+    }
+)
+</code></pre>
+<hr />
+<h3 id="listening-for-delegation-events">Listening for Delegation Events</h3>
+<pre><code class="language-python">import asyncio
+import json
+from nats.aio.client import Client as NATS
+
+async def on_message(msg):
+    data = json.loads(msg.data.decode())
+    print(f&quot;Received: {data}&quot;)
+
+async def main():
+    nc = NATS()
+    await nc.connect(&quot;nats://localhost:4222&quot;)
+    await nc.subscribe(&quot;agentB&quot;, cb=on_message)
+    await asyncio.sleep(100)
+
+asyncio.run(main())
+</code></pre>
+<hr />
+<h3 id="fetching-a-delegation-by-id">Fetching a Delegation by ID</h3>
+<pre><code class="language-python">delegation_id = &quot;del789&quot;
+resp = requests.get(f&quot;{BASE_URL}/{delegation_id}&quot;)
+print(resp.json())
+</code></pre>
+<hr />
+<h3 id="querying-delegations">Querying Delegations</h3>
+<pre><code class="language-python">query_payload = {&quot;target_subject_id&quot;: &quot;agentB&quot;}
+resp = requests.post(f&quot;{BASE_URL}/query&quot;, json=query_payload)
+print(resp.json())
+</code></pre>
+<hr />
+<h3 id="updating-delegation-status">Updating Delegation Status</h3>
+<pre><code class="language-python">status_payload = {
+    &quot;state&quot;: &quot;in_progress&quot;,
+    &quot;time&quot;: 1717390000,
+    &quot;deadline&quot;: 1717400000
+}
+status_key = &quot;execution&quot;
+delegation_id = &quot;del789&quot;
+
+resp = requests.put(f&quot;{BASE_URL}/{delegation_id}/status/{status_key}&quot;, json=status_payload)
+print(resp.json())
+</code></pre>
+<hr />
+<h3 id="submitting-final-result">Submitting Final Result</h3>
+<pre><code class="language-python">result_payload = {
+    &quot;state&quot;: &quot;done&quot;,
+    &quot;delegation_result&quot;: &quot;Execution completed successfully&quot;
+}
+
+resp = requests.put(f&quot;{BASE_URL}/submit_result/del789&quot;, json=result_payload)
+print(resp.json())
+</code></pre>
+<hr />
+<h3 id="receiving-results-via-nats">Receiving Results via NATS</h3>
+<p>If the target agent uses NATS to send back a result:</p>
+<pre><code class="language-python">nats.push_event(
+    topic=&quot;agentA&quot;,
+    sender_subject_id=&quot;agentB&quot;,
+    event_type=&quot;delegation_result&quot;,
+    event_data={
+        &quot;delegation_id&quot;: &quot;del789&quot;,
+        &quot;result&quot;: &quot;Execution completed successfully&quot;
+    }
+)
+</code></pre>
+<hr />
+<h3 id="deleting-a-delegation">Deleting a Delegation</h3>
+<pre><code class="language-python">delegation_id = &quot;del789&quot;
+resp = requests.delete(f&quot;{BASE_URL}/{delegation_id}&quot;)
+print(resp.json())
+</code></pre>
+<hr />
+<h1 id="behavior-controller-client-developer-documentation">Behavior Controller — Client Developer Documentation</h1>
+<h2 id="introduction_2">Introduction</h2>
+<p>The <strong>Behavior Controller</strong> is a two-phase reasoning and execution module that uses Large Language Models (LLMs) to plan and select structured behaviors for an agent.
+It provides:</p>
+<ul>
+<li><strong>REST APIs</strong> for Phase 1 (behavior planning) and Phase 2 (behavior selection).</li>
+<li><strong>Context-aware processing</strong> by incorporating prior results or FrameDB pointers.</li>
+<li><strong>Multiple LLM backends</strong> (internal AIOS gRPC or external OpenAI API).</li>
+<li><strong>Persistent storage</strong> for all task data and results to allow auditing and reuse.</li>
+</ul>
+<p>A typical client workflow is:</p>
+<ol>
+<li><strong>Submit a Phase 1 request</strong> via REST API to generate a structured plan.</li>
+<li><strong>Optionally reuse prior context</strong> for memory-aware planning.</li>
+<li><strong>Submit a Phase 2 request</strong> with candidate behaviors to select the next action.</li>
+<li><strong>Fetch results</strong> via REST API or database queries.</li>
+</ol>
+<hr />
+<h2 id="registering-behavior-controller-in-subject-specification">Registering Behavior Controller in Subject Specification</h2>
+<p>The <strong>Behavior Controller</strong> can be registered as a sub-module in an agent’s <strong>Subject Specification</strong> by adding an entry of type <code>SubSystemItem</code>.
+This configuration tells the agent where to reach the Behavior Controller API and what defaults to use for LLM execution.</p>
+<hr />
+<h3 id="data-class-reference_1">Data Class Reference</h3>
+<pre><code class="language-python">@dataclass
+class SubSystemItem:
+    sub_system_id: str
+    sub_system_type: str = &quot;&quot;
+    sub_system_config: Dict[str, Any] = field(default_factory=dict)
+</code></pre>
+<hr />
+<h3 id="minimal-required-configuration_1">Minimal Required Configuration</h3>
+<p>Below is the minimal JSON block you need to include in the subject specification to enable the Behavior Controller.</p>
+<pre><code class="language-json">{
+  &quot;sub_system_id&quot;: &quot;behavior-controller-01&quot;,
+  &quot;sub_system_type&quot;: &quot;behavior-controller&quot;,
+  &quot;sub_system_config&quot;: {
+    &quot;api_base_url&quot;: &quot;http://behavior-controller.default.svc.cluster.local:8888&quot;,
+    &quot;llm_backend&quot;: &quot;aios&quot;, 
+    &quot;default_phase1_template_id&quot;: &quot;phase1-default&quot;,
+    &quot;default_phase2_template_id&quot;: &quot;phase2-default&quot;
+  }
+}
+</code></pre>
+<hr />
+<h3 id="field-descriptions_1">Field Descriptions</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Location</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>sub_system_id</strong></td>
+<td>root</td>
+<td><code>str</code></td>
+<td>Unique identifier for this subsystem entry in the subject spec.</td>
+</tr>
+<tr>
+<td><strong>sub_system_type</strong></td>
+<td>root</td>
+<td><code>str</code></td>
+<td>Must be <code>"behavior-controller"</code> for the behavior control sub-module.</td>
+</tr>
+<tr>
+<td><strong>sub_system_config.api_base_url</strong></td>
+<td>config</td>
+<td><code>str</code></td>
+<td>Base REST API URL for the Behavior Controller service. All HTTP calls (Phase 1 and Phase 2 processing) go here.</td>
+</tr>
+<tr>
+<td><strong>sub_system_config.llm_backend</strong></td>
+<td>config</td>
+<td><code>str</code></td>
+<td>LLM execution backend (<code>aios</code> for internal AIOS gRPC, <code>openai</code> for OpenAI API).</td>
+</tr>
+<tr>
+<td><strong>sub_system_config.default_phase1_template_id</strong></td>
+<td>config</td>
+<td><code>str</code></td>
+<td>ID of the default Phase 1 prompt template to use when none is specified.</td>
+</tr>
+<tr>
+<td><strong>sub_system_config.default_phase2_template_id</strong></td>
+<td>config</td>
+<td><code>str</code></td>
+<td>ID of the default Phase 2 prompt template to use when none is specified.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="example-in-a-subject-specification_1">Example in a Subject Specification</h3>
+<pre><code class="language-json">{
+  &quot;subject_id&quot;: &quot;agent-beta&quot;,
+  &quot;subject_type&quot;: &quot;agent&quot;,
+  &quot;sub_systems&quot;: [
+    {
+      &quot;sub_system_id&quot;: &quot;behavior-controller-01&quot;,
+      &quot;sub_system_type&quot;: &quot;behavior-controller&quot;,
+      &quot;sub_system_config&quot;: {
+        &quot;api_base_url&quot;: &quot;http://behavior-controller.default.svc.cluster.local:8888&quot;,
+        &quot;llm_backend&quot;: &quot;aios&quot;,
+        &quot;default_phase1_template_id&quot;: &quot;phase1-default&quot;,
+        &quot;default_phase2_template_id&quot;: &quot;phase2-default&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+<p>This ensures that when the agent needs to plan or select behaviors, it knows exactly <strong>where</strong> to send API requests, <strong>which LLM backend</strong> to use, and <strong>which default templates</strong> to apply.</p>
+<hr />
+<h2 id="import-and-setup_1">Import and Setup</h2>
+<h3 id="rest-client_1">REST Client</h3>
+<p>You can use <code>requests</code> or any HTTP client library.</p>
+<pre><code class="language-python">import requests
+
+BASE_URL = &quot;http://&lt;behavior-controller-api-url&gt;&quot;
+</code></pre>
+<hr />
+<h2 id="usage-guide_1">Usage Guide</h2>
+<h3 id="submitting-a-phase-1-task-behavior-planning">Submitting a Phase 1 Task (Behavior Planning)</h3>
+<pre><code class="language-python">payload = {
+    &quot;search_id&quot;: &quot;task-001&quot;,
+    &quot;phase_1_data&quot;: {
+        &quot;input_description&quot;: &quot;Plan a 3-step workflow to process satellite imagery.&quot;
+    }
+}
+
+resp = requests.post(f&quot;{BASE_URL}/process-phase-1-task&quot;, json=payload)
+print(resp.json())
+</code></pre>
+<p><strong>Expected Output:</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;status&quot;: &quot;success&quot;,
+    &quot;processed_data&quot;: {
+      &quot;plan&quot;: [
+        {&quot;task_id&quot;: &quot;t1&quot;, &quot;description&quot;: &quot;Download images&quot;, &quot;execution_type&quot;: &quot;tool_call&quot;, &quot;tool_id&quot;: &quot;image_fetcher&quot;},
+        {&quot;task_id&quot;: &quot;t2&quot;, &quot;description&quot;: &quot;Preprocess images&quot;, &quot;execution_type&quot;: &quot;dsl&quot;, &quot;dsl_id&quot;: &quot;preprocess.dsl&quot;},
+        {&quot;task_id&quot;: &quot;t3&quot;, &quot;description&quot;: &quot;Run classification&quot;, &quot;execution_type&quot;: &quot;tool_call&quot;, &quot;tool_id&quot;: &quot;classifier&quot;}
+      ]
+    }
+  }
+}
+</code></pre>
+<hr />
+<h3 id="submitting-a-phase-2-task-behavior-selection">Submitting a Phase 2 Task (Behavior Selection)</h3>
+<pre><code class="language-python">payload = {
+    &quot;search_id&quot;: &quot;task-001&quot;,
+    &quot;phase_2_data&quot;: {
+        &quot;planned_tasks&quot;: [
+            {&quot;task_id&quot;: &quot;t1&quot;, &quot;description&quot;: &quot;Download images&quot;},
+            {&quot;task_id&quot;: &quot;t2&quot;, &quot;description&quot;: &quot;Preprocess images&quot;},
+            {&quot;task_id&quot;: &quot;t3&quot;, &quot;description&quot;: &quot;Run classification&quot;}
+        ]
+    }
+}
+
+resp = requests.post(f&quot;{BASE_URL}/process-phase-2-task&quot;, json=payload)
+print(resp.json())
+</code></pre>
+<p><strong>Expected Output:</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;status&quot;: &quot;success&quot;,
+    &quot;processed_data&quot;: {
+      &quot;uid&quot;: &quot;t2&quot;
+    }
+  }
+}
+</code></pre>
+<hr />
+<h3 id="fetching-historical-phase-1-results">Fetching Historical Phase 1 Results</h3>
+<pre><code class="language-python">resp = requests.get(f&quot;{BASE_URL}/phase1-results/latest?limit=5&quot;)
+print(resp.json())
+</code></pre>
+<hr />
+<h3 id="example-switching-llm-backend-in-config">Example: Switching LLM Backend in Config</h3>
+<p>If you want to use OpenAI instead of AIOS:</p>
+<pre><code class="language-json">{
+  &quot;sub_system_id&quot;: &quot;behavior-controller-01&quot;,
+  &quot;sub_system_type&quot;: &quot;behavior-controller&quot;,
+  &quot;sub_system_config&quot;: {
+    &quot;api_base_url&quot;: &quot;http://behavior-controller.default.svc.cluster.local:8888&quot;,
+    &quot;llm_backend&quot;: &quot;openai&quot;,
+    &quot;default_phase1_template_id&quot;: &quot;phase1-default&quot;,
+    &quot;default_phase2_template_id&quot;: &quot;phase2-default&quot;
+  }
+}
+</code></pre>
+<hr />
+<h1 id="social-choice-voting-system-client-developer-documentation">Social Choice &amp; Voting System — Client Developer Documentation</h1>
+<h2 id="introduction_3">Introduction</h2>
+<p>The <strong>Social Choice &amp; Voting System</strong> coordinates collaborative decision-making among multiple agents.
+It provides:</p>
+<ul>
+<li><strong>REST APIs</strong> to create and manage social tasks (voting workflows).</li>
+<li><strong>NATS integration</strong> for receiving final voting results in real time.</li>
+<li>Support for <strong>multiple voting strategies</strong> (e.g., majority, weighted).</li>
+</ul>
+<p>A typical client workflow is:</p>
+<ol>
+<li><strong>Create a social voting task</strong> via REST.</li>
+<li><strong>Invite participants</strong> and define the goal data.</li>
+<li><strong>Wait for voting completion</strong> via NATS.</li>
+<li><strong>Retrieve and process the voting result</strong>.</li>
+</ol>
+<hr />
+<h2 id="registering-social-choice-voting-system-in-subject-specification">Registering Social Choice &amp; Voting System in Subject Specification</h2>
+<p>Add a <code>SubSystemItem</code> entry so the agent can connect to the social voting APIs and NATS result stream.</p>
+<h3 id="data-class-reference_2">Data Class Reference</h3>
+<pre><code class="language-python">@dataclass
+class SubSystemItem:
+    sub_system_id: str
+    sub_system_type: str = &quot;&quot;
+    sub_system_config: Dict[str, Any] = field(default_factory=dict)
+</code></pre>
+<h3 id="minimal-required-configuration_2">Minimal Required Configuration</h3>
+<pre><code class="language-json">{
+  &quot;sub_system_id&quot;: &quot;social-choice-voting-01&quot;,
+  &quot;sub_system_type&quot;: &quot;social-choice-voting&quot;,
+  &quot;sub_system_config&quot;: {
+    &quot;api_base_url&quot;: &quot;http://social-voting-api.default.svc.cluster.local:5001&quot;,
+    &quot;nats_url&quot;: &quot;nats://nats.default.svc.cluster.local:4222&quot;
+  }
+}
+</code></pre>
+<p><strong>Fields</strong></p>
+<ul>
+<li><strong>api_base_url</strong> – REST API base path for social task operations.</li>
+<li><strong>nats_url</strong> – NATS connection for streaming voting results.</li>
+</ul>
+<hr />
+<h2 id="import-and-setup_2">Import and Setup</h2>
+<pre><code class="language-python">from agent_sdk.verification import SocialTaskService
+
+service = SocialTaskService(&quot;http://localhost:5001&quot;)
+</code></pre>
+<hr />
+<h2 id="usage-guide_2">Usage Guide</h2>
+<h3 id="creating-a-social-task">Creating a Social Task</h3>
+<pre><code class="language-python">task = service.create_social_task(
+    created_by_subject_id=&quot;agent_a&quot;,
+    voting_type=&quot;majority&quot;,
+    invited_subject_ids=[&quot;agent_b&quot;, &quot;agent_c&quot;],
+    goal_data={&quot;decision&quot;: &quot;select_strategy&quot;},
+    status=&quot;pending&quot;,
+    report={},
+    voting_pqt_dsl_id=&quot;dsl_123&quot;,
+    choice_evaluation_dsl=&quot;eval_dsl&quot;,
+    deadline_time=1688888888
+)
+
+print(&quot;Created Social Task:&quot;, task.social_task_id)
+</code></pre>
+<h3 id="waiting-for-voting-result-via-nats">Waiting for Voting Result via NATS</h3>
+<pre><code class="language-python">waiter = service.create_waiter_for_task(task_id=task.social_task_id)
+result = waiter.get()
+print(&quot;Voting Result:&quot;, result.voting_result)
+</code></pre>
+<hr />
+<h1 id="verification-system-client-developer-documentation">Verification System — Client Developer Documentation</h1>
+<h2 id="introduction_4">Introduction</h2>
+<p>The <strong>Verification System</strong> coordinates task verification workflows for agents, supporting both single-subject and multi-agent verification.
+It provides:</p>
+<ul>
+<li><strong>REST APIs</strong> for creating, updating, querying, and deleting verification tasks.</li>
+<li><strong>WebSocket server</strong> for live result updates.</li>
+<li><strong>NATS integration</strong> for ad-hoc verifications and social choice voting.</li>
+</ul>
+<p>A typical client workflow is:</p>
+<ol>
+<li><strong>Create a verification task</strong> via REST.</li>
+<li><strong>Notify or invite agents</strong> over NATS.</li>
+<li><strong>Wait for results</strong> via WebSocket or NATS.</li>
+<li><strong>Submit verification results</strong> back to the system.</li>
+</ol>
+<hr />
+<h2 id="registering-verification-system-in-subject-specification">Registering Verification System in Subject Specification</h2>
+<p>Add a <code>SubSystemItem</code> entry to the subject spec so the agent knows how to reach the Verification API and connect to NATS for events.</p>
+<h3 id="data-class-reference_3">Data Class Reference</h3>
+<pre><code class="language-python">@dataclass
+class SubSystemItem:
+    sub_system_id: str
+    sub_system_type: str = &quot;&quot;
+    sub_system_config: Dict[str, Any] = field(default_factory=dict)
+</code></pre>
+<h3 id="minimal-required-configuration_3">Minimal Required Configuration</h3>
+<pre><code class="language-json">{
+  &quot;sub_system_id&quot;: &quot;verification-system-01&quot;,
+  &quot;sub_system_type&quot;: &quot;verification-system&quot;,
+  &quot;sub_system_config&quot;: {
+    &quot;api_base_url&quot;: &quot;http://verification-api.default.svc.cluster.local:5000/verifications&quot;,
+    &quot;nats_url&quot;: &quot;nats://nats.default.svc.cluster.local:4222&quot;,
+    &quot;websocket_url&quot;: &quot;ws://verification-api.default.svc.cluster.local:8765/ws&quot;
+  }
+}
+</code></pre>
+<p><strong>Fields</strong></p>
+<ul>
+<li><strong>api_base_url</strong> – REST API base path for all verification endpoints.</li>
+<li><strong>nats_url</strong> – NATS connection for ad-hoc verifications/voting.</li>
+<li><strong>websocket_url</strong> – WebSocket endpoint for real-time verification status.</li>
+</ul>
+<hr />
+<h2 id="import-and-setup_3">Import and Setup</h2>
+<pre><code class="language-python">import requests
+from agent_sdk.verification import VerificationClient, AdhocVerification
+</code></pre>
+<hr />
+<h2 id="usage-guide_3">Usage Guide</h2>
+<h3 id="creating-a-verification">Creating a Verification</h3>
+<pre><code class="language-python">client = VerificationClient(&quot;http://localhost:5000&quot;)
+resp = client.create_verification(
+    task_id=&quot;task_123&quot;,
+    subject_id=&quot;agent_a&quot;,
+    verification_type=&quot;manual&quot;
+)
+print(resp)
+</code></pre>
+<h3 id="submitting-a-result">Submitting a Result</h3>
+<pre><code class="language-python">resp = requests.post(
+    &quot;http://localhost:5000/verifications/&lt;verification_id&gt;/submit-result&quot;,
+    json={
+        &quot;target_subject_id&quot;: &quot;agent_1&quot;,
+        &quot;status&quot;: &quot;completed&quot;,
+        &quot;result_data&quot;: {
+            &quot;verification_result&quot;: {&quot;pass&quot;: True},
+            &quot;verification_output&quot;: {&quot;notes&quot;: &quot;All checks passed&quot;}
+        }
+    }
+)
+print(resp.json())
+</code></pre>
+<h3 id="listening-for-updates-websocket">Listening for Updates (WebSocket)</h3>
+<pre><code class="language-python">import asyncio, websockets
+
+async def listen():
+    async with websockets.connect(&quot;ws://localhost:8765/ws/agent_a/task_123&quot;) as ws:
+        while True:
+            msg = await ws.recv()
+            print(&quot;Update:&quot;, msg)
+
+asyncio.run(listen())
+</code></pre>
+<h3 id="ad-hoc-verification-via-nats">Ad-hoc Verification via NATS</h3>
+<pre><code class="language-python">verifier = AdhocVerification(&quot;nats://localhost:4222&quot;)
+verifier.push(
+    subject=&quot;agent_a__task_123&quot;,
+    event_type=&quot;start_verification&quot;,
+    sender_subject_id=&quot;agent_b&quot;,
+    event_data={&quot;input&quot;: &quot;data&quot;}
+)
+verifier.close()
+</code></pre>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

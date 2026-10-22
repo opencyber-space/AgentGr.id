@@ -1,0 +1,2246 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../behaviour-controller/">
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>Communication System - AgentGr.id</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#agent-communication-system" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AgentGr.id" class="md-header__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AgentGr.id
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Communication System
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AgentGr.id" class="md-nav__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AgentGr.id
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🧠 AgentGr.id
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            🧠 AgentGr.id
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-specification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Specifying an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-creation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-llm-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using LLMs and other AI models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-dsl-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Managing and calling DSL Workflows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-code-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Generating runtime code using Code Generator SDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Calling Functions and Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-eembeddings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Embedding Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-graph-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Graph Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-vector-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Vector Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-chat-p2p/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chat and P2P Communication with other agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../a2a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    A2A - Agent to Agent Communication Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-object-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing S3 Compatible Object Storage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-sub-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task Delegation, Behavior Planning, Verification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-association/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Association with other Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-config-store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_5" id="__nav_2_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Workflows
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Workflows
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/creating_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/onboarding_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Onboarding Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/writing_sample_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sample workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced Agent Memories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced Agent Memories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/agentic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agentic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Memory Types
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Memory Types
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/episodic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Episodic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/semantic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/procedural-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Procedural Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/reflective-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reflective Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/reward-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reward Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/context-kv-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Context KV Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/agent-fs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent FS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/learner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learner
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/incorporator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Incorporator & Feedback
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/end-to-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    End-to-End Example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Architecture & Concepts
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture & Concepts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-context-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Context Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-llm-interaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent LLM Interaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-planning-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Planning System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-task-delegation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Task Delegation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-verification-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Verification System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-workflow-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Workflow Execution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../behaviour-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Behavior Controller
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Communication System
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Communication System
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-agent-messaging-backbone" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Agent Messaging Backbone
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Agent Messaging Backbone">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#message-intake" class="md-nav__link">
+    <span class="md-ellipsis">
+      Message intake
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policy-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Policy pipeline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-agent-instance-routing-and-load-balancing" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Agent Instance Routing and Load Balancing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Agent Instance Routing and Load Balancing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agent-instances" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent instances
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-agent-resource-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Agent Resource Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Agent Resource Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instance-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instance discovery
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autoscaler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autoscaler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployer-instance-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployer instance API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executor-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Executor Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Related Services
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-agent-messaging-backbone" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Agent Messaging Backbone
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Agent Messaging Backbone">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#message-intake" class="md-nav__link">
+    <span class="md-ellipsis">
+      Message intake
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policy-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Policy pipeline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-agent-instance-routing-and-load-balancing" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Agent Instance Routing and Load Balancing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Agent Instance Routing and Load Balancing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agent-instances" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent instances
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-agent-resource-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Agent Resource Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Agent Resource Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instance-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instance discovery
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autoscaler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autoscaler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployer-instance-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployer instance API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executor-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Executor Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Related Services
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="agent-communication-system">Agent communication system</h1>
+<h2 id="architecture">Architecture</h2>
+<p><img alt="agent-communication" src="../../../images/agent-communication.png" /></p>
+<p><a href="../../../images/agent-communication.png">Download Image</a></p>
+<p>Every deployed agent (subject) has one <strong>agent executor</strong> in front of its <strong>agent instances</strong>. The executor is the agent's single entry point. It receives tasks, applies the subject's policies, and dispatches each task to one instance. Instances process tasks with the agents SDK and send results back to wherever the task asked.</p>
+<p>The diagram shows the overall design. This page describes what the agent executor (<code>services/agents/agents-executor</code>) and the agents SDK implement today.</p>
+<pre><code>              ┌──────────────────────────── Agent Executor (per subject) ────────────────────────────┐
+HTTP /submitTask ─┐                                                                                    │
+                  ├─► pre_process ─► Message Pre-check ─► Rate Limiter ─► Message Backlog ─► Load Balancer ─┼─► Redis &quot;jobs:inbox&quot;
+P2P (NATS) ───────┘    (policy)          (policy)          (policy)          (policy)       │   of instance
+&lt;subject&gt;__executor                                                                         │
+              │                         Autoscaler (policy) ── scale up/down ──► Deployer /instances
+              └─────────────────────────────────────────────────────────────────────────────────────┘
+
+Agent instance: Redis BRPOP &quot;jobs:inbox&quot; ─► on_preprocess ─► on_data ─► result to output_ptr (Redis / exchange / mesh)
+</code></pre>
+<p>The system has three parts:</p>
+<ol>
+<li><strong>Agent messaging backbone</strong> — task intake and policy checks in the executor.</li>
+<li><strong>Agent instance routing and load balancing</strong> — choosing an instance and delivering the task.</li>
+<li><strong>Agent resource management</strong> — instance discovery and autoscaling.</li>
+</ol>
+<p>All decision points are <strong>policies</strong> taken from the subject's <code>integrations.policies</code> (see <a href="../../agent-specification/">Agent Specification</a>). Each is looked up by <code>policy_type</code>, and its code is loaded from the Policy DB (<code>POLICY_DB_URL</code>). A hook with no policy uses a built-in default.</p>
+<hr />
+<h2 id="1-agent-messaging-backbone">1. Agent Messaging Backbone</h2>
+<h3 id="message-intake">Message intake</h3>
+<p>The executor accepts tasks from two places:</p>
+<table>
+<thead>
+<tr>
+<th>Entry point</th>
+<th>Protocol</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST /submitTask</code></td>
+<td>HTTP (port 9000, exposed as a NodePort)</td>
+<td>Used by the Delegate API and by <code>context.direct</code></td>
+</tr>
+<tr>
+<td>NATS subject <code>&lt;SUBJECT_ID&gt;__executor</code></td>
+<td>P2P mesh</td>
+<td>Messages must look like the HTTP body below. A message wrapped as <code>{"event": "custom_event", "event_data": {...}}</code> is unwrapped first; <code>join</code> / <code>remove</code> / <code>task_result</code> events are ignored</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Task message:</strong></p>
+<pre><code class="language-json">{
+  &quot;event_type&quot;: &quot;task&quot;,
+  &quot;task_id&quot;: &quot;task-001&quot;,
+  &quot;task&quot;: { &quot;text&quot;: &quot;...&quot; },
+  &quot;session_id&quot;: &quot;sess-1&quot;,
+  &quot;origin&quot;: {
+    &quot;type&quot;: &quot;redis&quot;,
+    &quot;host&quot;: &quot;&lt;redis host&gt;&quot;,
+    &quot;port&quot;: 6379,
+    &quot;output_queue&quot;: &quot;sess-1&quot;,
+    &quot;exchange_id&quot;: &quot;delegate&quot;
+  }
+}
+</code></pre>
+<p><code>event_type</code> must be <code>"task"</code>; anything else is rejected (HTTP 500 / dropped on NATS). The executor converts the message into:</p>
+<pre><code class="language-json">{
+  &quot;session_id&quot;: &quot;&lt;new uuid&gt;&quot;,
+  &quot;message_data&quot;: { &quot;task_id&quot;: &quot;task-001&quot;, &quot;job_data&quot;: { &quot;text&quot;: &quot;...&quot; }, &quot;output_ptr&quot;: { ...origin... } }
+}
+</code></pre>
+<blockquote>
+<p>The executor assigns a <strong>new random <code>session_id</code> to every message</strong>; the <code>session_id</code> in the request is not used. Per-session policies (rate limiting, backlog) therefore see each message as its own session.</p>
+</blockquote>
+<h3 id="policy-pipeline">Policy pipeline</h3>
+<p>Each message passes through these stages in order. The input to each policy is <code>{"session_id": ..., "message_data": ...}</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th><code>policy_type</code></th>
+<th>Policy returns</th>
+<th>Default (no policy)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Message pre-check</strong></td>
+<td><code>message_prechecker</code></td>
+<td><code>{"allowed": bool, "reason": {...}}</code> or a bool</td>
+<td>allow</td>
+</tr>
+<tr>
+<td><strong>Rate limiter</strong></td>
+<td><code>rate_limiter</code></td>
+<td><code>{"allowed": bool, "metadata": {...}}</code> or a bool. The policy is given a <code>rate_counter</code> with per-session counters and metadata</td>
+<td>allow</td>
+</tr>
+<tr>
+<td><strong>Message backlog</strong></td>
+<td><code>message_backlog</code></td>
+<td><code>{"backlogged": true, "reason": {...}}</code> to hold the message, or <code>{"backlogged": false, "messages": [...]}</code> to release one or more messages. The policy is given the <code>backlog_store</code></td>
+<td>release the message unchanged</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>If the pre-check rejects a message, the result is <code>blocked</code> at stage <code>pre_check</code>. If the rate limiter rejects it, the result is <code>blocked</code> at <code>rate_limit</code>. Over HTTP both return <strong>429</strong> with <code>stage</code> and <code>reason</code>.</li>
+<li>A backlogged message is acknowledged but not dispatched. The backlog policy decides when to release held messages.</li>
+<li>An exception inside any of these policies is treated as "allow / not backlogged".</li>
+</ul>
+<p><strong>Storage backends:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Env var</th>
+<th>Values</th>
+<th>Redis settings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rate counter</td>
+<td><code>RATE_LIMITER_BACKEND</code></td>
+<td><code>memory</code> (default) / <code>redis</code></td>
+<td><code>REDIS_URL</code>, or <code>REDIS_HOST</code> / <code>REDIS_PORT</code> / <code>REDIS_PASSWORD</code></td>
+</tr>
+<tr>
+<td>Backlog store</td>
+<td><code>BACKLOG_BACKEND</code></td>
+<td><code>memory</code> (default) / <code>redis</code></td>
+<td><code>REDIS_URL</code> (required for redis); keys <code>backlog:&lt;session_id&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="http-api">HTTP API</h3>
+<p><strong><code>POST /submitTask</code></strong> — run the pipeline and dispatch:</p>
+<table>
+<thead>
+<tr>
+<th>Result</th>
+<th>HTTP</th>
+<th>Body</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Blocked</td>
+<td>429</td>
+<td><code>{"success": false, "error": "blocked", "stage": "pre_check" \| "rate_limit", "reason": {...}}</code></td>
+</tr>
+<tr>
+<td>Ready / backlogged</td>
+<td>202</td>
+<td><code>{"success": true, "message": "task received for processing", "result": {"status": "ready" \| "backlogged", ...}}</code></td>
+</tr>
+<tr>
+<td>Error</td>
+<td>500</td>
+<td><code>{"success": false, "error": "..."}</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>POST /dryRun</code></strong> — run the pre-check, rate limiter and backlog decision without dispatching. The body is <code>{"session_id": "...", "message_data": {...}}</code> (<code>message_data.is_dry_run</code> is set to <code>true</code>). Returns 429 if blocked, <code>{"success": true, "message": "ok"}</code> if ready.</p>
+<p><strong><code>GET /healthz</code></strong> — <code>{"ok": true}</code>.</p>
+<p>The <code>TaskInitiator</code> client in the SDK (<code>core.direct</code>) and the delegation proxy wrap these endpoints: <code>submit_task(...)</code>, <code>dry_run(...)</code> and <code>healthz()</code>. A 429 response raises <code>BlockedError(stage, reason)</code>.</p>
+<hr />
+<h2 id="2-agent-instance-routing-and-load-balancing">2. Agent Instance Routing and Load Balancing</h2>
+<p>Messages released by the pipeline go to the <strong>Load Balancer</strong>, which runs on its own thread with an input queue.</p>
+<ol>
+<li>For each message the <code>load_balancer</code> policy is called with <code>{"session_id", "message_data"}</code>. It is given <code>get_instances()</code> (current instance IDs) and the <code>load_balancer</code> object.</li>
+<li>The policy returns the target instance as a string, <code>{"ok": true, "instance": "&lt;id&gt;", "metadata": {...}}</code>, or a <code>(instance_id, metadata)</code> tuple. The default picks a random instance.</li>
+<li>The task (<code>message_data</code>: <code>task_id</code>, <code>job_data</code>, <code>output_ptr</code>) is <code>LPUSH</code>ed to the instance's Redis sidecar at <code>&lt;instance_id&gt;-&lt;subject_id&gt;.agents.svc.cluster.local:6379</code>, list <code>jobs:inbox</code> (override with <code>LB_REDIS_QUEUE_KEY</code>).</li>
+</ol>
+<p>If the policy errors or returns no instance, the message is not delivered (it is only recorded internally).</p>
+<h3 id="agent-instances">Agent instances</h3>
+<p>Each instance runs the agent code through the SDK (<code>core.main.main(AgentClass)</code>):</p>
+<ul>
+<li>A <strong>Redis worker</strong> <code>BRPOP</code>s tasks from <code>REDIS_STREAM</code> (default <code>jobs:inbox</code>) on <code>REDIS_URL</code> (default <code>redis://localhost:6379/0</code>, the sidecar).</li>
+<li><code>AgentExecutor.process_task</code> runs optional transformer / pre-processing policies, then <code>on_preprocess</code>, then <code>on_data</code> for each returned task, then optional post-processing.</li>
+<li>Results are delivered according to the task's <code>output_ptr</code>:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><code>output_ptr.type</code></th>
+<th>Delivery</th>
+<th>Requires <code>exchange_id</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>redis</code></td>
+<td><code>LPUSH</code> a JSON result to <code>output_queue</code> on <code>host:port</code> (used by the Delegate API)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>exchange</code></td>
+<td>Submitted to the job exchange (<code>OutputReporter</code>)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>mesh</code></td>
+<td>P2P reply to <code>sender_subject_id</code> (<code>internal_task_id</code> as task ID)</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p>Results without <code>output_ptr.exchange_id</code> are not delivered.</p>
+<ul>
+<li>The result body is <code>{"task_id", "job_output", "job_output_metadata", "job_output_trace_data", "is_error", "error_data"}</code>.</li>
+<li>If <code>on_preprocess</code> returns <code>None</code>, <strong>no result is produced</strong>, so a caller waiting on the result (for example <code>submit-and-wait</code>) keeps waiting.</li>
+</ul>
+<p>Instances also run a WebSocket listener (<code>WS_PORT</code>, default 8765) for synchronous task calls; see <a href="../../agent-chat-p2p/#other-ways-to-reach-an-agent">Chat and P2P</a>.</p>
+<hr />
+<h2 id="3-agent-resource-management">3. Agent Resource Management</h2>
+<h3 id="instance-discovery">Instance discovery</h3>
+<p><code>AgentsUpdateNotifier</code> watches pods in the <code>agents</code> namespace with label <code>subjectId=&lt;SUBJECT_ID&gt;</code>. It reports their <code>instanceId</code> labels to the load balancer whenever the set changes, and on a periodic refresh.</p>
+<h3 id="autoscaler">Autoscaler</h3>
+<p>When <code>DEPLOYER_API_URL</code> is set, the executor runs an <strong>AutoScaler</strong> thread every 30 seconds:</p>
+<ol>
+<li>It builds the state <code>{"instance_count", "instance_ids", "queue_depth", "subject_id"}</code>, where <code>queue_depth</code> is the load balancer's input queue size.</li>
+<li>It calls the <code>autoscaler</code> policy, which is given <code>get_instances()</code> and <code>get_queue_depth()</code>.</li>
+<li>The policy returns <code>"scale_up"</code>, <code>"scale_down"</code> or <code>None</code> (or <code>{"action": ...}</code>). The default is no action.<ul>
+<li><strong>scale_up</strong> — <code>POST &lt;DEPLOYER_API_URL&gt;/instances</code> with <code>{"subject_id", "count": 1, "meshes", "delegate_api_url"}</code> (<code>delegate_api_url</code> comes from <code>AGENT_DELEGATE_URL</code>).</li>
+<li><strong>scale_down</strong> — <code>DELETE &lt;DEPLOYER_API_URL&gt;/instances</code> with <code>{"subject_id", "instance_ids": [&lt;last instance&gt;]}</code>.</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>The deployer currently starts executors with <code>SUBJECT_ID</code>, <code>SUBJECT_DB_URL</code>, <code>POLICY_DB_URL</code> and <code>MESH_LIST</code> only. Without <code>DEPLOYER_API_URL</code> the autoscaler is disabled (a warning is logged).</p>
+</blockquote>
+<h3 id="deployer-instance-api">Deployer instance API</h3>
+<table>
+<thead>
+<tr>
+<th>Method &amp; Path</th>
+<th>Body</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST /instances</code></td>
+<td><code>{"subject_id", "count", "meshes", "delegate_api_url"}</code></td>
+<td>Create <code>count</code> instances with random 5-character IDs</td>
+</tr>
+<tr>
+<td><code>DELETE /instances</code></td>
+<td><code>{"subject_id", "instance_ids": [...]}</code></td>
+<td>Remove instances</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="executor-configuration">Executor Configuration</h2>
+<table>
+<thead>
+<tr>
+<th>Environment variable</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SUBJECT_ID</code></td>
+<td>Yes</td>
+<td>Subject served by this executor</td>
+</tr>
+<tr>
+<td><code>SUBJECT_DB_URL</code></td>
+<td>Yes</td>
+<td>Subjects service (the subject spec and its policies are loaded at start-up)</td>
+</tr>
+<tr>
+<td><code>POLICY_DB_URL</code></td>
+<td>Yes</td>
+<td>Policy DB used to load policy code</td>
+</tr>
+<tr>
+<td><code>MESH_LIST</code></td>
+<td>No</td>
+<td><code>{"meshes": [{"mesh_id", "url"}]}</code> for P2P intake</td>
+</tr>
+<tr>
+<td><code>RATE_LIMITER_BACKEND</code>, <code>BACKLOG_BACKEND</code>, <code>REDIS_URL</code>, <code>REDIS_HOST</code>, <code>REDIS_PORT</code>, <code>REDIS_PASSWORD</code></td>
+<td>No</td>
+<td>Policy state storage (see above)</td>
+</tr>
+<tr>
+<td><code>LB_REDIS_QUEUE_KEY</code></td>
+<td>No</td>
+<td>Instance queue name (default <code>jobs:inbox</code>)</td>
+</tr>
+<tr>
+<td><code>DEPLOYER_API_URL</code></td>
+<td>No</td>
+<td>Enables the autoscaler</td>
+</tr>
+<tr>
+<td><code>AGENT_DELEGATE_URL</code></td>
+<td>No</td>
+<td>Passed to instances created by the autoscaler</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="related-services">Related Services</h2>
+<ul>
+<li><strong>Delegation proxy</strong> (<code>delegation-system/delegation-proxy</code>) — <code>POST /api/submit-and-wait</code> looks up the agent's executor URL in runtime subjects (<code>RUNTIME_SUBJECTS_API_URL</code>), submits the task with a Redis <code>origin</code> whose <code>output_queue</code> is the session ID, and waits (<code>BRPOP</code>, no timeout) for the result. The response is <code>{"success": true, "ack": {...}, "output": &lt;result body&gt;}</code>. <code>GET /healthz</code> reports health.</li>
+<li><strong>Chat server</strong> — a WebSocket front-end that forwards chat messages to the Delegate API; see <a href="../../agent-chat-p2p/#agent-chat-server-client-developer-documentation">Agent Chat Server</a>.</li>
+<li><strong>P2P meshes</strong> — presence and events between agents; see <a href="../../agent-chat-p2p/">Agent P2P Module</a>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

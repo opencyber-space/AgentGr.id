@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: agents_llm_lite
+Version: 0.1.0
+Summary: Search and embeddings utilities for agent frameworks: OpenAI, AIOS, and custom selector/embedding managers.
+Home-page: https://github.com/your-org/agents_search
+Author: Your Name
+Author-email: you@example.com
+License: MIT
+Project-URL: Source, https://github.com/your-org/agents_search
+Project-URL: Issues, https://github.com/your-org/agents_search/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Description-Content-Type: text/markdown
+Requires-Dist: openai
+Requires-Dist: requests
+
+Search and embeddings utils: OpenAI selector, AIOS integration, managers for agents.

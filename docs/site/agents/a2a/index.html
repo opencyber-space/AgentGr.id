@@ -1,0 +1,3534 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../agent-chat-p2p/">
+      
+      
+        <link rel="next" href="../agent-object-storage/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>A2A - Agent to Agent Communication Protocol - AgentGr.id</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#agent-to-agent-message-conversion-system" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AgentGr.id" class="md-header__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AgentGr.id
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              A2A - Agent to Agent Communication Protocol
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AgentGr.id" class="md-nav__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AgentGr.id
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🧠 AgentGr.id
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            🧠 AgentGr.id
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-specification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Specifying an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-creation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-llm-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using LLMs and other AI models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-dsl-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Managing and calling DSL Workflows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-code-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Generating runtime code using Code Generator SDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Calling Functions and Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-eembeddings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Embedding Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-graph-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Graph Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-vector-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Vector Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-chat-p2p/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chat and P2P Communication with other agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    A2A - Agent to Agent Communication Protocol
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    A2A - Agent to Agent Communication Protocol
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Capabilities
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schema-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema Description
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Schema Description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#communication-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Communication Schema
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Communication Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-descriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Field Descriptions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-type-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Message Type Schema
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Message Type Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-class_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-descriptions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Field Descriptions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Templates
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Templates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#writing-a-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing a Template
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Writing a Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#supported-validation-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported Validation Fields
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-agentic-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Agentic Template
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subjectslocaldb" class="md-nav__link">
+    <span class="md-ellipsis">
+      SubjectsLocalDB
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SubjectsLocalDB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Class Initialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#populate_cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      populate_cache()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_runtime_subjectsubject_id-str-optionalsubject" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_runtime_subject(subject_id: str) -&gt; Optional[Subject]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list_runtime_subjects-listsubject" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_runtime_subjects() -&gt; List[Subject]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query_runtime_subjectsquery-dictstr-any-listsubject" class="md-nav__link">
+    <span class="md-ellipsis">
+      query_runtime_subjects(query: Dict[str, Any]) -&gt; List[Subject]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_communication_datasubject_id-str-optionalsubjectcommunication" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_communication_data(subject_id: str) -&gt; Optional[SubjectCommunication]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_communications_searchable_fieldssubject_id-str-listdictstr-any" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_communications_searchable_fields(subject_id: str) -&gt; List[Dict[str, Any]]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_communications_searchable_representationsubject_id-str-optionalstr" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_communications_searchable_representation(subject_id: str) -&gt; Optional[str]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#messagehandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      MessageHandler
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MessageHandler">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-initialization_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Class Initialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Validation Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#validate_input_sourcemessage_type-str-data-dictstr-any" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate_input_source(message_type: str, data: Dict[str, Any])
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate_output_sourcemessage_type-str-data-dictstr-any" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate_output_source(message_type: str, data: Dict[str, Any])
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate_input_for_subjectsubject_id-str-message_type-str-data-dictstr-any" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate_input_for_subject(subject_id: str, message_type: str, data: Dict[str, Any])
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate_output_for_subjectsubject_id-str-message_type-str-data-dictstr-any" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate_output_for_subject(subject_id: str, message_type: str, data: Dict[str, Any])
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformation-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transformation Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transformation Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convert_input_to_sourcemessage_type-str-data-dictstr-any-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      convert_input_to_source(message_type: str, data: Dict[str, Any]) -&gt; Dict
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert_output_to_sourcemessage_type-str-data-dictstr-any-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      convert_output_to_source(message_type: str, data: Dict[str, Any]) -&gt; Dict
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert_input_to_target_subjectsubject_id-str-message_type-str-data-dictstr-any-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      convert_input_to_target_subject(subject_id: str, message_type: str, data: Dict[str, Any]) -&gt; Dict
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert_output_to_target_subjectsubject_id-str-message_type-str-data-dictstr-any-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      convert_output_to_target_subject(subject_id: str, message_type: str, data: Dict[str, Any]) -&gt; Dict
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#introspection-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introspection Utilities
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introspection Utilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#is_valid_message_typesubject_id-str-message_type-str-bool" class="md-nav__link">
+    <span class="md-ellipsis">
+      is_valid_message_type(subject_id: str, message_type: str) -&gt; bool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#has_input_dslsubject_id-str-message_type-str-bool" class="md-nav__link">
+    <span class="md-ellipsis">
+      has_input_dsl(subject_id: str, message_type: str) -&gt; bool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#has_output_dslsubject_id-str-message_type-str-bool" class="md-nav__link">
+    <span class="md-ellipsis">
+      has_output_dsl(subject_id: str, message_type: str) -&gt; bool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_input_dslsubject_id-str-message_type-str-optionalstr" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_input_dsl(subject_id: str, message_type: str) -&gt; Optional[str]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_output_dslsubject_id-str-message_type-str-optionalstr" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_output_dsl(subject_id: str, message_type: str) -&gt; Optional[str]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_all_message_typessubject_id-str-liststr" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_all_message_types(subject_id: str) -&gt; List[str]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_message_type_metadatasubject_id-str-message_type-str-dictstr-any" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_message_type_metadata(subject_id: str, message_type: str) -&gt; Dict[str, Any]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dsl-workflows-for-message-translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      DSL Workflows for Message Translation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DSL Workflows for Message Translation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-dsl-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why DSL Workflows?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsl-workflow-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      DSL Workflow Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflow-execution-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow Execution Context
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-use-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Use Case
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#design-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Design Principles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selecting-message-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selecting Message Type
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Selecting Message Type">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods-for-message-type-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods for Message Type Discovery
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods for Message Type Discovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_all_message_typessubject_id-str-liststr_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_all_message_types(subject_id: str) -&gt; List[str]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_message_type_metadatasubject_id-str-message_type-str-dictstr-any_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_message_type_metadata(subject_id: str, message_type: str) -&gt; Dict[str, Any]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_communications_searchable_fieldssubject_id-str-listdictstr-any_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_communications_searchable_fields(subject_id: str) -&gt; List[Dict[str, Any]]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searchable-representation-for-llm-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Searchable Representation for LLM Selection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Searchable Representation for LLM Selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-get_communications_searchable_representationsubject_id-str-str" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method: get_communications_searchable_representation(subject_id: str) -&gt; str
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Method: get_communications_searchable_representation(subject_id: str) -&gt; str">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Output
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-in-agentic-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use in Agentic Systems
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-object-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing S3 Compatible Object Storage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-sub-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task Delegation, Behavior Planning, Verification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-association/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Association with other Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-config-store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_5" id="__nav_2_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Workflows
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Workflows
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/creating_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/onboarding_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Onboarding Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/writing_sample_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sample workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced Agent Memories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced Agent Memories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/agentic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agentic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Memory Types
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Memory Types
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/episodic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Episodic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/semantic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/procedural-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Procedural Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/reflective-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reflective Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/reward-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reward Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/context-kv-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Context KV Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/agent-fs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent FS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/learner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learner
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/incorporator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Incorporator & Feedback
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/end-to-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    End-to-End Example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Architecture & Concepts
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture & Concepts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-context-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Context Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-llm-interaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent LLM Interaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-planning-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Planning System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-task-delegation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Task Delegation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-verification-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Verification System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-workflow-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Workflow Execution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/behaviour-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Behavior Controller
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/communication-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Communication System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Capabilities
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schema-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema Description
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Schema Description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#communication-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Communication Schema
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Communication Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-descriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Field Descriptions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-type-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Message Type Schema
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Message Type Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-class_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-descriptions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Field Descriptions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Templates
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Templates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#writing-a-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing a Template
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Writing a Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#supported-validation-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported Validation Fields
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-agentic-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Agentic Template
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subjectslocaldb" class="md-nav__link">
+    <span class="md-ellipsis">
+      SubjectsLocalDB
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SubjectsLocalDB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Class Initialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#populate_cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      populate_cache()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_runtime_subjectsubject_id-str-optionalsubject" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_runtime_subject(subject_id: str) -&gt; Optional[Subject]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list_runtime_subjects-listsubject" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_runtime_subjects() -&gt; List[Subject]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query_runtime_subjectsquery-dictstr-any-listsubject" class="md-nav__link">
+    <span class="md-ellipsis">
+      query_runtime_subjects(query: Dict[str, Any]) -&gt; List[Subject]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_communication_datasubject_id-str-optionalsubjectcommunication" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_communication_data(subject_id: str) -&gt; Optional[SubjectCommunication]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_communications_searchable_fieldssubject_id-str-listdictstr-any" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_communications_searchable_fields(subject_id: str) -&gt; List[Dict[str, Any]]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_communications_searchable_representationsubject_id-str-optionalstr" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_communications_searchable_representation(subject_id: str) -&gt; Optional[str]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#messagehandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      MessageHandler
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MessageHandler">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-initialization_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Class Initialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Validation Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#validate_input_sourcemessage_type-str-data-dictstr-any" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate_input_source(message_type: str, data: Dict[str, Any])
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate_output_sourcemessage_type-str-data-dictstr-any" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate_output_source(message_type: str, data: Dict[str, Any])
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate_input_for_subjectsubject_id-str-message_type-str-data-dictstr-any" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate_input_for_subject(subject_id: str, message_type: str, data: Dict[str, Any])
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate_output_for_subjectsubject_id-str-message_type-str-data-dictstr-any" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate_output_for_subject(subject_id: str, message_type: str, data: Dict[str, Any])
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformation-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transformation Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transformation Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convert_input_to_sourcemessage_type-str-data-dictstr-any-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      convert_input_to_source(message_type: str, data: Dict[str, Any]) -&gt; Dict
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert_output_to_sourcemessage_type-str-data-dictstr-any-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      convert_output_to_source(message_type: str, data: Dict[str, Any]) -&gt; Dict
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert_input_to_target_subjectsubject_id-str-message_type-str-data-dictstr-any-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      convert_input_to_target_subject(subject_id: str, message_type: str, data: Dict[str, Any]) -&gt; Dict
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert_output_to_target_subjectsubject_id-str-message_type-str-data-dictstr-any-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      convert_output_to_target_subject(subject_id: str, message_type: str, data: Dict[str, Any]) -&gt; Dict
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#introspection-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introspection Utilities
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introspection Utilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#is_valid_message_typesubject_id-str-message_type-str-bool" class="md-nav__link">
+    <span class="md-ellipsis">
+      is_valid_message_type(subject_id: str, message_type: str) -&gt; bool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#has_input_dslsubject_id-str-message_type-str-bool" class="md-nav__link">
+    <span class="md-ellipsis">
+      has_input_dsl(subject_id: str, message_type: str) -&gt; bool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#has_output_dslsubject_id-str-message_type-str-bool" class="md-nav__link">
+    <span class="md-ellipsis">
+      has_output_dsl(subject_id: str, message_type: str) -&gt; bool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_input_dslsubject_id-str-message_type-str-optionalstr" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_input_dsl(subject_id: str, message_type: str) -&gt; Optional[str]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_output_dslsubject_id-str-message_type-str-optionalstr" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_output_dsl(subject_id: str, message_type: str) -&gt; Optional[str]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_all_message_typessubject_id-str-liststr" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_all_message_types(subject_id: str) -&gt; List[str]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_message_type_metadatasubject_id-str-message_type-str-dictstr-any" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_message_type_metadata(subject_id: str, message_type: str) -&gt; Dict[str, Any]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dsl-workflows-for-message-translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      DSL Workflows for Message Translation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DSL Workflows for Message Translation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-dsl-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why DSL Workflows?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsl-workflow-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      DSL Workflow Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflow-execution-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow Execution Context
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-use-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Use Case
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#design-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Design Principles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selecting-message-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selecting Message Type
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Selecting Message Type">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods-for-message-type-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods for Message Type Discovery
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods for Message Type Discovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_all_message_typessubject_id-str-liststr_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_all_message_types(subject_id: str) -&gt; List[str]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_message_type_metadatasubject_id-str-message_type-str-dictstr-any_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_message_type_metadata(subject_id: str, message_type: str) -&gt; Dict[str, Any]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_communications_searchable_fieldssubject_id-str-listdictstr-any_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_communications_searchable_fields(subject_id: str) -&gt; List[Dict[str, Any]]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searchable-representation-for-llm-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Searchable Representation for LLM Selection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Searchable Representation for LLM Selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-get_communications_searchable_representationsubject_id-str-str" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method: get_communications_searchable_representation(subject_id: str) -&gt; str
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Method: get_communications_searchable_representation(subject_id: str) -&gt; str">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Output
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-in-agentic-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use in Agentic Systems
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="agent-to-agent-message-conversion-system">Agent to Agent message conversion system</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The <code>MessageHandler</code> framework provides a robust, extensible system for validating, transforming, and managing structured communication between distributed AI subjects (e.g., agents, services, components). It enables seamless interoperability through:</p>
+<ul>
+<li><strong>Schema-driven input/output validation</strong></li>
+<li><strong>Template-aware DSL execution for data transformation</strong></li>
+<li><strong>Subject-aware caching and introspection</strong></li>
+<li><strong>Metadata-rich message type descriptions</strong></li>
+</ul>
+<p>This system is designed to support dynamic, runtime-configurable messaging standards across diverse subjects in large-scale, modular AI systems. Each subject defines its communication patterns and supported message types using templates and DSL workflows, which are stored and accessed via a centralized subject registry.</p>
+<h3 id="core-capabilities">Core Capabilities</h3>
+<ul>
+<li><strong>Validation</strong>: Validates messages against subject-specific input/output templates, supporting nested schemas and field-level constraints.</li>
+<li><strong>Transformation</strong>: Executes DSL workflows to transform messages between subjects using configurable field mappings and metadata.</li>
+<li><strong>Discovery</strong>: Provides structured inspection of supported message types, associated metadata, and registered DSLs.</li>
+<li><strong>Caching</strong>: Uses an in-memory cache to minimize registry queries and ensure fast local access.</li>
+</ul>
+<p>Whether you are building an AI coordination network, a message routing system, or a multi-agent orchestration engine, this framework offers a unified interface to manage structured communication effectively.</p>
+<hr />
+<h2 id="schema-description">Schema Description</h2>
+<p>This section documents the structure and purpose of the key schemas used in the message validation and communication system.</p>
+<hr />
+<h3 id="communication-schema">Communication Schema</h3>
+<p>The <code>SubjectCommunication</code> schema defines how a subject communicates, including the protocols it supports and the types of messages it can send or receive.</p>
+<h4 id="data-class">Data Class</h4>
+<pre><code class="language-python">@dataclass
+class SubjectCommunication:
+    protocols: List[Dict[str, Any]]
+    message_types: List[MessageType]
+
+    @staticmethod
+    def from_dict(data: Dict[str, Any]) -&gt; &quot;SubjectCommunication&quot;:
+        return SubjectCommunication(
+            protocols=data.get(&quot;protocols&quot;, []),
+            message_types=[MessageType.from_dict(mt) for mt in data.get(&quot;message_types&quot;, [])]
+        )
+</code></pre>
+<h4 id="field-descriptions">Field Descriptions</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>protocols</code></td>
+<td><code>List[Dict[str, Any]]</code></td>
+<td>A list of supported communication protocols. Each dictionary may include keys like <code>type</code>, <code>port</code>, <code>path</code>, etc.</td>
+</tr>
+<tr>
+<td><code>message_types</code></td>
+<td><code>List[MessageType]</code></td>
+<td>A list of message types that the subject can handle, defined by the <code>MessageType</code> schema.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="message-type-schema">Message Type Schema</h3>
+<p>The <code>MessageType</code> schema describes a specific type of communication message, including templates for input and output validation, DSL transformation logic, and metadata.</p>
+<h4 id="data-class_1">Data Class</h4>
+<pre><code class="language-python">@dataclass
+class MessageType:
+    type: str
+    input_template: Dict[str, Any]
+    output_template: Dict[str, Any]
+    metadata: MessageTypeMetadata
+    standard_fields_mapping_input: Dict[str, str]
+    standard_fields_mapping_output: Dict[str, str]
+    input_dsl_workflow_id: str
+    output_dsl_workflow_id: str
+
+    @staticmethod
+    def from_dict(data: Dict[str, Any]) -&gt; &quot;MessageType&quot;:
+        return MessageType(
+            type=data[&quot;type&quot;],
+            input_template=data.get(&quot;input_template&quot;, {}),
+            output_template=data.get(&quot;output_template&quot;, {}),
+            metadata=MessageTypeMetadata.from_dict(data.get(&quot;metadata&quot;, {})),
+            standard_fields_mapping_input=data.get(&quot;standard_fields_mapping_input&quot;, {}),
+            standard_fields_mapping_output=data.get(&quot;standard_fields_mapping_output&quot;, {}),
+            input_dsl_workflow_id=data.get(&quot;input_dsl_workflow_id&quot;, &quot;&quot;),
+            output_dsl_workflow_id=data.get(&quot;output_dsl_workflow_id&quot;, &quot;&quot;)
+        )
+</code></pre>
+<h4 id="field-descriptions_1">Field Descriptions</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td><code>str</code></td>
+<td>Unique identifier for the message type.</td>
+</tr>
+<tr>
+<td><code>input_template</code></td>
+<td><code>Dict[str, Any]</code></td>
+<td>A schema that defines the structure and constraints of incoming data.</td>
+</tr>
+<tr>
+<td><code>output_template</code></td>
+<td><code>Dict[str, Any]</code></td>
+<td>A schema that defines the structure and constraints of outgoing data.</td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td><code>MessageTypeMetadata</code></td>
+<td>Additional descriptive information such as description, usage docs, etc.</td>
+</tr>
+<tr>
+<td><code>standard_fields_mapping_input</code></td>
+<td><code>Dict[str, str]</code></td>
+<td>Mapping from standardized field names to keys in the input template.</td>
+</tr>
+<tr>
+<td><code>standard_fields_mapping_output</code></td>
+<td><code>Dict[str, str]</code></td>
+<td>Mapping from standardized field names to keys in the output template.</td>
+</tr>
+<tr>
+<td><code>input_dsl_workflow_id</code></td>
+<td><code>str</code></td>
+<td>DSL workflow ID for transforming input from external to internal structure.</td>
+</tr>
+<tr>
+<td><code>output_dsl_workflow_id</code></td>
+<td><code>str</code></td>
+<td>DSL workflow ID for transforming output from internal to external structure.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="templates">Templates</h2>
+<p>Message templates define the expected structure and validation constraints for the input and output of a <code>MessageType</code>. These templates are used by the <code>MessageHandler</code> to verify correctness and by the DSL executor to assist in transformation.</p>
+<p>Templates support field-level validation for types, patterns, enumerations, structure, and value constraints. The format is recursive and can express deeply nested schemas for objects and arrays.</p>
+<hr />
+<h3 id="writing-a-template">Writing a Template</h3>
+<p>Each template is a <code>Dict[str, Any]</code>, where each key represents a field name, and the corresponding value is a schema dictionary containing validation rules.</p>
+<h4 id="supported-validation-fields">Supported Validation Fields</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Applicable To</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>All</td>
+<td>Data type: <code>string</code>, <code>number</code>, <code>boolean</code>, <code>array</code>, <code>object</code>, <code>any</code>.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>All</td>
+<td>Optional human-readable description of the field.</td>
+</tr>
+<tr>
+<td><code>pattern</code></td>
+<td><code>string</code></td>
+<td>string</td>
+<td>Regular expression the string must match.</td>
+</tr>
+<tr>
+<td><code>length</code></td>
+<td><code>number</code></td>
+<td>string</td>
+<td>Maximum allowed length of the string.</td>
+</tr>
+<tr>
+<td><code>choices</code></td>
+<td><code>array</code></td>
+<td>string, number</td>
+<td>Allowed set of values.</td>
+</tr>
+<tr>
+<td><code>min</code></td>
+<td><code>number</code></td>
+<td>number</td>
+<td>Minimum allowed numeric value.</td>
+</tr>
+<tr>
+<td><code>max</code></td>
+<td><code>number</code></td>
+<td>number</td>
+<td>Maximum allowed numeric value.</td>
+</tr>
+<tr>
+<td><code>max_length</code></td>
+<td><code>number</code></td>
+<td>array</td>
+<td>Maximum number of array elements.</td>
+</tr>
+<tr>
+<td><code>items</code></td>
+<td><code>object</code></td>
+<td>array</td>
+<td>Template for validating each item in an array.</td>
+</tr>
+<tr>
+<td><code>properties</code></td>
+<td><code>object</code></td>
+<td>object</td>
+<td>Dictionary defining field schemas inside an object.</td>
+</tr>
+<tr>
+<td><code>optional</code></td>
+<td><code>boolean</code></td>
+<td>All</td>
+<td>Whether the field is optional (default is false).</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="example-agentic-template">Example: Agentic Template</h3>
+<p>This input template could be used by a messaging agent that receives a structured task request:</p>
+<pre><code class="language-python">input_template = {
+    &quot;task_id&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;description&quot;: &quot;Unique identifier for the task&quot;,
+        &quot;pattern&quot;: &quot;^[a-zA-Z0-9_-]{8,32}$&quot;
+    },
+    &quot;priority&quot;: {
+        &quot;type&quot;: &quot;number&quot;,
+        &quot;description&quot;: &quot;Priority level from 1 (low) to 10 (high)&quot;,
+        &quot;min&quot;: 1,
+        &quot;max&quot;: 10
+    },
+    &quot;mode&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;description&quot;: &quot;Execution mode&quot;,
+        &quot;choices&quot;: [&quot;sync&quot;, &quot;async&quot;, &quot;stream&quot;]
+    },
+    &quot;parameters&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;description&quot;: &quot;Parameter block for the task execution&quot;,
+        &quot;properties&quot;: {
+            &quot;temperature&quot;: {
+                &quot;type&quot;: &quot;number&quot;,
+                &quot;min&quot;: 0.0,
+                &quot;max&quot;: 1.0
+            },
+            &quot;max_tokens&quot;: {
+                &quot;type&quot;: &quot;number&quot;,
+                &quot;max&quot;: 2048
+            },
+            &quot;debug&quot;: {
+                &quot;type&quot;: &quot;boolean&quot;
+            }
+        }
+    },
+    &quot;tags&quot;: {
+        &quot;type&quot;: &quot;array&quot;,
+        &quot;description&quot;: &quot;Optional search or routing tags&quot;,
+        &quot;items&quot;: {
+            &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;max_length&quot;: 10,
+        &quot;optional&quot;: True
+    }
+}
+</code></pre>
+<p>This template defines:</p>
+<ul>
+<li>Required scalar fields with pattern, numeric range, and enumeration</li>
+<li>A nested <code>parameters</code> object with its own validation rules</li>
+<li>An optional list of tags with a maximum length</li>
+</ul>
+<hr />
+<h2 id="subjectslocaldb">SubjectsLocalDB</h2>
+<p><code>SubjectsLocalDB</code> provides an in-memory cache of all subject metadata and communication configurations retrieved from the subject registry. It reduces repetitive API calls by locally storing subject definitions and communication schemas.</p>
+<h3 id="class-initialization">Class Initialization</h3>
+<pre><code class="language-python">SubjectsLocalDB(db_client: SubjectDBAPIClient)
+</code></pre>
+<ul>
+<li><code>db_client</code>: an instance of <code>SubjectDBAPIClient</code> used to fetch subject definitions from the registry.</li>
+</ul>
+<hr />
+<h3 id="methods">Methods</h3>
+<h4 id="populate_cache"><code>populate_cache()</code></h4>
+<p>Fetches all runtime subjects from the registry and populates the internal cache.</p>
+<pre><code class="language-python">local_db.populate_cache()
+</code></pre>
+<h4 id="get_runtime_subjectsubject_id-str-optionalsubject"><code>get_runtime_subject(subject_id: str) -&gt; Optional[Subject]</code></h4>
+<p>Retrieves a subject by ID from the local cache.</p>
+<pre><code class="language-python">subject = local_db.get_runtime_subject(&quot;agent-123&quot;)
+</code></pre>
+<h4 id="list_runtime_subjects-listsubject"><code>list_runtime_subjects() -&gt; List[Subject]</code></h4>
+<p>Returns a list of all cached subjects.</p>
+<pre><code class="language-python">subjects = local_db.list_runtime_subjects()
+</code></pre>
+<h4 id="query_runtime_subjectsquery-dictstr-any-listsubject"><code>query_runtime_subjects(query: Dict[str, Any]) -&gt; List[Subject]</code></h4>
+<p>Filters subjects based on top-level equality conditions. Supports list containment for array fields.</p>
+<pre><code class="language-python">agents = local_db.query_runtime_subjects({&quot;subject_type&quot;: &quot;agent&quot;})
+</code></pre>
+<h4 id="get_communication_datasubject_id-str-optionalsubjectcommunication"><code>get_communication_data(subject_id: str) -&gt; Optional[SubjectCommunication]</code></h4>
+<p>Parses and returns the <code>SubjectCommunication</code> object from the <code>subject_config["communication"]</code> field.</p>
+<pre><code class="language-python">comm = local_db.get_communication_data(&quot;agent-123&quot;)
+</code></pre>
+<h4 id="get_communications_searchable_fieldssubject_id-str-listdictstr-any"><code>get_communications_searchable_fields(subject_id: str) -&gt; List[Dict[str, Any]]</code></h4>
+<p>Returns a list of message types and associated templates and metadata for indexing/search purposes.</p>
+<pre><code class="language-python">fields = local_db.get_communications_searchable_fields(&quot;agent-123&quot;)
+</code></pre>
+<h4 id="get_communications_searchable_representationsubject_id-str-optionalstr"><code>get_communications_searchable_representation(subject_id: str) -&gt; Optional[str]</code></h4>
+<p>Formats the communication metadata into a human-readable string (useful for LLMs or descriptions).</p>
+<pre><code class="language-python">summary = local_db.get_communications_searchable_representation(&quot;agent-123&quot;)
+</code></pre>
+<hr />
+<h2 id="messagehandler">MessageHandler</h2>
+<p><code>MessageHandler</code> provides schema-aware validation, transformation, and DSL execution utilities for communication between subjects.</p>
+<h3 id="class-initialization_1">Class Initialization</h3>
+<pre><code class="language-python">MessageHandler(subject_cache: SubjectsLocalDB)
+</code></pre>
+<ul>
+<li><code>subject_cache</code>: an instance of <code>SubjectsLocalDB</code> with preloaded subject data.</li>
+</ul>
+<hr />
+<h3 id="validation-methods">Validation Methods</h3>
+<h4 id="validate_input_sourcemessage_type-str-data-dictstr-any"><code>validate_input_source(message_type: str, data: Dict[str, Any])</code></h4>
+<p>Validates <code>data</code> against the input template of the current subject (determined by <code>SUBJECT_ID</code>).</p>
+<pre><code class="language-python">handler.validate_input_source(&quot;chat&quot;, {&quot;message&quot;: &quot;Hello&quot;})
+</code></pre>
+<h4 id="validate_output_sourcemessage_type-str-data-dictstr-any"><code>validate_output_source(message_type: str, data: Dict[str, Any])</code></h4>
+<p>Validates <code>data</code> against the output template of the current subject.</p>
+<pre><code class="language-python">handler.validate_output_source(&quot;chat&quot;, {&quot;response&quot;: &quot;Hi&quot;})
+</code></pre>
+<h4 id="validate_input_for_subjectsubject_id-str-message_type-str-data-dictstr-any"><code>validate_input_for_subject(subject_id: str, message_type: str, data: Dict[str, Any])</code></h4>
+<p>Validates data as input for the given subject's message type.</p>
+<pre><code class="language-python">handler.validate_input_for_subject(&quot;agent-2&quot;, &quot;chat&quot;, {&quot;message&quot;: &quot;Hello&quot;})
+</code></pre>
+<h4 id="validate_output_for_subjectsubject_id-str-message_type-str-data-dictstr-any"><code>validate_output_for_subject(subject_id: str, message_type: str, data: Dict[str, Any])</code></h4>
+<p>Validates data as output for the given subject's message type.</p>
+<pre><code class="language-python">handler.validate_output_for_subject(&quot;agent-2&quot;, &quot;chat&quot;, {&quot;response&quot;: &quot;Hi&quot;})
+</code></pre>
+<hr />
+<h3 id="transformation-methods">Transformation Methods</h3>
+<p>Each conversion method uses the DSL executor with appropriate input/output templates and field mappings.</p>
+<h4 id="convert_input_to_sourcemessage_type-str-data-dictstr-any-dict"><code>convert_input_to_source(message_type: str, data: Dict[str, Any]) -&gt; Dict</code></h4>
+<p>Converts raw input into the current subject's expected input format.</p>
+<pre><code class="language-python">converted = handler.convert_input_to_source(&quot;chat&quot;, {&quot;user_input&quot;: &quot;Hello&quot;})
+</code></pre>
+<h4 id="convert_output_to_sourcemessage_type-str-data-dictstr-any-dict"><code>convert_output_to_source(message_type: str, data: Dict[str, Any]) -&gt; Dict</code></h4>
+<p>Converts output data into the current subject's expected output format.</p>
+<pre><code class="language-python">converted = handler.convert_output_to_source(&quot;chat&quot;, {&quot;reply&quot;: &quot;Hi&quot;})
+</code></pre>
+<h4 id="convert_input_to_target_subjectsubject_id-str-message_type-str-data-dictstr-any-dict"><code>convert_input_to_target_subject(subject_id: str, message_type: str, data: Dict[str, Any]) -&gt; Dict</code></h4>
+<p>Transforms input data from the current subject to the target subject’s expected format.</p>
+<pre><code class="language-python">converted = handler.convert_input_to_target_subject(&quot;agent-2&quot;, &quot;chat&quot;, {&quot;user_input&quot;: &quot;Hi&quot;})
+</code></pre>
+<h4 id="convert_output_to_target_subjectsubject_id-str-message_type-str-data-dictstr-any-dict"><code>convert_output_to_target_subject(subject_id: str, message_type: str, data: Dict[str, Any]) -&gt; Dict</code></h4>
+<p>Transforms output data from the current subject to the target subject’s output format.</p>
+<pre><code class="language-python">converted = handler.convert_output_to_target_subject(&quot;agent-2&quot;, &quot;chat&quot;, {&quot;reply&quot;: &quot;Hello&quot;})
+</code></pre>
+<hr />
+<h3 id="introspection-utilities">Introspection Utilities</h3>
+<h4 id="is_valid_message_typesubject_id-str-message_type-str-bool"><code>is_valid_message_type(subject_id: str, message_type: str) -&gt; bool</code></h4>
+<p>Checks whether a message type is defined for a subject.</p>
+<pre><code class="language-python">handler.is_valid_message_type(&quot;agent-2&quot;, &quot;chat&quot;)
+</code></pre>
+<h4 id="has_input_dslsubject_id-str-message_type-str-bool"><code>has_input_dsl(subject_id: str, message_type: str) -&gt; bool</code></h4>
+<p>Checks if input DSL is defined for the message type.</p>
+<pre><code class="language-python">handler.has_input_dsl(&quot;agent-2&quot;, &quot;chat&quot;)
+</code></pre>
+<h4 id="has_output_dslsubject_id-str-message_type-str-bool"><code>has_output_dsl(subject_id: str, message_type: str) -&gt; bool</code></h4>
+<p>Checks if output DSL is defined for the message type.</p>
+<pre><code class="language-python">handler.has_output_dsl(&quot;agent-2&quot;, &quot;chat&quot;)
+</code></pre>
+<h4 id="get_input_dslsubject_id-str-message_type-str-optionalstr"><code>get_input_dsl(subject_id: str, message_type: str) -&gt; Optional[str]</code></h4>
+<p>Returns the input DSL workflow ID for a message type.</p>
+<pre><code class="language-python">dsl = handler.get_input_dsl(&quot;agent-2&quot;, &quot;chat&quot;)
+</code></pre>
+<h4 id="get_output_dslsubject_id-str-message_type-str-optionalstr"><code>get_output_dsl(subject_id: str, message_type: str) -&gt; Optional[str]</code></h4>
+<p>Returns the output DSL workflow ID for a message type.</p>
+<pre><code class="language-python">dsl = handler.get_output_dsl(&quot;agent-2&quot;, &quot;chat&quot;)
+</code></pre>
+<h4 id="get_all_message_typessubject_id-str-liststr"><code>get_all_message_types(subject_id: str) -&gt; List[str]</code></h4>
+<p>Returns all supported message types for the subject.</p>
+<pre><code class="language-python">types = handler.get_all_message_types(&quot;agent-2&quot;)
+</code></pre>
+<h4 id="get_message_type_metadatasubject_id-str-message_type-str-dictstr-any"><code>get_message_type_metadata(subject_id: str, message_type: str) -&gt; Dict[str, Any]</code></h4>
+<p>Returns metadata associated with the message type.</p>
+<pre><code class="language-python">meta = handler.get_message_type_metadata(&quot;agent-2&quot;, &quot;chat&quot;)
+</code></pre>
+<hr />
+<h2 id="dsl-workflows-for-message-translation">DSL Workflows for Message Translation</h2>
+<p>In a distributed system of AI agents or services, each subject may have its own data representation standards. To enable seamless communication, the <code>MessageHandler</code> supports <strong>message translation via DSL workflows</strong>.</p>
+<p>DSL (Domain-Specific Language) workflows act as transformation bridges that convert input/output data structures between <strong>source</strong> and <strong>target</strong> subjects, while preserving semantics and respecting schema constraints.</p>
+<hr />
+<h3 id="why-dsl-workflows">Why DSL Workflows?</h3>
+<p>Subjects may differ in how they:</p>
+<ul>
+<li>Name fields (<code>user_input</code> vs <code>message</code>)</li>
+<li>Structure objects (flat vs nested)</li>
+<li>Interpret values (enum strings vs numeric codes)</li>
+</ul>
+<p>Rather than hard-coding these mappings, DSL workflows provide a <strong>declarative, reusable mechanism</strong> to encode transformation logic and apply it dynamically at runtime.</p>
+<hr />
+<h3 id="dsl-workflow-types">DSL Workflow Types</h3>
+<p>Each message type may define two transformation workflows:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>input_dsl_workflow_id</code></td>
+<td>Transforms <strong>incoming messages</strong> into the source subject's input format</td>
+</tr>
+<tr>
+<td><code>output_dsl_workflow_id</code></td>
+<td>Transforms <strong>outgoing messages</strong> into the target subject's output format</td>
+</tr>
+</tbody>
+</table>
+<p>These are stored per <code>MessageType</code> and executed by the <code>MessageHandler</code> as needed.</p>
+<hr />
+<h3 id="workflow-execution-context">Workflow Execution Context</h3>
+<p>When a DSL is executed for message translation, the runtime is provided with structured context to support intelligent transformation:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>The input data to transform</td>
+</tr>
+<tr>
+<td><code>message_type</code></td>
+<td>The type identifier of the message</td>
+</tr>
+<tr>
+<td><code>communication</code></td>
+<td>The full <code>SubjectCommunication</code> object of the current subject</td>
+</tr>
+<tr>
+<td><code>field_mapping</code></td>
+<td>Mapping from standardized fields to subject-specific fields</td>
+</tr>
+<tr>
+<td><code>source_template</code></td>
+<td>Schema for the source subject's input/output structure</td>
+</tr>
+<tr>
+<td><code>target_template</code></td>
+<td>Schema for the target subject's input/output structure</td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td>Human-readable metadata describing the message (description, example, etc.)</td>
+</tr>
+</tbody>
+</table>
+<p>This context is injected as part of the <code>addons</code> argument when executing the workflow via:</p>
+<pre><code class="language-python">executor = new_dsl_workflow_executor(
+    workflow_id=workflow_id,
+    workflows_base_uri=WORKFLOWS_API_URL,
+    is_remote=False,
+    addons=context
+)
+result = executor.execute({&quot;data&quot;: input_data})
+</code></pre>
+<hr />
+<h3 id="example-use-case">Example Use Case</h3>
+<p>Let’s say we have two agents:</p>
+<ul>
+<li><strong>Agent A</strong> expects: <code>{ "user_input": "Hello" }</code></li>
+<li><strong>Agent B</strong> expects: <code>{ "message": "Hello" }</code></li>
+</ul>
+<p>The DSL workflow for translating A’s output to B’s input might contain rules like:</p>
+<pre><code class="language-json">{
+  &quot;workflow&quot;: {
+    &quot;steps&quot;: [
+      {
+        &quot;transform&quot;: {
+          &quot;output.message&quot;: &quot;input.user_input&quot;
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+<p>When the <code>MessageHandler</code> calls <code>convert_input_to_target_subject(...)</code>, this DSL is executed to reshape the message appropriately.</p>
+<hr />
+<h3 id="design-principles">Design Principles</h3>
+<ul>
+<li>DSL workflows should <strong>not embed hardcoded assumptions</strong> about external systems.</li>
+<li>They should rely on the provided <code>field_mapping</code>, <code>source_template</code>, and <code>target_template</code>.</li>
+<li>Workflows should be reusable across subjects with similar roles or message semantics.</li>
+<li>Errors in DSL execution should be caught and logged with fallback if needed.</li>
+</ul>
+<hr />
+<p>Here is the documentation for the new section:</p>
+<hr />
+<h2 id="selecting-message-type">Selecting Message Type</h2>
+<p>In systems with multiple message types per subject, it becomes essential to support <strong>discovery</strong>, <strong>matching</strong>, and <strong>intelligent selection</strong> of message types for a given communication goal. The <code>MessageHandler</code> and <code>SubjectsLocalDB</code> provide utilities for listing, inspecting, and rendering message types into a <strong>searchable representation</strong> that can be used by humans, scripts, or language models (LLMs).</p>
+<hr />
+<h3 id="purpose">Purpose</h3>
+<ul>
+<li>Identify the most appropriate <code>message_type</code> for a given subject</li>
+<li>Present the available types in a structured, searchable form</li>
+<li>Enable LLMs or rule engines to make automated decisions about message routing</li>
+</ul>
+<hr />
+<h3 id="methods-for-message-type-discovery">Methods for Message Type Discovery</h3>
+<h4 id="get_all_message_typessubject_id-str-liststr_1"><code>get_all_message_types(subject_id: str) -&gt; List[str]</code></h4>
+<p>Returns a flat list of all message types defined for a subject.</p>
+<pre><code class="language-python">types = handler.get_all_message_types(&quot;agent-123&quot;)
+# Output: ['chat', 'search_query', 'summarization_request']
+</code></pre>
+<h4 id="get_message_type_metadatasubject_id-str-message_type-str-dictstr-any_1"><code>get_message_type_metadata(subject_id: str, message_type: str) -&gt; Dict[str, Any]</code></h4>
+<p>Returns the metadata dictionary for a given message type.</p>
+<pre><code class="language-python">meta = handler.get_message_type_metadata(&quot;agent-123&quot;, &quot;chat&quot;)
+# Output: { &quot;description&quot;: &quot;Chat response agent&quot;, ... }
+</code></pre>
+<h4 id="get_communications_searchable_fieldssubject_id-str-listdictstr-any_1"><code>get_communications_searchable_fields(subject_id: str) -&gt; List[Dict[str, Any]]</code></h4>
+<p>Returns a list of message types with input/output templates and metadata fields that can be indexed or used in selection logic.</p>
+<pre><code class="language-python">search_fields = local_db.get_communications_searchable_fields(&quot;agent-123&quot;)
+# Output: list of dicts for each message_type
+</code></pre>
+<hr />
+<h3 id="searchable-representation-for-llm-selection">Searchable Representation for LLM Selection</h3>
+<p>To support automated reasoning by LLMs or interactive UI selection, the framework provides a <strong>formatted, structured textual representation</strong> of the available message types.</p>
+<h4 id="method-get_communications_searchable_representationsubject_id-str-str">Method: <code>get_communications_searchable_representation(subject_id: str) -&gt; str</code></h4>
+<p>Returns a multi-line string that includes:</p>
+<ul>
+<li>Message type identifier</li>
+<li>Input and output template summaries</li>
+<li>Metadata fields: description, usage docs, examples</li>
+</ul>
+<h5 id="example-output">Example Output</h5>
+<pre><code>Type: chat
+  Input Template: {'message': {'type': 'string'}}
+  Output Template: {'response': {'type': 'string'}}
+  Metadata:
+    description: Handles conversational input and produces agent replies
+    usage_doc_link: http://docs.aios/agent/chat
+    example: {&quot;message&quot;: &quot;What's the weather like today?&quot;}
+
+Type: summarization_request
+  Input Template: {'content': {'type': 'string'}}
+  Output Template: {'summary': {'type': 'string'}}
+  Metadata:
+    description: Converts long text into short summaries
+    usage_doc_link: http://docs.aios/agent/summarize
+    example: {&quot;content&quot;: &quot;Article text here...&quot;}
+</code></pre>
+<h4 id="example-usage">Example Usage</h4>
+<pre><code class="language-python">representation = local_db.get_communications_searchable_representation(&quot;agent-123&quot;)
+print(representation)
+</code></pre>
+<p>This output can be:</p>
+<ul>
+<li>Indexed for search</li>
+<li>Embedded into a chat prompt</li>
+<li>Displayed in a selection UI</li>
+<li>Fed into an LLM to ask:
+  <em>“Which message type should I use to summarize a document?”</em></li>
+</ul>
+<hr />
+<h3 id="use-in-agentic-systems">Use in Agentic Systems</h3>
+<ul>
+<li>Use the searchable representation to dynamically select the best <code>message_type</code> based on user intent</li>
+<li>LLMs can be used to map user prompts to message types by inspecting their <code>description</code>, <code>input_template</code>, and <code>example</code></li>
+<li>Rule engines can select types based on expected field structure and target format</li>
+</ul>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

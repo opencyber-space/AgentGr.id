@@ -1,0 +1,2391 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../agent-code-generator/">
+      
+      
+        <link rel="next" href="../agent-eembeddings/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>Calling Functions and Tools - AgentGr.id</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#functions-tools-client-developer-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AgentGr.id" class="md-header__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AgentGr.id
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Calling Functions and Tools
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AgentGr.id" class="md-nav__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AgentGr.id
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🧠 AgentGr.id
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            🧠 AgentGr.id
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-specification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Specifying an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-creation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-llm-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using LLMs and other AI models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-dsl-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Managing and calling DSL Workflows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-code-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Generating runtime code using Code Generator SDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Calling Functions and Tools
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Calling Functions and Tools
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registration-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registration Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registration Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#functionitem-spec-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      FunctionItem (spec registration)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toolitem-spec-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      ToolItem (spec registration)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#builtinmodules-custom-tool-packs" class="md-nav__link">
+    <span class="md-ellipsis">
+      BuiltinModules (custom tool packs)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Runtime Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-subject-spec-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimal Subject Spec Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-tool-executors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local Tool Executors
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Local Tool Executors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#toolexecutor-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      ToolExecutor interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-local-multiplier-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: local multiplier tool
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toolsfunctionsregistry-core-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      ToolsFunctionsRegistry — Core Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calling-config-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calling Config Conventions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#searchable-representation-llm-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Searchable Representation (LLM Discovery)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#built-in-modules-custom-tool-packs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built-in Modules (Custom Tool Packs)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#management-crud-optional-external-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Management &amp; CRUD (optional external service)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation &amp; Health
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#end-to-end-quickstart" class="md-nav__link">
+    <span class="md-ellipsis">
+      End-to-End Quickstart
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-eembeddings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Embedding Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-graph-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Graph Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-vector-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Vector Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-chat-p2p/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chat and P2P Communication with other agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../a2a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    A2A - Agent to Agent Communication Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-object-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing S3 Compatible Object Storage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-sub-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task Delegation, Behavior Planning, Verification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-association/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Association with other Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-config-store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_5" id="__nav_2_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Workflows
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Workflows
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/creating_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/onboarding_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Onboarding Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/writing_sample_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sample workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced Agent Memories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced Agent Memories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/agentic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agentic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Memory Types
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Memory Types
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/episodic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Episodic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/semantic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/procedural-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Procedural Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/reflective-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reflective Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/reward-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reward Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/context-kv-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Context KV Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/agent-fs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent FS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/learner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learner
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/incorporator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Incorporator & Feedback
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/end-to-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    End-to-End Example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Architecture & Concepts
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture & Concepts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-context-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Context Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-llm-interaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent LLM Interaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-planning-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Planning System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-task-delegation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Task Delegation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-verification-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Verification System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-workflow-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Workflow Execution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/behaviour-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Behavior Controller
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/communication-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Communication System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registration-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registration Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registration Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#functionitem-spec-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      FunctionItem (spec registration)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toolitem-spec-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      ToolItem (spec registration)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#builtinmodules-custom-tool-packs" class="md-nav__link">
+    <span class="md-ellipsis">
+      BuiltinModules (custom tool packs)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Runtime Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-subject-spec-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimal Subject Spec Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-tool-executors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local Tool Executors
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Local Tool Executors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#toolexecutor-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      ToolExecutor interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-local-multiplier-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: local multiplier tool
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toolsfunctionsregistry-core-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      ToolsFunctionsRegistry — Core Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calling-config-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calling Config Conventions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#searchable-representation-llm-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Searchable Representation (LLM Discovery)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#built-in-modules-custom-tool-packs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built-in Modules (Custom Tool Packs)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#management-crud-optional-external-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Management &amp; CRUD (optional external service)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation &amp; Health
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#end-to-end-quickstart" class="md-nav__link">
+    <span class="md-ellipsis">
+      End-to-End Quickstart
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="functions-tools-client-developer-documentation">Functions &amp; Tools — Client Developer Documentation</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The <strong>Functions &amp; Tools</strong> subsystem provides a unified, LLM-friendly way to <strong>register</strong>, <strong>discover</strong>, and <strong>execute</strong> reusable capabilities in your agent stack.</p>
+<p>It supports:</p>
+<ul>
+<li><strong>Spec-time registration</strong> of items that your runtime can resolve later</li>
+<li><strong>Local</strong> and <strong>remote</strong> execution backends</li>
+<li><strong>LLM discoverability</strong> via a searchable registry</li>
+<li><strong>Custom tooling</strong> with lifecycle hooks and admin commands</li>
+</ul>
+<blockquote>
+<p>Important: <code>FunctionItem</code>, <code>ToolItem</code>, and <code>BuiltinModules</code> are <strong>spec-registration types only</strong>. They declare <em>what exists</em> and <em>how to call it</em>. Your runtime resolves and executes them.</p>
+</blockquote>
+<hr />
+<h2 id="registration-types">Registration Types</h2>
+<h3 id="functionitem-spec-registration">FunctionItem (spec registration)</h3>
+<pre><code class="language-python">from dataclasses import dataclass, field
+from typing import Dict, Any
+
+@dataclass
+class FunctionItem:
+    function_id: str
+    function_custom_parameters: Dict[str, Any] = field(default_factory=dict)
+    function_calling_config: Dict[str, Any] = field(default_factory=dict)
+</code></pre>
+<ul>
+<li><strong>function_id</strong>: Unique logical name or URI (e.g., <code>"math.add"</code>, <code>"svc://billing.refund"</code>).</li>
+<li><strong>function_custom_parameters</strong>: Deployment-agnostic extras (defaults, constraints, tags).</li>
+<li><strong>function_calling_config</strong>: How to call it (protocol, endpoint, method, headers, timeout, auth refs).</li>
+</ul>
+<hr />
+<h3 id="toolitem-spec-registration">ToolItem (spec registration)</h3>
+<pre><code class="language-python">from dataclasses import dataclass, field
+from typing import Dict, Any, Literal
+
+@dataclass
+class ToolItem:
+    tool_id: str
+    tool_description: str = &quot;&quot;
+    tool_execution_mode: Literal[&quot;local&quot;, &quot;remote&quot;] = &quot;local&quot;
+    tool_custom_config: Dict[str, Any] = field(default_factory=dict)
+    tool_calling_config: Dict[str, Any] = field(default_factory=dict)
+</code></pre>
+<ul>
+<li><strong>tool_id</strong>: Unique logical name/URI.</li>
+<li><strong>tool_description</strong>: Human/LLM-facing description.</li>
+<li><strong>tool_execution_mode</strong>: <code>"local"</code> (Python executor) or <code>"remote"</code> (HTTP/gRPC/etc).</li>
+<li><strong>tool_custom_config</strong>: Deployment-agnostic extras (schemas, defaults).</li>
+<li><strong>tool_calling_config</strong>: Transport details for <strong>remote</strong> tools or constructor args for <strong>local</strong> tools.</li>
+</ul>
+<hr />
+<h3 id="builtinmodules-custom-tool-packs">BuiltinModules (custom tool packs)</h3>
+<pre><code class="language-python">from dataclasses import dataclass, field
+from typing import List
+
+@dataclass
+class BuiltinModules:
+    module_id: str = &quot;&quot;
+    module_description: str = &quot;&quot;
+    module_input_template: str = &quot;&quot;
+    module_output_template: str = &quot;&quot;
+    module_management_commands: List[ManagementCommandItem] = field(default_factory=list)
+</code></pre>
+<p>Use this to bundle <strong>predefined local tools</strong> with consistent I/O templates and admin commands.</p>
+<hr />
+<h2 id="runtime-architecture">Runtime Architecture</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ToolsFunctionsRegistry</code></td>
+<td>In-memory registry + execution router for tools &amp; functions.</td>
+</tr>
+<tr>
+<td><code>ToolExecutor</code> (abstract)</td>
+<td>Base class for <strong>local</strong> tool logic with <code>validate/deploy/execute</code>.</td>
+</tr>
+<tr>
+<td><code>LocalCustomTool</code></td>
+<td>Adapter binding a <code>ToolExecutor</code> to a <code>ToolItem</code>.</td>
+</tr>
+<tr>
+<td><code>PredefinedToolExecutor</code></td>
+<td>Executes <strong>remote</strong> tools per <code>tool_calling_config</code>.</td>
+</tr>
+<tr>
+<td><code>PredefinedFunctionExecutor</code></td>
+<td>Executes <strong>remote</strong> functions per <code>function_calling_config</code>.</td>
+</tr>
+<tr>
+<td><code>ToolsRegistrySDK</code> (optional)</td>
+<td>REST client to CRUD/search tools in an external Tools service.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="minimal-subject-spec-example">Minimal Subject Spec Example</h2>
+<pre><code class="language-json">{
+  &quot;subject_id&quot;: &quot;agent-capabilities&quot;,
+  &quot;subject_type&quot;: &quot;agent&quot;,
+  &quot;tools&quot;: [
+    {
+      &quot;tool_id&quot;: &quot;local.multiplier&quot;,
+      &quot;tool_description&quot;: &quot;Multiply x by a factor&quot;,
+      &quot;tool_execution_mode&quot;: &quot;local&quot;,
+      &quot;tool_custom_config&quot;: { &quot;schema&quot;: { &quot;input&quot;: {&quot;x&quot;:&quot;number&quot;,&quot;factor&quot;:&quot;number&quot;} } },
+      &quot;tool_calling_config&quot;: { &quot;executor_class&quot;: &quot;agents.tools.multiplier.MultiplierTool&quot; }
+    },
+    {
+      &quot;tool_id&quot;: &quot;remote.summarize&quot;,
+      &quot;tool_description&quot;: &quot;Summarize text via HTTP service&quot;,
+      &quot;tool_execution_mode&quot;: &quot;remote&quot;,
+      &quot;tool_calling_config&quot;: {
+        &quot;protocol&quot;: &quot;http&quot;,
+        &quot;endpoint&quot;: &quot;http://summary.svc.cluster.local:8080/summarize&quot;,
+        &quot;method&quot;: &quot;POST&quot;,
+        &quot;headers&quot;: {&quot;Authorization&quot;: &quot;Bearer ${RUNTIME_TOKEN}&quot;},
+        &quot;timeout_s&quot;: 20
+      }
+    }
+  ],
+  &quot;functions&quot;: [
+    {
+      &quot;function_id&quot;: &quot;math.add&quot;,
+      &quot;function_custom_parameters&quot;: {&quot;max_terms&quot;: 10},
+      &quot;function_calling_config&quot;: {
+        &quot;protocol&quot;: &quot;grpc&quot;,
+        &quot;endpoint&quot;: &quot;dns:///math.svc:9000&quot;,
+        &quot;method&quot;: &quot;Add&quot;,
+        &quot;timeout_s&quot;: 10
+      }
+    }
+  ]
+}
+</code></pre>
+<hr />
+<h2 id="local-tool-executors">Local Tool Executors</h2>
+<h3 id="toolexecutor-interface">ToolExecutor interface</h3>
+<pre><code class="language-python">class ToolExecutor:
+    def deploy(self): ...
+    def validate_inputs(self, input_data: dict) -&gt; bool: ...
+    def execute(self, input_data: dict) -&gt; dict: ...
+    def execute_command(self, command_name: str, data: dict) -&gt; dict: ...
+</code></pre>
+<h3 id="example-local-multiplier-tool">Example: local multiplier tool</h3>
+<pre><code class="language-python"># agents/tools/multiplier.py
+from agent_sdk.tools import ToolExecutor
+
+class MultiplierTool(ToolExecutor):
+    def deploy(self):
+        # preload assets if needed
+        pass
+
+    def validate_inputs(self, input_data):
+        return isinstance(input_data.get(&quot;x&quot;), (int, float)) and isinstance(input_data.get(&quot;factor&quot;), (int, float))
+
+    def execute(self, input_data):
+        if not self.validate_inputs(input_data):
+            raise ValueError(&quot;x and factor must be numbers&quot;)
+        return {&quot;result&quot;: input_data[&quot;x&quot;] * input_data[&quot;factor&quot;]}
+</code></pre>
+<hr />
+<h2 id="toolsfunctionsregistry-core-usage">ToolsFunctionsRegistry — Core Usage</h2>
+<pre><code class="language-python">from agent_sdk.tools.registry import ToolsFunctionsRegistry
+from agent_sdk.tools.local import LocalCustomTool
+
+registry = ToolsFunctionsRegistry()
+
+# Register LOCAL tool
+tool_item = {
+  &quot;tool_id&quot;: &quot;local.multiplier&quot;,
+  &quot;tool_execution_mode&quot;: &quot;local&quot;,
+  &quot;tool_calling_config&quot;: { &quot;executor_class&quot;: &quot;agents.tools.multiplier.MultiplierTool&quot; }
+}
+registry.add_local_tool(LocalCustomTool, tool_item)
+
+# Register REMOTE tool
+remote_tool_item = {
+  &quot;tool_id&quot;: &quot;remote.summarize&quot;,
+  &quot;tool_execution_mode&quot;: &quot;remote&quot;,
+  &quot;tool_calling_config&quot;: {
+    &quot;protocol&quot;: &quot;http&quot;,
+    &quot;endpoint&quot;: &quot;http://summary.svc:8080/summarize&quot;,
+    &quot;method&quot;: &quot;POST&quot;,
+    &quot;timeout_s&quot;: 20
+  }
+}
+registry.add_tool(remote_tool_item)  # handled by PredefinedToolExecutor
+
+# Register REMOTE function
+fn_item = {
+  &quot;function_id&quot;: &quot;math.add&quot;,
+  &quot;function_calling_config&quot;: {
+    &quot;protocol&quot;: &quot;grpc&quot;,
+    &quot;endpoint&quot;: &quot;dns:///math.svc:9000&quot;,
+    &quot;method&quot;: &quot;Add&quot;,
+    &quot;timeout_s&quot;: 10
+  }
+}
+registry.add_function(fn_item)       # handled by PredefinedFunctionExecutor
+
+# Execute
+out1 = registry.execute_tool(&quot;local.multiplier&quot;, {&quot;x&quot;: 6, &quot;factor&quot;: 7})
+out2 = registry.execute_tool(&quot;remote.summarize&quot;, {&quot;text&quot;: &quot;Long text...&quot;})
+out3 = registry.execute_function(&quot;math.add&quot;, {&quot;numbers&quot;: [1, 2, 3]})
+</code></pre>
+<p><strong>Routing rules</strong></p>
+<ul>
+<li>Tool with <code>tool_execution_mode="local"</code> → <code>LocalCustomTool</code> → your <code>ToolExecutor</code>.</li>
+<li>Tool with <code>tool_execution_mode="remote"</code> → <code>PredefinedToolExecutor</code> (HTTP/gRPC/etc).</li>
+<li>Functions always route through <code>PredefinedFunctionExecutor</code> unless you wrap them as tools.</li>
+</ul>
+<hr />
+<h2 id="calling-config-conventions">Calling Config Conventions</h2>
+<p>These are <strong>guidelines</strong> for <code>*_calling_config</code>. Your runtime may extend them.</p>
+<p><strong>HTTP (remote tool/function)</strong></p>
+<pre><code class="language-json">{
+  &quot;protocol&quot;: &quot;http&quot;,
+  &quot;endpoint&quot;: &quot;http://host:port/path&quot;,
+  &quot;method&quot;: &quot;POST&quot;,
+  &quot;headers&quot;: {&quot;Authorization&quot;: &quot;Bearer ${TOKEN}&quot;},
+  &quot;timeout_s&quot;: 15,
+  &quot;retry&quot;: {&quot;tries&quot;: 3, &quot;backoff_s&quot;: 0.5},
+  &quot;input_mapping&quot;: {&quot;text&quot;: &quot;$.input&quot;},
+  &quot;output_mapping&quot;: {&quot;result&quot;: &quot;$.data.summary&quot;}
+}
+</code></pre>
+<p><strong>gRPC (remote function)</strong></p>
+<pre><code class="language-json">{
+  &quot;protocol&quot;: &quot;grpc&quot;,
+  &quot;endpoint&quot;: &quot;dns:///service.svc:9000&quot;,
+  &quot;method&quot;: &quot;Package.Service/Method&quot;  // or &quot;Method&quot; if your client binds service
+}
+</code></pre>
+<p><strong>Local (tool)</strong></p>
+<pre><code class="language-json">{
+  &quot;executor_class&quot;: &quot;agents.tools.multiplier.MultiplierTool&quot;,
+  &quot;constructor_args&quot;: {&quot;warmup&quot;: true}
+}
+</code></pre>
+<hr />
+<h2 id="searchable-representation-llm-discovery">Searchable Representation (LLM Discovery)</h2>
+<pre><code class="language-python">searchable = registry.get_searchable_representation()
+</code></pre>
+<p>Each entry typically includes:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>Tool or function ID</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>"tool"</code> or <code>"function"</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>Human/LLM-readable description</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>Keywords for ranking and filtering</td>
+</tr>
+<tr>
+<td><code>sub_type</code></td>
+<td>Domain category (e.g., <code>nlp.summarize</code>, <code>math</code>)</td>
+</tr>
+<tr>
+<td><code>runtime_type</code></td>
+<td><code>local</code>, <code>http</code>, <code>grpc</code>, <code>cli</code>, etc.</td>
+</tr>
+<tr>
+<td><code>protocol_type</code></td>
+<td><code>http</code>, <code>grpc</code>, <code>python</code>, etc.</td>
+</tr>
+<tr>
+<td><code>schema</code></td>
+<td>Input/output schema (OpenAPI/JSON Schema-like)</td>
+</tr>
+<tr>
+<td><code>examples</code></td>
+<td>Minimal call examples</td>
+</tr>
+</tbody>
+</table>
+<p>This is designed for <strong>Planner</strong> / <strong>DSLPlanner</strong> selection flows.</p>
+<hr />
+<h2 id="built-in-modules-custom-tool-packs">Built-in Modules (Custom Tool Packs)</h2>
+<p>Use <code>BuiltinModules</code> to ship a curated set of tools with consistent I/O and admin controls.</p>
+<pre><code class="language-python">builtin = BuiltinModules(
+  module_id=&quot;text.utils&quot;,
+  module_description=&quot;Text utilities: normalize, extract, summarize&quot;,
+  module_input_template='{&quot;text&quot;: &quot;string&quot;}',
+  module_output_template='{&quot;result&quot;: &quot;string&quot;}',
+  module_management_commands=[
+    {&quot;name&quot;: &quot;warmup&quot;, &quot;description&quot;: &quot;Preload models&quot;},
+    {&quot;name&quot;: &quot;reindex&quot;, &quot;description&quot;: &quot;Rebuild local caches&quot;}
+  ]
+)
+
+registry.add_builtin_module(builtin)
+registry.execute_tool(&quot;text.utils/summarize&quot;, {&quot;text&quot;: &quot;...&quot;})
+registry.execute_tool_command(&quot;text.utils/summarize&quot;, &quot;warmup&quot;, {})
+</code></pre>
+<hr />
+<h2 id="management-crud-optional-external-service">Management &amp; CRUD (optional external service)</h2>
+<p>If you use a Tools Service:</p>
+<pre><code class="language-python">from agent_sdk.tools.sdk import ToolsRegistrySDK
+
+sdk = ToolsRegistrySDK(base_url=&quot;http://tools-service&quot;)
+
+sdk.create_tool({...})
+meta = sdk.get_tool_by_id(&quot;remote.summarize&quot;)
+sdk.update_tool(&quot;remote.summarize&quot;, {&quot;tags&quot;: [&quot;nlp&quot;,&quot;summary&quot;]})
+sdk.delete_tool(&quot;legacy.tool&quot;)
+hits = sdk.execute_query(&quot;summary AND remote&quot;)
+</code></pre>
+<hr />
+<h2 id="validation-health">Validation &amp; Health</h2>
+<ul>
+<li><strong>Local tools</strong> should implement <code>validate_inputs()</code> and optionally <code>deploy()</code> (warmup).</li>
+<li>
+<p><strong>Remote calls</strong> should support:</p>
+</li>
+<li>
+<p>Timeouts &amp; retries</p>
+</li>
+<li>Input/output mapping</li>
+<li>Typed schema validation (pre/post)</li>
+</ul>
+<p>Example health check:</p>
+<pre><code class="language-python">registry.check_tool(&quot;remote.summarize&quot;)      # ping HTTP endpoint /health
+registry.check_function(&quot;math.add&quot;)          # gRPC reflection or custom &quot;Ping&quot;
+</code></pre>
+<hr />
+<h2 id="best-practices">Best Practices</h2>
+<ul>
+<li><strong>Spec vs runtime</strong>: keep secrets out of spec; pass via env/secret refs at runtime.</li>
+<li><strong>Stable IDs</strong>: choose deterministic <code>tool_id</code> / <code>function_id</code>.</li>
+<li><strong>Schemas</strong>: define <code>schema.input</code> / <code>schema.output</code> for validation and LLM clarity.</li>
+<li><strong>Observability</strong>: record latency, error rate, payload size, backend, and retries.</li>
+<li><strong>LLM surfacing</strong>: keep <code>tool_description</code> concise, action-oriented, and tag-rich.</li>
+<li><strong>Idempotency</strong>: design functions/tools to be safe for retry.</li>
+</ul>
+<hr />
+<h2 id="end-to-end-quickstart">End-to-End Quickstart</h2>
+<pre><code class="language-python"># 1) Load spec (tools &amp; functions array) and register
+registry = ToolsFunctionsRegistry()
+
+for t in spec[&quot;tools&quot;]:
+    if t.get(&quot;tool_execution_mode&quot;, &quot;local&quot;) == &quot;local&quot;:
+        registry.add_local_tool(LocalCustomTool, t)
+    else:
+        registry.add_tool(t)
+
+for f in spec[&quot;functions&quot;]:
+    registry.add_function(f)
+
+# 2) Discover for LLM
+for entry in registry.get_searchable_representation():
+    print(entry[&quot;id&quot;], entry.get(&quot;description&quot;))
+
+# 3) Execute
+result_tool = registry.execute_tool(&quot;remote.summarize&quot;, {&quot;text&quot;: &quot;Hello world&quot;})
+result_fn   = registry.execute_function(&quot;math.add&quot;, {&quot;numbers&quot;: [1, 2, 3]})
+</code></pre>
+<p>This gives you a clean separation between <strong>spec-time registration</strong> (<code>FunctionItem</code>, <code>ToolItem</code>, <code>BuiltinModules</code>) and <strong>runtime execution</strong> (registry routing, local executors, and remote invocations) with <strong>LLM-ready discovery</strong> built in.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

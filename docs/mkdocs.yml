@@ -1,0 +1,57 @@
+site_name: AgentGr.id
+theme:
+  name: material
+
+nav:
+
+- Index: index.md
+- 🧠 AgentGr.id:
+  - Getting Started:
+    - Specifying an Agent : agents/agent-specification.md
+    - Creating an Agent: agents/agent-creation.md
+    - Using LLMs and other AI models: agents/agent-llm-interface.md
+    - Using Memory: agents/agent-memory.md
+    - Managing and calling DSL Workflows: agents/agent-dsl-manager.md
+    - Generating runtime code using Code Generator SDK: agents/agent-code-generator.md
+    - Calling Functions and Tools: agents/agent-tools.md
+    - Using Embedding Models: agents/agent-eembeddings.md
+    - Accessing Graph Databases: agents/agent-graph-storage.md
+    - Accessing Vector Databases: agents/agent-vector-storage.md
+    - Chat and P2P Communication with other agents: agents/agent-chat-p2p.md
+    - A2A - Agent to Agent Communication Protocol: agents/a2a.md
+    - Accessing S3 Compatible Object Storage: agents/agent-object-storage.md
+  - Advanced:
+    - Task Delegation, Behavior Planning, Verification: agents/agent-sub-systems.md
+    - Association with other Agents: agents/agent-association.md
+    - Configuration Store: agents/agent-config-store.md
+    - Metrics: agents/agent-metrics.md
+    - Workflows:
+        - Getting Started: agents/workflows/index.md
+        - Creating Workflow: agents/workflows/creating_workflow.md
+        - Onboarding Workflow: agents/workflows/onboarding_workflow.md
+        - Schema: agents/workflows/schema.md
+        - Sample workflow: agents/workflows/writing_sample_workflow.md
+  - Advanced Agent Memories:
+      - Overview: agents/advanced-memories/index.md
+      - Agentic Memory: agents/advanced-memories/agentic-memory.md
+      - Memory Types:
+          - Episodic Memory: agents/advanced-memories/episodic-memory.md
+          - Semantic Memory: agents/advanced-memories/semantic-memory.md
+          - Procedural Memory: agents/advanced-memories/procedural-memory.md
+          - Reflective Memory: agents/advanced-memories/reflective-memory.md
+          - Reward Memory: agents/advanced-memories/reward-memory.md
+          - Context KV Memory: agents/advanced-memories/context-kv-memory.md
+      - Agent FS: agents/advanced-memories/agent-fs.md
+      - Learner: agents/advanced-memories/learner.md
+      - Incorporator & Feedback: agents/advanced-memories/incorporator.md
+      - Deployment: agents/advanced-memories/deployment.md
+      - End-to-End Example: agents/advanced-memories/end-to-end.md
+  - Architecture & Concepts:
+      - Agent Context Cache: agents/concepts/agent-context-cache.md
+      - Agent LLM Interaction: agents/concepts/agent-llm-interaction.md
+      - Agent Planning System: agents/concepts/agent-planning-system.md
+      - Agent Task Delegation: agents/concepts/agent-task-delegation.md
+      - Agent Verification System: agents/concepts/agent-verification-system.md
+      - Agent Workflow Execution: agents/concepts/agent-workflow-execution.md
+      - Behavior Controller: agents/concepts/behaviour-controller.md
+      - Communication System: agents/concepts/communication-system.md

@@ -1,0 +1,3121 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../agent-workflow-execution/">
+      
+      
+        <link rel="next" href="../communication-system/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>Behavior Controller - AgentGr.id</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#behavior-controller" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AgentGr.id" class="md-header__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AgentGr.id
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Behavior Controller
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AgentGr.id" class="md-nav__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AgentGr.id
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🧠 AgentGr.id
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            🧠 AgentGr.id
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-specification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Specifying an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-creation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-llm-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using LLMs and other AI models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-dsl-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Managing and calling DSL Workflows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-code-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Generating runtime code using Code Generator SDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Calling Functions and Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-eembeddings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Embedding Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-graph-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Graph Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-vector-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Vector Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-chat-p2p/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chat and P2P Communication with other agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../a2a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    A2A - Agent to Agent Communication Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-object-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing S3 Compatible Object Storage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-sub-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task Delegation, Behavior Planning, Verification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-association/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Association with other Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-config-store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_5" id="__nav_2_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Workflows
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Workflows
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/creating_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/onboarding_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Onboarding Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/writing_sample_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sample workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced Agent Memories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced Agent Memories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/agentic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agentic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Memory Types
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Memory Types
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/episodic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Episodic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/semantic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/procedural-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Procedural Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/reflective-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reflective Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/reward-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reward Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/context-kv-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Context KV Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/agent-fs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent FS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/learner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learner
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/incorporator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Incorporator & Feedback
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/end-to-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    End-to-End Example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Architecture & Concepts
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture & Concepts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-context-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Context Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-llm-interaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent LLM Interaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-planning-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Planning System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-task-delegation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Task Delegation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-verification-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Verification System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-workflow-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Workflow Execution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Behavior Controller
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Behavior Controller
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#component-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Component Overview
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task Lifecycle
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task Lifecycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-architectural-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Architectural Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-lifecycle_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task Lifecycle
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task Lifecycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-behavior-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 1 (Behavior Planning)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-behavior-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 2 (Behavior Selection)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase1data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase1Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase1Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-descriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Field Descriptions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase2data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase2Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase2Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-definition_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-descriptions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Field Descriptions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#previousresults" class="md-nav__link">
+    <span class="md-ellipsis">
+      PreviousResults
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PreviousResults">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-definition_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-descriptions_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Field Descriptions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processing-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Processing Lifecycle
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Processing Lifecycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-task-submission-via-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Task Submission via API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-task-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Task Initialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-task-submission-to-processor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Task Submission to Processor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-asynchronous-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Asynchronous Processing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-result-collection-and-status-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Result Collection and Status Update
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-historical-usage-and-framedb-support-phase-1-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6: Historical Usage and FrameDB Support (Phase 1 only)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llm-executor-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM Executor Interface
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LLM Executor Interface">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#behaviorapi-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      BehaviorAPI Interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aiosllm-grpc-based-internal-inference" class="md-nav__link">
+    <span class="md-ellipsis">
+      AIOSLLM (gRPC-based Internal Inference)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AIOSLLM (gRPC-based Internal Inference)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Characteristics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Flow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openaillm-openai-via-rest" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenAILLM (OpenAI via REST)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenAILLM (OpenAI via REST)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-characteristics_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Characteristics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../communication-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Communication System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#component-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Component Overview
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task Lifecycle
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task Lifecycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-architectural-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Architectural Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-lifecycle_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task Lifecycle
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task Lifecycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-behavior-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 1 (Behavior Planning)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-behavior-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 2 (Behavior Selection)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase1data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase1Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase1Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-descriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Field Descriptions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase2data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase2Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase2Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-definition_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-descriptions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Field Descriptions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#previousresults" class="md-nav__link">
+    <span class="md-ellipsis">
+      PreviousResults
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PreviousResults">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-definition_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-descriptions_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Field Descriptions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processing-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Processing Lifecycle
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Processing Lifecycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-task-submission-via-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Task Submission via API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-task-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Task Initialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-task-submission-to-processor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Task Submission to Processor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-asynchronous-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Asynchronous Processing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-result-collection-and-status-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Result Collection and Status Update
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-historical-usage-and-framedb-support-phase-1-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6: Historical Usage and FrameDB Support (Phase 1 only)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llm-executor-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM Executor Interface
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LLM Executor Interface">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#behaviorapi-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      BehaviorAPI Interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aiosllm-grpc-based-internal-inference" class="md-nav__link">
+    <span class="md-ellipsis">
+      AIOSLLM (gRPC-based Internal Inference)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AIOSLLM (gRPC-based Internal Inference)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Characteristics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Flow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openaillm-openai-via-rest" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenAILLM (OpenAI via REST)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenAILLM (OpenAI via REST)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-characteristics_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Characteristics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="behavior-controller">Behavior Controller</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The <strong>Behavior Controller</strong> module is a two-phase behavior orchestration system designed to generate, process, and evaluate structured tasks using Large Language Models (LLMs). It serves as the intelligent backend for any application that requires:</p>
+<ul>
+<li>Automated planning of tasks (e.g., multi-step execution flows)</li>
+<li>Decision-making based on prior context and structured rules</li>
+<li>Integration of internal (AIOS) and external (OpenAI) inference systems</li>
+<li>History-aware behavior execution using FrameDB pointers or local context</li>
+</ul>
+<p>The system supports <strong>two distinct phases</strong> in task reasoning:</p>
+<ol>
+<li>
+<p><strong>Phase 1: Behavior Planning</strong></p>
+</li>
+<li>
+<p>Generates a structured plan containing multiple tasks.</p>
+</li>
+<li>
+<p>Each task includes attributes like execution type, dependencies, and configuration.</p>
+</li>
+<li>
+<p><strong>Phase 2: Behavior Execution</strong></p>
+</li>
+<li>
+<p>From the Phase 1 plan, selects the most appropriate action to execute next.</p>
+</li>
+<li>Provides a <code>uid</code> referencing the chosen executable behavior.</li>
+</ol>
+<h3 id="key-features">Key Features</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LLM Agnostic</strong></td>
+<td>Supports both AIOS-based and OpenAI-based inference</td>
+</tr>
+<tr>
+<td><strong>Structured Output</strong></td>
+<td>All outputs follow a strict JSON format based on provided templates</td>
+</tr>
+<tr>
+<td><strong>Historical Context Support</strong></td>
+<td>Retrieves and reuses data from past executions</td>
+</tr>
+<tr>
+<td><strong>Queue-Based Execution</strong></td>
+<td>Tasks are handled asynchronously using background workers</td>
+</tr>
+<tr>
+<td><strong>Full Lifecycle Management</strong></td>
+<td>Tracks task status, logs metadata, and stores results for traceability</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="architecture">Architecture</h2>
+<p><img alt="Behavior-controller" src="../../../images/behavior-controller.png" /></p>
+<p><a href="../../../images/behavior-controller.png">Download Image</a></p>
+<p>The <strong>Behavior Controller</strong> is structured as a modular, two-phase reasoning pipeline designed to generate and select behavior plans using LLMs, DSL logic, and contextual memory. Each component plays a distinct role in orchestrating, enriching, executing, and finalizing behavior tasks.</p>
+<h3 id="component-overview">Component Overview</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Component</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Behavior Selection API</strong></td>
+<td>The external entry point for the controller. Accepts POST requests for Phase 1 and Phase 2 via <code>/process-phase-1-task</code> and <code>/process-phase-2-task</code>. It initiates the task lifecycle, prepares metadata, and dispatches the request to the internal controller.</td>
+</tr>
+<tr>
+<td><strong>Previous Results Populator</strong></td>
+<td>Before planning begins, this module performs similarity-based or goal-matching retrieval from historical results. It enriches the current input with prior knowledge (context JSON or FrameDB pointers), enabling memory-aware behavior planning.</td>
+</tr>
+<tr>
+<td><strong>Stage 1 Executor</strong></td>
+<td>Executes Phase 1 logic using the <code>Phase1Executor</code>. It applies a prompt template and invokes either the internal <code>AIOSLLM</code> (gRPC) or external <code>OpenAILLM</code> (HTTP) to generate a structured plan—a list of behavior candidates with metadata like <code>dsl</code>, <code>tool_id</code>, or <code>execution_type</code>.</td>
+</tr>
+<tr>
+<td><strong>Stage 1 Results Collector</strong></td>
+<td>Receives the generated candidate plan from Stage 1 and stores it as a <code>PreviousResults</code> entry in the database. This makes the candidate pool available to Phase 2 and also reusable for future queries.</td>
+</tr>
+<tr>
+<td><strong>Stage 2 Executor</strong></td>
+<td>Runs Phase 2 logic using the <code>Phase2Executor</code>. Given a list of behavior candidates, it applies a second LLM prompt to select the most suitable <code>uid</code> representing the best next action.</td>
+</tr>
+<tr>
+<td><strong>Stage 2 Results Collector</strong></td>
+<td>Captures and persists the selected behavior <code>uid</code> in the <code>PreviousResultsPhase2</code> table. This final result is returned to the client or passed downstream.</td>
+</tr>
+<tr>
+<td><strong>Feedback Executor</strong></td>
+<td>Triggered if Stage 2 fails to select a valid action. It adapts or rewrites the input (e.g., modifying the LLM prompt or removing invalid candidates) and re-invokes Stage 1 to regenerate a new behavior plan.</td>
+</tr>
+<tr>
+<td><strong>Result Notifier</strong></td>
+<td>Responsible for delivering the final outcome to downstream consumers. This could involve sending it to another system, pushing a status update, or logging the behavior decision.</td>
+</tr>
+<tr>
+<td><strong>FrameDB Client</strong></td>
+<td>Resolves <code>framedb_ptr</code> references by fetching the actual context data from FrameDB (a distributed Redis-based store). Enables large historical context blocks to be dereferenced without storing them inline in the SQL database.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="task-lifecycle">Task Lifecycle</h2>
+<h3 id="key-architectural-components">Key Architectural Components</h3>
+<ol>
+<li>
+<p><strong>Flask API Layer</strong></p>
+</li>
+<li>
+<p>Receives external task requests via HTTP POST endpoints.</p>
+</li>
+<li>Provides <code>/process-phase-1-task</code> and <code>/process-phase-2-task</code>.</li>
+<li>
+<p>Passes incoming data to the <code>BehaviorController</code> for handling.</p>
+</li>
+<li>
+<p><strong>Behavior Controller</strong></p>
+</li>
+<li>
+<p>Acts as the central orchestrator.</p>
+</li>
+<li>Validates and persists incoming tasks.</li>
+<li>Submits tasks to the background processor.</li>
+<li>
+<p>Waits for result and updates task status.</p>
+</li>
+<li>
+<p><strong>TaskProcessor</strong></p>
+</li>
+<li>
+<p>Asynchronous background engine using <code>ThreadPoolExecutor</code>.</p>
+</li>
+<li>Continuously monitors a queue for incoming tasks.</li>
+<li>Executes task logic (e.g., invoking LLM).</li>
+<li>
+<p>Pushes results to an output queue.</p>
+</li>
+<li>
+<p><strong>Phase Executors</strong></p>
+</li>
+<li>
+<p><code>Phase1Executor</code>: Generates structured plans from inputs.</p>
+</li>
+<li><code>Phase2Executor</code>: Selects the most appropriate action.</li>
+<li>
+<p>Both use configurable templates and can call either:</p>
+<ul>
+<li><code>AIOSLLM</code> (internal gRPC-based LLM)</li>
+<li><code>OpenAILLM</code> (OpenAI API)</li>
+</ul>
+</li>
+<li>
+<p><strong>Database Layer</strong></p>
+</li>
+<li>
+<p>SQLAlchemy models persist:</p>
+<ul>
+<li>Task metadata (Phase1Data / Phase2Data)</li>
+<li>Output results (PreviousResults / PreviousResultsPhase2)</li>
+<li>CRUD interfaces support creation, updates, queries.</li>
+</ul>
+</li>
+<li>
+<p><strong>Results Handler</strong></p>
+</li>
+<li>
+<p>Maintains historical execution results.</p>
+</li>
+<li>Supports fetching latest results for reuse (e.g., context construction).</li>
+<li>
+<p>Integrates with FrameDB for dereferencing <code>framedb_ptr</code>.</p>
+</li>
+<li>
+<p><strong>FrameDB Client</strong></p>
+</li>
+<li>
+<p>Resolves and fetches contextual data from a distributed Redis setup.</p>
+</li>
+<li>Used when results store references to prior frame-based data.</li>
+</ol>
+<hr />
+<h2 id="task-lifecycle_1">Task Lifecycle</h2>
+<h3 id="phase-1-behavior-planning">Phase 1 (Behavior Planning)</h3>
+<ol>
+<li>
+<p><strong>Request Received</strong></p>
+</li>
+<li>
+<p>User sends a POST request to <code>/process-phase-1-task</code> with <code>search_id</code> and <code>phase_1_data</code>.</p>
+</li>
+<li>
+<p><strong>Task Initialized</strong></p>
+</li>
+<li>
+<p>A <code>Phase1TaskData</code> object is created.</p>
+</li>
+<li>
+<p>Stored in the database with status <code>pending</code>.</p>
+</li>
+<li>
+<p><strong>Submitted to Processor</strong></p>
+</li>
+<li>
+<p>Task is queued via <code>TaskProcessor.submit_task</code>.</p>
+</li>
+<li>
+<p><strong>Execution</strong></p>
+</li>
+<li>
+<p>A worker thread picks the task.</p>
+</li>
+<li>Prepares input using latest Phase 1 results (context-aware).</li>
+<li>Calls <code>Phase1Executor.run_task(...)</code> using LLM backend.</li>
+<li>
+<p>Structured plan is returned.</p>
+</li>
+<li>
+<p><strong>Result Stored</strong></p>
+</li>
+<li>
+<p>Result is persisted.</p>
+</li>
+<li>Task status updated to <code>complete</code> or <code>failed</code>.</li>
+</ol>
+<hr />
+<h3 id="phase-2-behavior-selection">Phase 2 (Behavior Selection)</h3>
+<ol>
+<li>
+<p><strong>Request Received</strong></p>
+</li>
+<li>
+<p>User sends a POST request to <code>/process-phase-2-task</code> with <code>search_id</code> and <code>phase_2_data</code>.</p>
+</li>
+<li>
+<p><strong>Task Initialized</strong></p>
+</li>
+<li>
+<p>A <code>Phase2TaskData</code> object is created and stored.</p>
+</li>
+<li>
+<p><strong>Submitted to Processor</strong></p>
+</li>
+<li>
+<p>Sent to the background queue.</p>
+</li>
+<li>
+<p><strong>Execution</strong></p>
+</li>
+<li>
+<p>Executor fetches task.</p>
+</li>
+<li>
+<p>Calls <code>Phase2Executor.initialize_llm(...)</code> to select next action.</p>
+</li>
+<li>
+<p><strong>Result Stored</strong></p>
+</li>
+<li>
+<p><code>uid</code> of selected action stored as <code>PreviousResultsPhase2</code>.</p>
+</li>
+<li>Status updated accordingly.</li>
+</ol>
+<hr />
+<h2 id="schema">Schema</h2>
+<p>This section explains the core SQLAlchemy models used in the Behavior Controller system. These models define how tasks and results are stored in a relational database.</p>
+<p>We will cover the following models:</p>
+<ul>
+<li><code>Phase1Data</code></li>
+<li><code>Phase2Data</code></li>
+<li><code>PreviousResults</code></li>
+</ul>
+<hr />
+<h3 id="phase1data"><code>Phase1Data</code></h3>
+<h4 id="model-definition"><strong>Model Definition</strong></h4>
+<pre><code class="language-python">class Phase1Data(Base):
+    __tablename__ = &quot;phase_1_data&quot;
+
+    search_id = Column(String, primary_key=True)
+    phase_1_data = Column(JSON, nullable=True)
+    entry_time = Column(Integer, default=int(time.now()))
+    last_update_time = Column(Integer, default=int(time.now()), onupdate=int(time.now()))
+    status = Column(String, nullable=True)
+    log_runtime_trace = Column(JSON, nullable=True)
+    n_repititions = Column(String, nullable=True)
+</code></pre>
+<h4 id="field-descriptions"><strong>Field Descriptions</strong></h4>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>search_id</code></td>
+<td><code>String</code></td>
+<td>Unique identifier for the task (primary key).</td>
+</tr>
+<tr>
+<td><code>phase_1_data</code></td>
+<td><code>JSON</code></td>
+<td>Raw input data for the Phase 1 behavior planning task.</td>
+</tr>
+<tr>
+<td><code>entry_time</code></td>
+<td><code>Integer</code></td>
+<td>Unix timestamp representing when the task was created.</td>
+</tr>
+<tr>
+<td><code>last_update_time</code></td>
+<td><code>Integer</code></td>
+<td>Unix timestamp for last status update; auto-updated.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>String</code></td>
+<td>Current status of the task (<code>pending</code>, <code>complete</code>, or <code>failed</code>).</td>
+</tr>
+<tr>
+<td><code>log_runtime_trace</code></td>
+<td><code>JSON</code></td>
+<td>Optional structured log or debug metadata from execution.</td>
+</tr>
+<tr>
+<td><code>n_repititions</code></td>
+<td><code>String</code></td>
+<td>Indicates how many repetitions of the plan are requested or executed.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="phase2data"><code>Phase2Data</code></h3>
+<h4 id="model-definition_1"><strong>Model Definition</strong></h4>
+<pre><code class="language-python">class Phase2Data(Base):
+    __tablename__ = &quot;phase_2_data&quot;
+
+    search_id = Column(String, ForeignKey(&quot;phase_1_data.search_id&quot;), primary_key=True)
+    phase_2_data = Column(JSON, nullable=True)
+    entry_time = Column(Integer, default=int(time.now()))
+    last_update_time = Column(Integer, default=int(time.now()), onupdate=int(time.now()))
+    status = Column(String, nullable=True)
+    log_runtime_trace = Column(JSON, nullable=True)
+</code></pre>
+<h4 id="field-descriptions_1"><strong>Field Descriptions</strong></h4>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>search_id</code></td>
+<td><code>String</code></td>
+<td>Primary key and foreign key linking to <code>Phase1Data.search_id</code>.</td>
+</tr>
+<tr>
+<td><code>phase_2_data</code></td>
+<td><code>JSON</code></td>
+<td>Input data for Phase 2 decision-making based on the Phase 1 plan.</td>
+</tr>
+<tr>
+<td><code>entry_time</code></td>
+<td><code>Integer</code></td>
+<td>Task creation timestamp.</td>
+</tr>
+<tr>
+<td><code>last_update_time</code></td>
+<td><code>Integer</code></td>
+<td>Timestamp of last update (e.g., completion or failure).</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>String</code></td>
+<td>Task execution status (<code>pending</code>, <code>complete</code>, or <code>failed</code>).</td>
+</tr>
+<tr>
+<td><code>log_runtime_trace</code></td>
+<td><code>JSON</code></td>
+<td>Execution trace/logs for debugging Phase 2 decisions.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="previousresults"><code>PreviousResults</code></h3>
+<h4 id="model-definition_2"><strong>Model Definition</strong></h4>
+<pre><code class="language-python">class PreviousResults(Base):
+    __tablename__ = &quot;previous_results&quot;
+
+    result_id = Column(String, primary_key=True)
+    context_json_or_context_framedb_ptr = Column(JSON, nullable=True)
+    derived_search_tags = Column(Text, nullable=True)
+    goal_data = Column(JSON, nullable=True)
+    candidate_pool_behavior_dsls = Column(JSON, nullable=True)
+    action_type = Column(String, nullable=True)
+    action_sub_type = Column(String, nullable=True)
+</code></pre>
+<h4 id="field-descriptions_2"><strong>Field Descriptions</strong></h4>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>result_id</code></td>
+<td><code>String</code></td>
+<td>Unique identifier for the stored result.</td>
+</tr>
+<tr>
+<td><code>context_json_or_context_framedb_ptr</code></td>
+<td><code>JSON</code></td>
+<td>Stores either the actual context (as JSON) or a FrameDB pointer (with dereferencing instructions).</td>
+</tr>
+<tr>
+<td><code>derived_search_tags</code></td>
+<td><code>Text</code></td>
+<td>Tags derived from the search query or results, used for filtering/search.</td>
+</tr>
+<tr>
+<td><code>goal_data</code></td>
+<td><code>JSON</code></td>
+<td>Represents the original goal or objective metadata behind this task.</td>
+</tr>
+<tr>
+<td><code>candidate_pool_behavior_dsls</code></td>
+<td><code>JSON</code></td>
+<td>A list or map of DSLs that were considered as possible behavior choices.</td>
+</tr>
+<tr>
+<td><code>action_type</code></td>
+<td><code>String</code></td>
+<td>Broad category of action represented by this result (e.g., planning, routing).</td>
+</tr>
+<tr>
+<td><code>action_sub_type</code></td>
+<td><code>String</code></td>
+<td>More specific type of action (e.g., "fetch-weather", "allocate-node").</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="processing-lifecycle">Processing Lifecycle</h2>
+<p>The <strong>Processing Lifecycle</strong> section outlines the full path a task follows—from submission via the REST API, through background processing, LLM invocation, and result persistence. This lifecycle applies independently to both Phase 1 (behavior planning) and Phase 2 (behavior execution), although the underlying mechanisms are similar.</p>
+<hr />
+<h3 id="step-1-task-submission-via-api">Step 1: Task Submission via API</h3>
+<ul>
+<li>
+<p>A client sends a POST request to either:</p>
+</li>
+<li>
+<p><code>/process-phase-1-task</code> with <code>search_id</code> and <code>phase_1_data</code></p>
+</li>
+<li><code>/process-phase-2-task</code> with <code>search_id</code> and <code>phase_2_data</code></li>
+<li>These requests are handled by Flask routes which extract the payload and call methods on <code>BehaviorController</code>.</li>
+</ul>
+<hr />
+<h3 id="step-2-task-initialization">Step 2: Task Initialization</h3>
+<ul>
+<li>
+<p>The <code>BehaviorController</code> constructs an in-memory data object:</p>
+</li>
+<li>
+<p><code>Phase1TaskData</code> or <code>Phase2TaskData</code>, depending on the phase.</p>
+</li>
+<li>This data is serialized using <code>.to_dict()</code> and stored in the corresponding SQLAlchemy model via the appropriate CRUD class (<code>Phase1DataCRUD</code>, <code>Phase2DataCRUD</code>).</li>
+<li>The task is inserted into the database with a default status of <code>"pending"</code>.</li>
+</ul>
+<hr />
+<h3 id="step-3-task-submission-to-processor">Step 3: Task Submission to Processor</h3>
+<ul>
+<li>The controller then submits the task to the background <code>TaskProcessor</code> using:</li>
+</ul>
+<p><code>python
+  waiter = task_processor.submit_task(search_id, mode, task_data.to_dict())</code></p>
+<ul>
+<li>
+<p>This internally creates a <code>Task</code> object containing:</p>
+</li>
+<li>
+<p><code>search_id</code></p>
+</li>
+<li><code>mode</code> (either <code>"phase1"</code> or <code>"phase2"</code>)</li>
+<li>
+<p>full input data dictionary</p>
+</li>
+<li>
+<p>The <code>Task</code> is placed into an input queue monitored by a thread.</p>
+</li>
+</ul>
+<hr />
+<h3 id="step-4-asynchronous-processing">Step 4: Asynchronous Processing</h3>
+<ul>
+<li>A worker thread inside the <code>TaskProcessor</code> picks up the task from the queue and executes it via:</li>
+</ul>
+<p><code>python
+  result = task.execute()</code></p>
+<ul>
+<li>
+<p>The <code>Task.execute()</code> function calls the appropriate LLM executor:</p>
+</li>
+<li>
+<p><code>Phase1Executor.run_task(...)</code></p>
+</li>
+<li>
+<p><code>Phase2Executor.initialize_llm(...)</code></p>
+</li>
+<li>
+<p>These executors use templates and configuration to invoke either:</p>
+</li>
+<li>
+<p><code>AIOSLLM</code> via gRPC</p>
+</li>
+<li>
+<p><code>OpenAILLM</code> via OpenAI's HTTP API</p>
+</li>
+<li>
+<p>The LLM returns a JSON-formatted result, which is parsed and returned.</p>
+</li>
+</ul>
+<hr />
+<h3 id="step-5-result-collection-and-status-update">Step 5: Result Collection and Status Update</h3>
+<ul>
+<li>The result is placed in the <code>output_queue</code>.</li>
+<li>The controller waits on the <code>TaskWaiter.get()</code> method to retrieve the result.</li>
+<li>
+<p>Once the result is available:</p>
+</li>
+<li>
+<p>It is stored if needed (e.g., via <code>create_phase_1_result</code> or <code>create_phase_2_result</code>).</p>
+</li>
+<li>
+<p>The corresponding SQLAlchemy record is updated:</p>
+<ul>
+<li>If successful → <code>status = "complete"</code></li>
+<li>If failed or timed out → <code>status = "failed"</code></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="step-6-historical-usage-and-framedb-support-phase-1-only">Step 6: Historical Usage and FrameDB Support (Phase 1 only)</h3>
+<ul>
+<li>During Phase 1 input preparation, the system may call:</li>
+</ul>
+<p><code>python
+  get_latest_phase_1_results(history_value)</code></p>
+<ul>
+<li>
+<p>This returns previously stored <code>PreviousResults</code>, which may contain either:</p>
+</li>
+<li>
+<p>Raw context JSON, or</p>
+</li>
+<li>
+<p>A <code>framedb_ptr</code> to fetch from FrameDB (via Redis).</p>
+</li>
+<li>
+<p>If a <code>framedb_ptr</code> is present:</p>
+</li>
+<li>
+<p><code>FrameDBFetchClient</code> resolves the pointer using routing logic.</p>
+</li>
+<li>
+<p>Data is fetched securely from the appropriate Redis node.</p>
+</li>
+<li>
+<p>This context is embedded into the input data passed to the LLM executor, enabling memory-based reasoning.</p>
+</li>
+</ul>
+<hr />
+<h2 id="llm-executor-interface">LLM Executor Interface</h2>
+<p>The Behavior Controller module uses a unified interface to interact with multiple LLM backends for executing structured behavior logic. This interface is abstracted via the <code>BehaviorAPI</code> protocol and implemented by two concrete classes:</p>
+<ul>
+<li><code>AIOSLLM</code>: Internal inference system using gRPC (used with AIOS framework)</li>
+<li><code>OpenAILLM</code>: External OpenAI models via REST API</li>
+</ul>
+<p>These backends are invoked through the <code>Phase1Executor</code> and <code>Phase2Executor</code> depending on the phase of processing.</p>
+<hr />
+<h3 id="behaviorapi-interface">BehaviorAPI Interface</h3>
+<p>Located in <code>generator.py</code>, the <code>BehaviorAPI</code> class defines the abstract behavior expected from any LLM integration.</p>
+<pre><code class="language-python">class BehaviorAPI(ABC):
+    def search(self, task_description: str, descriptors: Dict[str, str]) -&gt; str:
+        pass
+</code></pre>
+<p>However, in practice, the interface is implemented through a more specific method called <code>generate(...)</code>, which both <code>AIOSLLM</code> and <code>OpenAILLM</code> expose directly.</p>
+<hr />
+<h3 id="aiosllm-grpc-based-internal-inference">AIOSLLM (gRPC-based Internal Inference)</h3>
+<h4 id="purpose">Purpose</h4>
+<p>Used when behavior planning or execution is routed through an internal AIOS inference block.</p>
+<h4 id="key-characteristics">Key Characteristics</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transport</td>
+<td>gRPC</td>
+</tr>
+<tr>
+<td>Message Format</td>
+<td>Protobuf (<code>BlockInferencePacket</code>)</td>
+</tr>
+<tr>
+<td>Channel</td>
+<td><code>BlockInferenceServiceStub</code></td>
+</tr>
+<tr>
+<td>Input</td>
+<td>Pre-processed task description + serialized as JSON bytes</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>Inference result (string, usually JSON)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="usage-flow">Usage Flow</h4>
+<pre><code class="language-python">llm_instance = AIOSLLM(...)
+result = llm_instance.generate(task_description, descriptors)
+</code></pre>
+<p>The generator builds and sends a gRPC request with fields such as:</p>
+<ul>
+<li><code>block_id</code>, <code>instance_id</code>, <code>session_id</code>, etc.</li>
+<li>Optional <code>frame_ptr</code> and <code>query_parameters</code></li>
+<li><code>data</code>: The actual task input in bytes</li>
+</ul>
+<hr />
+<h3 id="openaillm-openai-via-rest">OpenAILLM (OpenAI via REST)</h3>
+<h4 id="purpose_1">Purpose</h4>
+<p>Connects to OpenAI’s public API (e.g., GPT-4, GPT-4o) for generating structured task responses.</p>
+<h4 id="key-characteristics_1">Key Characteristics</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transport</td>
+<td>HTTPS</td>
+</tr>
+<tr>
+<td>Library</td>
+<td><code>openai</code> Python client</td>
+</tr>
+<tr>
+<td>API</td>
+<td><code>chat.completions.create</code></td>
+</tr>
+<tr>
+<td>Input</td>
+<td>Task description passed as a user message</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>Extracted <code>message.content</code> from the first choice</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

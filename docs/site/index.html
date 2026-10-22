@@ -1,0 +1,2408 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="agents/agent-specification/">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>AgentGr.id</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.4af4bdda.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#agentgrid-open-agentic-web" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="AgentGr.id" class="md-header__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AgentGr.id
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Index
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="AgentGr.id" class="md-nav__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AgentGr.id
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-simple-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧩 A Simple Analogy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agentgrid-as-a-digital-civilization" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌍 AgentGrid as a Digital Civilization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-agentgrid-delivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 What AgentGrid Delivers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-building-blocks-of-agentgrid" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗️ Core Building Blocks of AgentGrid
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Links
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-diagrams" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗 Architecture Diagrams
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#highlights" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌟 Highlights
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌟 Highlights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-stage-agent-planning-reasoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Multi-Stage Agent Planning &amp; Reasoning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delegation-verification-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔀 Delegation &amp; Verification Workflows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modular-execution-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Modular Execution Engine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registry-driven-tool-dsl-ecosystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧰 Registry-Driven Tool &amp; DSL Ecosystem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm-optimizer-abstraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 LLM &amp; Optimizer Abstraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-time-state-messaging-and-streaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Real-Time State, Messaging, and Streaming
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#select-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✨ Select Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-libraries-technologies" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Supported Libraries &amp; Technologies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 Use Cases
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🧠 AgentGr.id
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            🧠 AgentGr.id
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/agent-specification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Specifying an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/agent-creation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/agent-llm-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using LLMs and other AI models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/agent-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/agent-dsl-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Managing and calling DSL Workflows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/agent-code-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Generating runtime code using Code Generator SDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/agent-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Calling Functions and Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/agent-eembeddings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Embedding Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/agent-graph-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Graph Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/agent-vector-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Vector Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/agent-chat-p2p/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chat and P2P Communication with other agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/a2a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    A2A - Agent to Agent Communication Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/agent-object-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing S3 Compatible Object Storage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/agent-sub-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task Delegation, Behavior Planning, Verification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/agent-association/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Association with other Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/agent-config-store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/agent-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_5" id="__nav_2_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Workflows
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Workflows
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/workflows/creating_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/workflows/onboarding_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Onboarding Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/workflows/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/workflows/writing_sample_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sample workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced Agent Memories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced Agent Memories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/advanced-memories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/advanced-memories/agentic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agentic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Memory Types
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Memory Types
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/advanced-memories/episodic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Episodic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/advanced-memories/semantic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/advanced-memories/procedural-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Procedural Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/advanced-memories/reflective-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reflective Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/advanced-memories/reward-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reward Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/advanced-memories/context-kv-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Context KV Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/advanced-memories/agent-fs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent FS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/advanced-memories/learner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learner
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/advanced-memories/incorporator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Incorporator & Feedback
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/advanced-memories/deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/advanced-memories/end-to-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    End-to-End Example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Architecture & Concepts
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture & Concepts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/concepts/agent-context-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Context Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/concepts/agent-llm-interaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent LLM Interaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/concepts/agent-planning-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Planning System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/concepts/agent-task-delegation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Task Delegation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/concepts/agent-verification-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Verification System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/concepts/agent-workflow-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Workflow Execution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/concepts/behaviour-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Behavior Controller
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agents/concepts/communication-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Communication System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-simple-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧩 A Simple Analogy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agentgrid-as-a-digital-civilization" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌍 AgentGrid as a Digital Civilization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-agentgrid-delivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 What AgentGrid Delivers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-building-blocks-of-agentgrid" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗️ Core Building Blocks of AgentGrid
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Links
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-diagrams" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗 Architecture Diagrams
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#highlights" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌟 Highlights
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌟 Highlights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-stage-agent-planning-reasoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Multi-Stage Agent Planning &amp; Reasoning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delegation-verification-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔀 Delegation &amp; Verification Workflows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modular-execution-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Modular Execution Engine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registry-driven-tool-dsl-ecosystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧰 Registry-Driven Tool &amp; DSL Ecosystem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm-optimizer-abstraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 LLM &amp; Optimizer Abstraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-time-state-messaging-and-streaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Real-Time State, Messaging, and Streaming
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#select-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✨ Select Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-libraries-technologies" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Supported Libraries &amp; Technologies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 Use Cases
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="agentgrid-open-agentic-web">🌐 AgentGrid: Open Agentic Web</h1>
+<p><strong>AgentGrid is the third generation of agent architectures (Gen-3).</strong><br />
+It subsumes strengths of <strong>Gen-1: AI Agents</strong> (autonomous intelligent entities) and <strong>Gen-2: Multi-Agent Systems (MAS)</strong> (distributed problem solvers), while overcoming their limits.  </p>
+<p>Where Gen-1 solves as lone agent and Gen-2 organizes coordinated teams, <strong>AgentGrid operationalizes a decentralized society of agents</strong> like the <strong>Internet of agents</strong> - billions of interconnected agents that can discover each other, negotiate, form ad-hoc collaborations, exchange knowledge, and coordinate actions across open environments.  </p>
+<p><strong>Key Idea:</strong> AgentGrid is foundational infrastructure for the <strong>Open Agentic Web</strong> - enabling agents to pursue individual and collective goals under shared norms, policies, and guarantees. It transforms isolated agents into participants of a large, cooperative, and dynamic ecosystem that spans trust, adversarial settings, and large-scale distributed problem solving.  </p>
+<hr />
+<h3 id="a-simple-analogy">🧩 A Simple Analogy</h3>
+<ul>
+<li><strong>Gen-1 (AI Agent):</strong> Like a <strong>skilled individual worker</strong> - they can perceive, decide, act, and learn, but they work mostly alone.  </li>
+<li><strong>Gen-2 (MAS):</strong> Like a <strong>project team</strong> - several workers with different roles (planner, doer, verifier) coordinating through set rules to solve a shared problem.  </li>
+<li><strong>Gen-3 (AgentGrid):</strong> Like a <strong>Civilization</strong> - billions of people, organizations, and services interacting freely: forming organizations, coalitions, negotiating contracts, delegating tasks, sharing knowledge, competing and collaborating at scale. No central control, yet society functions through shared norms, infrastructure, and governance.  </li>
+</ul>
+<p>AgentGrid is this <strong>Civilization for AI agents</strong> - a digital society where diverse agents can meet, trust, collaborate, and evolve collective intelligence.  </p>
+<hr />
+<p>🚧 <strong>Project Status: Alpha</strong><br />
+<em>Not production-ready. See <a href="#project-status">Project Status</a> for details.</em></p>
+<hr />
+<h2 id="agentgrid-as-a-digital-civilization">🌍 AgentGrid as a Digital Civilization</h2>
+<p>AgentGrid does everything a single agent can do: be goal driven, perceive its environment, reason, plan, decide, act through tools, and learn from feedback to pursue goals under constraints.  </p>
+<p>It also provides everything a Multi-Agent System (MAS) can do:<br />
+- Coordinate autonomous agents to achieve outcomes no single agent can.<br />
+- Solve distributed problems where each agent has incomplete information, no global control, and decentralized data.<br />
+- Organize agents into roles (planner, doer, verifier, broker), exchanging intents, proposals, and receipts.<br />
+- Leverage composition, workflows and orchestration. 
+- Collaborate by uniform protocols
+- Use LLMs as agent “brains,” and tools for actuation.</p>
+<p>But <strong>AgentGrid goes beyond both</strong>. It delivers what an open environment - a true <em>society of agents</em> or <em>Internet of Agents</em> demands:  </p>
+<h2 id="what-agentgrid-delivers">🌐 What AgentGrid Delivers</h2>
+<p>AgentGrid integrates with several key projects, each contributing a unique piece of the Open Agentic Web: </p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Brief Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>🔍 Discovery</strong></td>
+<td>Agents must find and recognize each other across vast, dynamic networks.</td>
+</tr>
+<tr>
+<td><strong>📡 Communication Systems</strong></td>
+<td>Decentralized communication mesh with diverse channels and messaging for rich, asynchronous, large-scale interaction.</td>
+</tr>
+<tr>
+<td><strong>📜 Open Protocols</strong></td>
+<td>Flexible, interoperable standards for any transaction — no enforced uniformity, since billion-scale ecosystems cannot rely on a single format.</td>
+</tr>
+<tr>
+<td><strong>🔐 Trust &amp; Identity</strong></td>
+<td>Verifiable identity, reputation, and guarantees even in adversarial conditions.</td>
+</tr>
+<tr>
+<td><strong>💱 Economy &amp; Exchange</strong></td>
+<td>Marketplaces, task exchanges, and resource-sharing infrastructures for trade, pricing, and value transfer among agents.</td>
+</tr>
+<tr>
+<td><strong>🤝 Negotiation &amp; Contracts</strong></td>
+<td>Mechanisms to form, validate, and enforce agreements at scale.</td>
+</tr>
+<tr>
+<td><strong>🏛️ Collective Governance</strong></td>
+<td>Norms, institutions, and policy frameworks that balance autonomy with shared order.</td>
+</tr>
+<tr>
+<td><strong>🌍 Civilizational Systems</strong></td>
+<td>Meta-structures (law, culture, governance) that sustain large-scale cooperation across heterogeneous agents.</td>
+</tr>
+<tr>
+<td><strong>🔗 Knowledge &amp; Context Sharing</strong></td>
+<td>Seamless exchange of data, context, and insights across diverse agents and environments.</td>
+</tr>
+<tr>
+<td><strong>👥 Agency &amp; Coalitions</strong></td>
+<td>Ability for agents to join or form agencies, roles, groups, and alliances for common or competitive goals.</td>
+</tr>
+<tr>
+<td><strong>🧭 Strategies Decision &amp; Behavior</strong></td>
+<td>Adaptive mechanisms for deliberation, decision, competition, cooperation, or divergence in complex settings.</td>
+</tr>
+<tr>
+<td><strong>⚖️ Scalability</strong></td>
+<td>Billions of heterogeneous agents interacting without central control.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="core-building-blocks-of-agentgrid">🏗️ Core Building Blocks of AgentGrid</h2>
+<p>The <strong>AgentGrid</strong> is not a single system but a <strong>constellation of key projects</strong> that together form the foundation of the Open Agentic Web.  </p>
+<p>The <strong>AgentGrid</strong> is built upon the following key projects, each contributing a unique piece of the Open Agentic Web:  </p>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>Intuitive Brief</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🤖 <strong>AIOS</strong></td>
+<td>Operating system for AI &amp; agents; runtime, orchestration, and execution environment.</td>
+</tr>
+<tr>
+<td>🛡️ <strong>PolicyGrid</strong></td>
+<td>Trust and governance layer; aligns AI &amp; agents with shared norms, ethics, and rules.</td>
+</tr>
+<tr>
+<td>🎮 <strong>OpenArcade</strong></td>
+<td>Framework to shape agent populations; enables strategies for interaction, collaboration, cooperation, negotiation, and social decision-making.</td>
+</tr>
+<tr>
+<td>🔌 <strong>ServiceGrid</strong></td>
+<td>Service, tool discovery and composition; connects agents to distributed services &amp; tools.</td>
+</tr>
+<tr>
+<td>🔐 <strong>Xchange.id</strong></td>
+<td>Decentralized task exchange for agents &amp; AI; routes tasks to specialist agents or agencies.</td>
+</tr>
+<tr>
+<td>🌐 <strong>OpenMe.sh</strong></td>
+<td>Open, protocol-native communication mesh; enables signaling, message exchange, and shared context across groups, orgs, and geographies.</td>
+</tr>
+<tr>
+<td>📜 <strong>ContractGr.id</strong></td>
+<td>Contracts and agreements for AI-first society; formalizes negotiation, commitments, and enforcement.</td>
+</tr>
+<tr>
+<td>🔗 <strong>Pervasive.Link</strong></td>
+<td>Meta-protocol that binds heterogeneous systems; encodes, translates protocols, context, languages, and strategies into interoperable structures.</td>
+</tr>
+<tr>
+<td>🚉 <strong>OpenHub.ai</strong></td>
+<td>Market hub for decentralized intelligence; backbone for sourcing, distribution, and routing of networked intelligence.</td>
+</tr>
+<tr>
+<td>🏛️ <strong>AgencyGr.id</strong></td>
+<td>Societal layer; defines roles, structures, and institutions for collective organization.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="contents">📚 Contents</h2>
+<ul>
+<li>
+<p><strong>Getting Started</strong></p>
+</li>
+<li>
+<p><a href="agents/agent-specification/">Specifying an Agent</a></p>
+</li>
+<li><a href="agents/agent-creation/">Creating an Agent</a></li>
+<li><a href="agents/agent-llm-interface/">Using LLMs and other AI models</a></li>
+<li><a href="agents/agent-memory/">Using Memory</a></li>
+<li><a href="agents/agent-dsl-manager/">Managing and calling DSL Workflows</a></li>
+<li><a href="agents/agent-code-generator/">Generating runtime code using Code Generator SDK</a></li>
+<li><a href="agents/agent-tools/">Calling Functions and Tools</a></li>
+<li><a href="agents/agent-eembeddings/">Using Embedding Models</a></li>
+<li><a href="agents/agent-graph-storage/">Accessing Graph Databases</a></li>
+<li><a href="agents/agent-vector-storage/">Accessing Vector Databases</a></li>
+<li><a href="agents/agent-chat-p2p/">Chat and P2P Communication with other agents</a></li>
+<li><a href="agents/a2a/">A2A - Agent to Agent Communication Protocol</a></li>
+<li><a href="agents/agent-object-storage/">Accessing S3 Compatible Object Storage</a></li>
+</ul>
+<hr />
+<ul>
+<li><strong>Advanced</strong></li>
+<li><a href="agents/workflows/">DSL Workflows for Agents</a></li>
+<li><a href="agents/agent-sub-systems/">Task Delegation, Behavior Planning, Verification</a></li>
+<li><a href="agents/agent-association/">Association with other Agents</a></li>
+<li><a href="agents/agent-config-store/">Configuration Store</a></li>
+<li><a href="agents/agent-metrics/">Metrics</a></li>
+</ul>
+<hr />
+<ul>
+<li>
+<p><strong>Advanced Agent Memories</strong></p>
+</li>
+<li>
+<p><a href="agents/advanced-memories/">Overview</a></p>
+</li>
+<li><a href="agents/advanced-memories/agentic-memory/">Agentic Memory</a> — episodic, semantic, procedural, reflective, reward and context KV memory</li>
+<li><a href="agents/advanced-memories/agent-fs/">Agent FS</a></li>
+<li><a href="agents/advanced-memories/learner/">Learner</a></li>
+<li><a href="agents/advanced-memories/incorporator/">Incorporator &amp; Feedback</a></li>
+<li><a href="agents/advanced-memories/deployment/">Deployment</a></li>
+<li><a href="agents/advanced-memories/end-to-end/">End-to-End Example</a></li>
+</ul>
+<hr />
+<ul>
+<li>
+<p><strong>Concepts</strong></p>
+</li>
+<li>
+<p><a href="agents/concepts/agent-context-cache/">Agent Context Cache</a></p>
+</li>
+<li><a href="agents/concepts/agent-llm-interaction/">Agent LLM Interaction</a></li>
+<li><a href="agents/concepts/agent-planning-system/">Agent Planning System</a></li>
+<li><a href="agents/concepts/agent-task-delegation/">Agent Task Delegation</a></li>
+<li><a href="agents/concepts/agent-verification-system/">Agent Verification System</a></li>
+<li><a href="agents/concepts/agent-workflow-execution/">Agent Workflow Execution</a></li>
+<li><a href="agents/concepts/behaviour-controller/">Behavior Controller</a></li>
+<li><a href="agents/concepts/communication-system/">Communication System</a></li>
+</ul>
+<hr />
+<h2 id="links">🔗 Links</h2>
+<ul>
+<li>🌐 <a href="https://www.agentgr.id">Website</a></li>
+<li>📄 <a href="https://resources.agentgr.id/">Vision Paper</a></li>
+<li>📚 <a href="https://docs.agentgr.id">Documentation</a></li>
+<li>💻 <a href="https://github.com/opencyber-space/AgentGr.id">GitHub</a></li>
+</ul>
+<hr />
+<h2 id="architecture-diagrams">🏗 Architecture Diagrams</h2>
+<ul>
+<li>🧠 <a href="images/agent-context-cache.png">Agent Context Cache</a></li>
+<li>🤖 <a href="images/ai-instance-sdk.png">LLM Interface</a></li>
+<li>📌 <a href="images/delegation-agents.png">Task Delegation</a></li>
+<li>✅ <a href="images/agents-verification.png">Verification System Client</a></li>
+<li>🎛 <a href="images/behavior-controller.png">Behavior Controller Sub-System</a></li>
+<li>📡 <a href="images/agent-communication.png">Agent Communication Fanout</a></li>
+</ul>
+<hr />
+<h2 id="highlights">🌟 Highlights</h2>
+<h3 id="multi-stage-agent-planning-reasoning">🧠 Multi-Stage Agent Planning &amp; Reasoning</h3>
+<ul>
+<li>Nested workflow driven planning system</li>
+<li>Mindlink support - contextually link diverse AI systems as dynamic and on-demand minds for agents.</li>
+<li>Dynamically creates structured, executable task graphs (<code>PlannerTask</code>s)</li>
+<li>Supports context-aware, memory-driven planning with MemoryGrid integration</li>
+<li>Uses planners to guide selection across DSLs, tools, agents, and LLMs</li>
+</ul>
+<h3 id="delegation-verification-workflows">🔀 Delegation &amp; Verification Workflows</h3>
+<ul>
+<li>Assigns tasks to agents using <strong>bidding</strong>, <strong>voting</strong>, or <strong>DSL-planned routing</strong></li>
+<li>Tracks assignment lifecycles and updates via WebSockets and DB watchers</li>
+<li>Supports automated and human-in-the-loop verification with real-time response handling</li>
+<li>Integrates constraint validation and deadline expiry logic for robust fault handling</li>
+</ul>
+<h3 id="modular-execution-engine">⚙️ Modular Execution Engine</h3>
+<ul>
+<li>Executes validated task DAGs &amp; cyclic graphs with support for parallelism and recursion</li>
+<li>Dynamically dispatches to tool executors, LLMs, DSL workflows, or agent APIs</li>
+<li>Sandboxed code execution for runtime-generated Python logic</li>
+<li>Retry, fallback, and dry-run estimation modes supported</li>
+</ul>
+<h3 id="registry-driven-tool-dsl-ecosystem">🧰 Registry-Driven Tool &amp; DSL Ecosystem</h3>
+<ul>
+<li>Unified registry for <strong>tools</strong>, <strong>functions</strong>, and <strong>DSL workflows</strong></li>
+<li>Supports remote REST/gRPC-based tools and local logic executors</li>
+<li>Provides searchable metadata &amp; metrics for LLM-based discoverability and selection</li>
+<li>Allows versioning, validation, and dynamic schema inspection</li>
+</ul>
+<h3 id="llm-optimizer-abstraction">🧠 LLM &amp; Optimizer Abstraction</h3>
+<ul>
+<li>Backend-agnostic support for OpenAI, AIOS blocks over gRPC/REST, AIOS vDAGs, and custom backends</li>
+<li>Supports optimizer selection, capability estimation, and structured prompt generation</li>
+<li>Seamless integration with the behavior planner for intelligent flow construction</li>
+</ul>
+<h3 id="real-time-state-messaging-and-streaming">🔗 Real-Time State, Messaging, and Streaming</h3>
+<ul>
+<li>Policy-driven, rate-limited task ingestion over HTTP and NATS, load-balanced to agent instances via Redis</li>
+<li>Namespace-aware context stores (in-process or Redis, with TTLs) and NATS-broadcast context caching</li>
+<li>Real-time streaming of task updates, agent status, and delegation events</li>
+</ul>
+<hr />
+<h2 id="select-features">✨ Select Features</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LLM-Aided Multi-Stage Planning</strong></td>
+<td>Decompose job goals into structured, executable planner tasks</td>
+</tr>
+<tr>
+<td><strong>Flexible DAG Execution</strong></td>
+<td>Dependency-aware task DAG runner with retry, fallback, and dry-run support</td>
+</tr>
+<tr>
+<td><strong>Delegation Strategies</strong></td>
+<td>Bidding, voting, or direct DSL delegation to runtime agents</td>
+</tr>
+<tr>
+<td><strong>Live Verification System</strong></td>
+<td>Agent and human verification workflows with WebSocket-based updates</td>
+</tr>
+<tr>
+<td><strong>Tool/Function Management</strong></td>
+<td>Register, validate, and run local/remote execution assets</td>
+</tr>
+<tr>
+<td><strong>DSL-Driven Orchestration</strong></td>
+<td>Compose and execute reusable, schema-validated DSL workflows</td>
+</tr>
+<tr>
+<td><strong>Code Generation Sandbox</strong></td>
+<td>Securely generate and execute LLM-produced Python logic at runtime</td>
+</tr>
+<tr>
+<td><strong>Metadata-First Registries</strong></td>
+<td>Rich metadata support for planner selection, versioning, and schema lookup</td>
+</tr>
+<tr>
+<td><strong>Agent Context Cache</strong></td>
+<td>In-memory key-value store with NATS broadcasting</td>
+</tr>
+<tr>
+<td><strong>Real-Time Messaging Layer</strong></td>
+<td>Queue-backed messaging for task execution, delegation, and coordination</td>
+</tr>
+<tr>
+<td><strong>Persistent Task DB</strong></td>
+<td>MongoDB-backed storage for full task lifecycle across meta/sub/behavior</td>
+</tr>
+<tr>
+<td><strong>Dynamic Subject Registry</strong></td>
+<td>Stores and queries agent subjects and runtime-subject metadata</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="supported-libraries-technologies">📚 Supported Libraries &amp; Technologies</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Technologies &amp; Tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LLM Integration</strong></td>
+<td>OpenAI APIs, AIOS inference servers (gRPC/REST), AIOS vDAGs</td>
+</tr>
+<tr>
+<td><strong>Task Orchestration</strong></td>
+<td>Async Python, DAG engines, dependency tracking, multiprocessing</td>
+</tr>
+<tr>
+<td><strong>Messaging &amp; Events</strong></td>
+<td>NATS, WebSockets, Redis Pub/Sub, real-time status tracking</td>
+</tr>
+<tr>
+<td><strong>Workflow &amp; DSLs</strong></td>
+<td>Custom DSL interpreters, planner schemas, node-based flow composition</td>
+</tr>
+<tr>
+<td><strong>Storage &amp; Context</strong></td>
+<td>MongoDB, Redis, PostgreSQL/TimescaleDB, ArangoDB, FrameDB, S3-compatible stores</td>
+</tr>
+<tr>
+<td><strong>Embeddings &amp; Search</strong></td>
+<td>Weaviate and Pinecone for vector-based retrieval; OpenAI and AIOS embeddings</td>
+</tr>
+<tr>
+<td><strong>Execution &amp; Infra</strong></td>
+<td>Kubernetes-native, microservice-compatible, sandboxed Python execution</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="use-cases">📦 Use Cases</h2>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>What It Solves</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LLM-Driven Workflow Execution</strong></td>
+<td>Auto-generates execution plans and executes structured graphs</td>
+</tr>
+<tr>
+<td><strong>Multi-Agent Delegation</strong></td>
+<td>Routes sub-tasks to agents via policy-driven delegation logic</td>
+</tr>
+<tr>
+<td><strong>Human/Agent Verification</strong></td>
+<td>Tracks and verifies responses from external systems or users</td>
+</tr>
+<tr>
+<td><strong>Tool and DSL Integration</strong></td>
+<td>Enables reusable, discoverable, versioned execution assets</td>
+</tr>
+<tr>
+<td><strong>Code Generation in Production</strong></td>
+<td>Safely executes dynamic logic from LLMs with import extraction</td>
+</tr>
+<tr>
+<td><strong>Real-Time Observability</strong></td>
+<td>Streams task, delegation, and agent updates to dashboards</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="project-status">Project Status 🚧</h1>
+<blockquote>
+<p>⚠️ <strong>Development Status</strong><br />
+The project is nearing full completion of version 1.0.0, with minor updates &amp; optimization still being delivered.</p>
+<p>⚠️ <strong>Alpha Release</strong><br />
+Early access version. Use for testing only. Breaking changes may occur.  </p>
+<p>🧪 <strong>Testing Phase</strong><br />
+Features are under active validation. Expect occasional issues and ongoing refinements.  </p>
+<p>⛔ <strong>Not Production-Ready</strong><br />
+We do not recommend using this in production (or relying on it) right now. </p>
+<p>🔄 <strong>Compatibility</strong><br />
+APIs, schemas, and configuration may change without notice.  </p>
+<p>💬 <strong>Feedback Welcome</strong><br />
+Early feedback helps us stabilize future releases.  </p>
+</blockquote>
+<hr />
+<h2 id="communications">📢 Communications</h2>
+<ol>
+<li>📧 Email: <a href="mailto:community@opencyberspace.org">community@opencyberspace.org</a>  </li>
+<li>💬 Discord: <a href="https://discord.gg/W24vZFNB">OpenCyberspace</a>  </li>
+<li>🐦 X (Twitter): <a href="https://x.com/opencyberspace">@opencyberspace</a></li>
+</ol>
+<hr />
+<h2 id="join-us">🤝 Join Us!</h2>
+<p>AIGrid is <strong>community-driven</strong>. Theory, Protocol, implementations - All contributions are welcome.</p>
+<h3 id="get-involved">Get Involved</h3>
+<ul>
+<li>💬 <a href="https://discord.gg/W24vZFNB">Join our Discord</a>  </li>
+<li>📧 Email us: <a href="mailto:community@opencyberspace.org">community@opencyberspace.org</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

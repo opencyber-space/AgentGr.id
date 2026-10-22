@@ -1,0 +1,2864 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../onboarding_workflow/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>Creating Workflow - AgentGr.id</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-to-build-a-workflow-user-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AgentGr.id" class="md-header__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AgentGr.id
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Creating Workflow
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AgentGr.id" class="md-nav__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AgentGr.id
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🧠 AgentGr.id
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            🧠 AgentGr.id
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-specification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Specifying an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-creation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-llm-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using LLMs and other AI models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-dsl-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Managing and calling DSL Workflows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-code-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Generating runtime code using Code Generator SDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Calling Functions and Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-eembeddings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Embedding Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-graph-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Graph Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-vector-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Vector Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-chat-p2p/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chat and P2P Communication with other agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../a2a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    A2A - Agent to Agent Communication Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-object-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing S3 Compatible Object Storage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-sub-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task Delegation, Behavior Planning, Verification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-association/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Association with other Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-config-store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_5" id="__nav_2_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Workflows
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Workflows
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Creating Workflow
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating Workflow
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-step-1-define-the-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Step 1 — Define the Header
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-step-2-plan-your-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Step 2 — Plan Your Nodes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-step-3-write-your-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Step 3 — Write Your Nodes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Step 3 — Write Your Nodes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-type-quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Node Type Quick Reference
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writing-a-policy-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing a policy Node
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writing-an-agent-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing an agent Node
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writing-a-workflow-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing a workflow Node
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-step-4-define-the-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Step 4 — Define the Graph
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Step 4 — Define the Graph">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#static-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Static Graph
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dynamic Graph
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-step-5-choose-static-or-dynamic" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Step 5 — Choose: Static or Dynamic?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-step-6-writing-a-router-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Step 6 — Writing a Router Agent
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Step 6 — Writing a Router Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-the-router-receives" class="md-nav__link">
+    <span class="md-ellipsis">
+      What the Router Receives
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-the-router-must-return" class="md-nav__link">
+    <span class="md-ellipsis">
+      What the Router Must Return
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#router-agent-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Router Agent Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writing-the-_route-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing the _route Method
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Writing the _route Method">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pattern-1-first-call-no-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pattern 1 — First Call (No History)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-2-linear-step-a-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pattern 2 — Linear Step (A → B)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-3-fork-to-several-nodes-a-b-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pattern 3 — Fork to Several Nodes (A → B + C)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-4-joining-after-a-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pattern 4 — Joining After a Batch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-5-conditional-branch-based-on-output-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pattern 5 — Conditional Branch Based on Output Content
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-6-after-a-sub-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pattern 6 — After a Sub-Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-7-end-the-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pattern 7 — End the Workflow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#router-agent-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Router Agent Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-step-7-putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Step 7 — Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-common-mistakes-to-avoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Common Mistakes to Avoid
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../onboarding_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Onboarding Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../writing_sample_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sample workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced Agent Memories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced Agent Memories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/agentic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agentic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Memory Types
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Memory Types
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/episodic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Episodic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/semantic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/procedural-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Procedural Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/reflective-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reflective Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/reward-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reward Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/context-kv-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Context KV Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/agent-fs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent FS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/learner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learner
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/incorporator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Incorporator & Feedback
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/end-to-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    End-to-End Example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Architecture & Concepts
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture & Concepts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/agent-context-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Context Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/agent-llm-interaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent LLM Interaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/agent-planning-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Planning System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/agent-task-delegation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Task Delegation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/agent-verification-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Verification System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/agent-workflow-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Workflow Execution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/behaviour-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Behavior Controller
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/communication-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Communication System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-step-1-define-the-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Step 1 — Define the Header
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-step-2-plan-your-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Step 2 — Plan Your Nodes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-step-3-write-your-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Step 3 — Write Your Nodes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Step 3 — Write Your Nodes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-type-quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Node Type Quick Reference
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writing-a-policy-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing a policy Node
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writing-an-agent-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing an agent Node
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writing-a-workflow-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing a workflow Node
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-step-4-define-the-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Step 4 — Define the Graph
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Step 4 — Define the Graph">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#static-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Static Graph
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dynamic Graph
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-step-5-choose-static-or-dynamic" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Step 5 — Choose: Static or Dynamic?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-step-6-writing-a-router-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Step 6 — Writing a Router Agent
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Step 6 — Writing a Router Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-the-router-receives" class="md-nav__link">
+    <span class="md-ellipsis">
+      What the Router Receives
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-the-router-must-return" class="md-nav__link">
+    <span class="md-ellipsis">
+      What the Router Must Return
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#router-agent-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Router Agent Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writing-the-_route-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing the _route Method
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Writing the _route Method">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pattern-1-first-call-no-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pattern 1 — First Call (No History)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-2-linear-step-a-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pattern 2 — Linear Step (A → B)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-3-fork-to-several-nodes-a-b-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pattern 3 — Fork to Several Nodes (A → B + C)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-4-joining-after-a-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pattern 4 — Joining After a Batch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-5-conditional-branch-based-on-output-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pattern 5 — Conditional Branch Based on Output Content
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-6-after-a-sub-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pattern 6 — After a Sub-Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-7-end-the-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pattern 7 — End the Workflow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#router-agent-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Router Agent Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-step-7-putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Step 7 — Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-common-mistakes-to-avoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Common Mistakes to Avoid
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="how-to-build-a-workflow-user-guide">How to Build a Workflow — User Guide</h1>
+<p>This guide walks you through building a complete workflow from scratch — from defining your header to writing a router agent for dynamic execution.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#1-overview">Overview — What is a Workflow?</a></li>
+<li><a href="#2-step-1-define-the-header">Step 1 — Define the Header</a></li>
+<li><a href="#3-step-2-plan-your-nodes">Step 2 — Plan Your Nodes</a></li>
+<li><a href="#4-step-3-write-your-nodes">Step 3 — Write Your Nodes</a></li>
+<li><a href="#5-step-4-define-the-graph">Step 4 — Define the Graph</a></li>
+<li><a href="#6-step-5-choose-static-or-dynamic">Step 5 — Choose: Static or Dynamic?</a></li>
+<li><a href="#7-step-6-writing-a-router-agent">Step 6 — Writing a Router Agent (Dynamic Workflows)</a></li>
+<li><a href="#8-step-7-putting-it-all-together">Step 7 — Putting It All Together</a></li>
+<li><a href="#9-common-mistakes-to-avoid">Common Mistakes to Avoid</a></li>
+</ol>
+<hr />
+<h2 id="1-overview">1. Overview</h2>
+<p>A <strong>workflow</strong> is a JSON document that describes a pipeline of steps — called <strong>nodes</strong> — and how they connect to each other. The executor reads this JSON, validates it, and runs the nodes in the right order.</p>
+<p>There are two kinds of workflows:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>How execution order is decided</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Static</strong></td>
+<td>You define the order upfront as a graph. The executor computes it at initialization.</td>
+</tr>
+<tr>
+<td><strong>Dynamic</strong></td>
+<td>A <strong>router agent</strong> decides what runs next at runtime, after each batch of steps completes.</td>
+</tr>
+</tbody>
+</table>
+<p>A workflow JSON always has two sections:</p>
+<pre><code>workflow
+├── header       ← who is this workflow, metadata
+└── body
+    ├── nodes    ← what steps exist
+    └── graph    ← how they connect (or who decides that at runtime)
+</code></pre>
+<hr />
+<h2 id="2-step-1-define-the-header">2. Step 1 — Define the Header</h2>
+<p>The header identifies your workflow. Every workflow must have a unique <code>name</code>, <code>version</code>, and <code>release</code>. These three are combined into a <code>workflow_uri</code> (e.g. <code>loan-approval:2.0-stable</code>) used when referencing the workflow from other places.</p>
+<pre><code class="language-json">&quot;header&quot;: {
+  &quot;workflow_id&quot;: {
+    &quot;name&quot;:    &quot;loan-approval&quot;,
+    &quot;version&quot;: &quot;2.0&quot;,
+    &quot;release&quot;: &quot;stable&quot;
+  },
+  &quot;metadata&quot;: {
+    &quot;description&quot;: &quot;End-to-end loan risk assessment and decision workflow&quot;,
+    &quot;owner&quot;:       &quot;credit-risk-team&quot;,
+    &quot;created_at&quot;:  &quot;2024-06-01T09:00:00Z&quot;
+  }
+}
+</code></pre>
+<p><strong>Naming tips:</strong>
+- Use lowercase kebab-case for <code>name</code> (e.g. <code>fraud-detection</code>, <code>data-preprocessing</code>)
+- Use semantic versioning for <code>version</code> (e.g. <code>1.0</code>, <code>2.1</code>)
+- Use <code>stable</code>, <code>beta</code>, <code>rc1</code> etc. for <code>release</code> to indicate maturity</p>
+<blockquote>
+<p>The <code>workflow_uri</code> is computed by the workflow service when you register the workflow — do not set it manually.</p>
+</blockquote>
+<hr />
+<h2 id="3-step-2-plan-your-nodes">3. Step 2 — Plan Your Nodes</h2>
+<p>Before writing any JSON, sketch out what your workflow needs to do.</p>
+<p>Ask yourself:
+- What are the distinct steps?
+- Which steps are independent of each other (and can be grouped in one batch)?
+- Which steps depend on the output of others?
+- Is there a conditional branch (e.g. run fraud investigation only if signals are found)?
+- Does any step call another workflow?</p>
+<p><strong>Example — Loan Risk Assessment:</strong></p>
+<pre><code>[financial-profile-agent]
+        ↓
+[market-risk-agent]  [collateral-evaluator-agent]   ← independent (one batch)
+        ↓                      ↓
+        └──── (fraud check?) ──┘
+               ↓           ↓
+  [fraud-investigation]  [loan-decision-agent]
+</code></pre>
+<p>Once you have this picture, you can decide: is this a <strong>static</strong> workflow (the branches are always the same) or a <strong>dynamic</strong> one (a router decides based on actual outputs)?</p>
+<p>In this example, the fraud branch is <strong>conditional on output content</strong> — so this calls for a <strong>dynamic workflow</strong> with a router.</p>
+<hr />
+<h2 id="4-step-3-write-your-nodes">4. Step 3 — Write Your Nodes</h2>
+<p>Each node in <code>body.nodes</code> is one step in your workflow. Choose the right node type for each step.</p>
+<h3 id="node-type-quick-reference">Node Type Quick Reference</h3>
+<table>
+<thead>
+<tr>
+<th>You want to...</th>
+<th>Use node <code>type</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Run a rule/policy</td>
+<td><code>policy</code></td>
+</tr>
+<tr>
+<td>Run an AI agent</td>
+<td><code>agent</code></td>
+</tr>
+<tr>
+<td>Delegate to another workflow</td>
+<td><code>workflow</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="writing-a-policy-node">Writing a <code>policy</code> Node</h3>
+<p>Policy nodes run deterministic logic. Choose the <code>policyType</code> that fits your deployment:</p>
+<table>
+<thead>
+<tr>
+<th><code>policyType</code></th>
+<th>When to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>local</code></td>
+<td>Simple rule evaluated in-process, no external call</td>
+</tr>
+<tr>
+<td><code>central</code></td>
+<td>Rule engine hosted on a remote service</td>
+</tr>
+<tr>
+<td><code>function</code></td>
+<td>Serverless/function endpoint</td>
+</tr>
+<tr>
+<td><code>job</code></td>
+<td>Long-running batch job, needs polling</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example — local policy:</strong></p>
+<pre><code class="language-json">{
+  &quot;nodeID&quot;: &quot;validate-input&quot;,
+  &quot;type&quot;: &quot;policy&quot;,
+  &quot;id&quot;: &quot;rules/validate-application-v1&quot;,
+  &quot;policyType&quot;: &quot;local&quot;,
+  &quot;settings&quot;: {},
+  &quot;parameters&quot;: { &quot;strict_mode&quot;: true }
+}
+</code></pre>
+<p><strong>Example — central policy:</strong></p>
+<pre><code class="language-json">{
+  &quot;nodeID&quot;: &quot;credit-score&quot;,
+  &quot;type&quot;: &quot;policy&quot;,
+  &quot;id&quot;: &quot;rules/credit-scoring-v3&quot;,
+  &quot;policyType&quot;: &quot;central&quot;,
+  &quot;settings&quot;: {
+    &quot;executor_id&quot;: &quot;central-executor-01&quot;,
+    &quot;endpoint&quot;: &quot;https://rules.internal/execute&quot;
+  },
+  &quot;parameters&quot;: { &quot;bureau&quot;: &quot;equifax&quot; }
+}
+</code></pre>
+<p><strong>Example — job policy (long-running):</strong></p>
+<pre><code class="language-json">{
+  &quot;nodeID&quot;: &quot;ml-risk-model&quot;,
+  &quot;type&quot;: &quot;policy&quot;,
+  &quot;id&quot;: &quot;rules/ml-risk-v5&quot;,
+  &quot;policyType&quot;: &quot;job&quot;,
+  &quot;settings&quot;: {
+    &quot;executor_id&quot;: &quot;gpu-executor&quot;,
+    &quot;endpoint&quot;: &quot;https://jobs.internal/submit&quot;,
+    &quot;poll_interval&quot;: 5,
+    &quot;max_retries&quot;: 60
+  }
+}
+</code></pre>
+<hr />
+<h3 id="writing-an-agent-node">Writing an <code>agent</code> Node</h3>
+<p>Agent nodes send work to an AI agent via the Delegate API. You need the agent's <code>subject_id</code> and the model it should use.</p>
+<pre><code class="language-json">{
+  &quot;nodeID&quot;: &quot;loan-decision-agent&quot;,
+  &quot;type&quot;: &quot;agent&quot;,
+  &quot;id&quot;: &quot;agents/loan-decision-subject-id&quot;,
+  &quot;settings&quot;: {
+    &quot;model_name&quot;: &quot;gpt-4o&quot;
+  }
+}
+</code></pre>
+<blockquote>
+<p>Always provide <code>model_name</code> in settings. Omitting it will work but will generate a warning, and the agent may behave unexpectedly.</p>
+</blockquote>
+<p>The executor automatically generates a <code>session_id</code> and <code>task_id</code> (UUIDs) for each execution. You do not need to set these.</p>
+<p>The node's input becomes the agent's <code>job_data</code>, with <code>model_name</code> added. If the input is not a dict (for example, the list produced by a node with several parents), the agent receives it as <code>{"data": &lt;input&gt;}</code>.</p>
+<blockquote>
+<p>The executor waits for the agent's result. If the agent produces <strong>no result</strong> — for example, its <code>on_preprocess</code> returns <code>None</code> — the call never returns and the workflow hangs. Agents used in workflows should return an error <code>AgentResult</code> instead of skipping.</p>
+</blockquote>
+<hr />
+<h3 id="writing-a-workflow-node">Writing a <code>workflow</code> Node</h3>
+<p>To call another workflow as a step, use <code>type: "workflow"</code>. Set <code>id</code> to the <code>workflow_uri</code> of the target workflow.</p>
+<pre><code class="language-json">{
+  &quot;nodeID&quot;: &quot;fraud-investigation-workflow&quot;,
+  &quot;type&quot;: &quot;workflow&quot;,
+  &quot;id&quot;: &quot;fraud-investigation:1.0-stable&quot;
+}
+</code></pre>
+<p>The target workflow will be fetched from the database at runtime, executed in full with its own nested executor, and its complete outputs returned to the parent workflow.</p>
+<hr />
+<h2 id="5-step-4-define-the-graph">5. Step 4 — Define the Graph</h2>
+<p>The <code>graph</code> connects your nodes. How you define it depends on whether your workflow is static or dynamic.</p>
+<h3 id="static-graph">Static Graph</h3>
+<p>List each node that has downstream children. The executor will topologically sort these to determine execution order.</p>
+<pre><code class="language-json">&quot;graph&quot;: {
+  &quot;type&quot;: &quot;static&quot;,
+  &quot;validate-input&quot;: [&quot;credit-score&quot;, &quot;identity-check&quot;],
+  &quot;credit-score&quot;:   [&quot;loan-decision-agent&quot;],
+  &quot;identity-check&quot;: [&quot;loan-decision-agent&quot;]
+}
+</code></pre>
+<p><strong>Rules:</strong>
+- Nodes not listed as keys (parents) but listed as children are leaf nodes — they produce final output.
+- Nodes not mentioned anywhere in the graph are <strong>entry nodes</strong> — they receive the workflow's <code>initial_input</code>.
+- Multiple parents feed a node → that node receives a <strong>list</strong> of parent outputs.
+- Nodes run one at a time in topological order, even when they don't depend on each other.</p>
+<h3 id="dynamic-graph">Dynamic Graph</h3>
+<p>Just point to the router node. The executor calls it once at the start and then after every batch of steps it returns.</p>
+<pre><code class="language-json">&quot;graph&quot;: {
+  &quot;type&quot;: &quot;dynamic&quot;,
+  &quot;nodeID&quot;: &quot;router-agent&quot;
+}
+</code></pre>
+<p>The <code>router-agent</code> must be defined in <code>body.nodes</code> (typically as an <code>agent</code> node).</p>
+<hr />
+<h2 id="6-step-5-choose-static-or-dynamic">6. Step 5 — Choose: Static or Dynamic?</h2>
+<p>Use this table to decide:</p>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Execution order is always the same</td>
+<td>Static</td>
+</tr>
+<tr>
+<td>All branches are always taken (just in different order)</td>
+<td>Static</td>
+</tr>
+<tr>
+<td>A branch depends on the <strong>content</strong> of a previous output</td>
+<td>Dynamic</td>
+</tr>
+<tr>
+<td>You need to loop or retry based on results</td>
+<td>Dynamic</td>
+</tr>
+<tr>
+<td>Independent steps always both run</td>
+<td>Static</td>
+</tr>
+<tr>
+<td>Several steps run but only one branch continues depending on results</td>
+<td>Dynamic</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Rule of thumb:</strong> If you would need an <code>if</code> statement to decide the next step — use Dynamic.</p>
+</blockquote>
+<hr />
+<h2 id="7-step-6-writing-a-router-agent">7. Step 6 — Writing a Router Agent</h2>
+<p>The router agent is a Python class that implements the <code>on_data</code> method. It receives the workflow state at the start and after every batch of steps, and returns a list of next steps.</p>
+<h3 id="what-the-router-receives">What the Router Receives</h3>
+<p>Every time the executor calls the router, it sends the following as the router agent's <code>job_data</code> (plus <code>model_name</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>initial_input</code></td>
+<td>dict</td>
+<td>The original input passed to <code>workflow.execute()</code></td>
+</tr>
+<tr>
+<td><code>history</code></td>
+<td>list of strings</td>
+<td>All <code>nodeID</code>s executed so far, in order</td>
+</tr>
+<tr>
+<td><code>outputs</code></td>
+<td>dict</td>
+<td>Map of <code>nodeID → output</code> for all completed nodes</td>
+</tr>
+<tr>
+<td><code>last_executed</code></td>
+<td>dict or None</td>
+<td><code>{ "nodeID": "...", "output": {...} }</code> — the <strong>last</strong> node of the most recent batch. <code>None</code> on first call.</td>
+</tr>
+<tr>
+<td><code>last_executed_batch</code></td>
+<td>list</td>
+<td><code>{ "nodeID": "...", "output": {...} }</code> for every node in the most recent batch. <code>[]</code> on first call.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-the-router-must-return">What the Router Must Return</h3>
+<p>Your router's <code>job_output</code> must be one of:</p>
+<table>
+<thead>
+<tr>
+<th>Return value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[{ "nodeID": "...", "input": {...} }, ...]</code></td>
+<td>Run these nodes next (in this order), then call the router again</td>
+</tr>
+<tr>
+<td><code>[]</code> or <code>None</code></td>
+<td>Workflow is complete — stop execution and return the <code>outputs</code> map</td>
+</tr>
+<tr>
+<td>A dict with more than one key</td>
+<td>Workflow is complete — this dict is returned as the workflow's final output</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>There is no "wait" value. The router is only called after the whole batch it returned has finished, so it never needs to wait for in-flight nodes.</p>
+</blockquote>
+<hr />
+<h3 id="router-agent-structure">Router Agent Structure</h3>
+<pre><code class="language-python">from core.agent_executor import AgentResult, AgentTask, Context
+from core.main import main
+
+class RouterAgent:
+
+    def __init__(self, subject, context: Context) -&gt; None:
+        self.subject = subject
+        self.context = context
+
+    def on_preprocess(self, task: AgentTask):
+        # Always return the task — the router must always produce a result.
+        # Returning None here would leave the workflow waiting forever.
+        return [task]
+
+    def on_data(self, task: AgentTask) -&gt; AgentResult:
+        history       = task.job_data.get(&quot;history&quot;, [])
+        outputs       = task.job_data.get(&quot;outputs&quot;, {})
+        initial_input = task.job_data.get(&quot;initial_input&quot;, {})
+        last_executed = task.job_data.get(&quot;last_executed&quot;)
+        last_node     = last_executed[&quot;nodeID&quot;] if last_executed else None
+        last_batch    = {s[&quot;nodeID&quot;] for s in task.job_data.get(&quot;last_executed_batch&quot;, [])}
+
+        next_steps = self._route(last_node, last_batch, history, outputs, initial_input)
+
+        return AgentResult(
+            task_id=task.task_id,
+            job_output=next_steps,
+            is_error=False,
+        )
+
+    def _route(self, last_node, last_batch, history, outputs, initial_input) -&gt; list:
+        # Your routing logic goes here
+        ...
+
+main(RouterAgent)
+</code></pre>
+<hr />
+<h3 id="writing-the-_route-method">Writing the <code>_route</code> Method</h3>
+<p>The <code>_route</code> method is where all your routing logic lives. Structure it as a series of <code>if</code> checks on <code>last_node</code>, <code>last_batch</code> and <code>history</code>.</p>
+<h4 id="pattern-1-first-call-no-history">Pattern 1 — First Call (No History)</h4>
+<pre><code class="language-python"># First call — no node has run yet
+if last_node is None:
+    return [{
+        &quot;nodeID&quot;: &quot;financial-profile-agent&quot;,
+        &quot;input&quot;:  initial_input,
+    }]
+</code></pre>
+<h4 id="pattern-2-linear-step-a-b">Pattern 2 — Linear Step (A → B)</h4>
+<pre><code class="language-python">if last_node == &quot;financial-profile-agent&quot;:
+    profile_output = outputs.get(&quot;financial-profile-agent&quot;, {})
+    return [{
+        &quot;nodeID&quot;: &quot;market-risk-agent&quot;,
+        &quot;input&quot;:  { **initial_input, &quot;profile&quot;: profile_output },
+    }]
+</code></pre>
+<p>Always merge <code>initial_input</code> with any upstream outputs when building the input for the next node — downstream nodes often need both the original request and enriched data from prior steps.</p>
+<h4 id="pattern-3-fork-to-several-nodes-a-b-c">Pattern 3 — Fork to Several Nodes (A → B + C)</h4>
+<p>Return multiple steps in one list to run them as one batch. They execute one after another, in list order, and the router is called again only after all of them have finished:</p>
+<pre><code class="language-python">if last_node == &quot;financial-profile-agent&quot;:
+    profile_output = outputs.get(&quot;financial-profile-agent&quot;, {})
+    return [
+        {
+            &quot;nodeID&quot;: &quot;market-risk-agent&quot;,
+            &quot;input&quot;:  { **initial_input, &quot;profile&quot;: profile_output },
+        },
+        {
+            &quot;nodeID&quot;: &quot;collateral-evaluator-agent&quot;,
+            &quot;input&quot;:  { **initial_input, &quot;profile&quot;: profile_output },
+        },
+    ]
+</code></pre>
+<h4 id="pattern-4-joining-after-a-batch">Pattern 4 — Joining After a Batch</h4>
+<p>Because the router is called once after the <strong>whole</strong> batch, both outputs are available on the next call. <code>last_node</code> is the last node of the batch (here <code>collateral-evaluator-agent</code>), so check the batch as a set rather than relying on <code>last_node</code>:</p>
+<pre><code class="language-python"># Both nodes of the batch have finished — continue
+if {&quot;market-risk-agent&quot;, &quot;collateral-evaluator-agent&quot;} &lt;= last_batch:
+    return self._decide_after_batch(outputs, initial_input)
+</code></pre>
+<blockquote>
+<p>Do <strong>not</strong> return <code>[]</code> to "wait" for a node — returning <code>[]</code> ends the workflow.</p>
+</blockquote>
+<h4 id="pattern-5-conditional-branch-based-on-output-content">Pattern 5 — Conditional Branch Based on Output Content</h4>
+<p>Use an LLM call or any logic to inspect outputs and branch:</p>
+<pre><code class="language-python">def _decide_after_batch(self, outputs, initial_input):
+    # Use LLM to check for fraud signals in outputs
+    fraud_result = call_llm_json(FRAUD_SIGNAL_PROMPT, build_user_message(outputs))
+
+    combined = {
+        **initial_input,
+        &quot;market_risk&quot;:  outputs.get(&quot;market-risk-agent&quot;, {}),
+        &quot;collateral&quot;:   outputs.get(&quot;collateral-evaluator-agent&quot;, {}),
+    }
+
+    if fraud_result.get(&quot;fraud_signals_detected&quot;):
+        return [{ &quot;nodeID&quot;: &quot;fraud-investigation-workflow&quot;, &quot;input&quot;: combined }]
+    else:
+        return [{ &quot;nodeID&quot;: &quot;loan-decision-agent&quot;, &quot;input&quot;: combined }]
+</code></pre>
+<h4 id="pattern-6-after-a-sub-workflow">Pattern 6 — After a Sub-Workflow</h4>
+<p>Treat sub-workflow nodes like any other node. Their full <code>outputs</code> dict is available in <code>outputs["nodeID"]</code>.</p>
+<pre><code class="language-python">if last_node == &quot;fraud-investigation-workflow&quot;:
+    fraud_output = outputs.get(&quot;fraud-investigation-workflow&quot;, {})
+    return [{
+        &quot;nodeID&quot;: &quot;loan-decision-agent&quot;,
+        &quot;input&quot;:  {
+            **initial_input,
+            &quot;financial_profile&quot;: outputs.get(&quot;financial-profile-agent&quot;, {}),
+            &quot;market_risk&quot;:       outputs.get(&quot;market-risk-agent&quot;, {}),
+            &quot;collateral&quot;:        outputs.get(&quot;collateral-evaluator-agent&quot;, {}),
+            &quot;fraud_investigation&quot;: fraud_output,
+        },
+    }]
+</code></pre>
+<h4 id="pattern-7-end-the-workflow">Pattern 7 — End the Workflow</h4>
+<p>Return <code>[]</code> (or <code>None</code>) after the final node to signal completion. The workflow then returns the <code>outputs</code> map of every node that ran:</p>
+<pre><code class="language-python">if last_node == &quot;loan-decision-agent&quot;:
+    return []   # workflow complete
+</code></pre>
+<p>To return a custom final result instead of the <code>outputs</code> map, return a dict with more than one key — for example <code>{"decision": ..., "summary": ...}</code>.</p>
+<hr />
+<h3 id="router-agent-best-practices">Router Agent Best Practices</h3>
+<p><strong>Use constants for node IDs.</strong> Never repeat node ID strings across your routing logic.</p>
+<pre><code class="language-python"># ✅ Good
+NODE_FINANCIAL_PROFILE = &quot;financial-profile-agent&quot;
+NODE_LOAN_DECISION     = &quot;loan-decision-agent&quot;
+
+# ❌ Bad — typos cause silent routing failures
+if last_node == &quot;finacial-profile-agent&quot;:   # typo, never matches
+</code></pre>
+<p><strong>Always include a fallback.</strong> Add a <code>log.warning</code> and <code>return []</code> at the end of <code>_route</code> for unknown states instead of letting exceptions propagate. Note that this ends the workflow.</p>
+<pre><code class="language-python"># Always end _route with a fallback
+log.warning(&quot;Router reached unknown state | last_node=%s history=%s&quot;, last_node, history)
+return []
+</code></pre>
+<p><strong>Fail safe on LLM errors.</strong> If an LLM call for conditional routing fails, default to the safer/more conservative branch rather than crashing. A router that returns an error result has an empty <code>job_output</code>, which ends the workflow.</p>
+<pre><code class="language-python">except OpenAIError as e:
+    log.error(&quot;LLM call failed: %s — defaulting to fraud investigation&quot;, e)
+    return [{ &quot;nodeID&quot;: &quot;fraud-investigation-workflow&quot;, &quot;input&quot;: combined }]
+</code></pre>
+<p><strong>Build inputs explicitly.</strong> Always construct the <code>input</code> dict for each next step explicitly. Don't pass raw <code>outputs</code> — select and name only what the next node needs.</p>
+<pre><code class="language-python"># ✅ Good — explicit, predictable
+&quot;input&quot;: {
+    &quot;application_id&quot;:   initial_input[&quot;application_id&quot;],
+    &quot;financial_profile&quot;: outputs.get(&quot;financial-profile-agent&quot;, {}),
+    &quot;market_risk&quot;:       outputs.get(&quot;market-risk-agent&quot;, {}),
+}
+
+# ❌ Bad — passes everything indiscriminately, next node may break
+&quot;input&quot;: outputs
+</code></pre>
+<hr />
+<h2 id="8-step-7-putting-it-all-together">8. Step 7 — Putting It All Together</h2>
+<p>Here is the complete workflow JSON for the Loan Risk Assessment example built through this guide.</p>
+<pre><code class="language-json">{
+  &quot;header&quot;: {
+    &quot;workflow_id&quot;: {
+      &quot;name&quot;:    &quot;loan-risk-assessment&quot;,
+      &quot;version&quot;: &quot;1.0&quot;,
+      &quot;release&quot;: &quot;stable&quot;
+    },
+    &quot;metadata&quot;: {
+      &quot;description&quot;: &quot;Dynamic loan risk assessment with parallel checks and conditional fraud investigation&quot;,
+      &quot;owner&quot;:       &quot;credit-risk-team&quot;,
+      &quot;created_at&quot;:  &quot;2024-06-01T09:00:00Z&quot;
+    }
+  },
+  &quot;body&quot;: {
+    &quot;nodes&quot;: [
+      {
+        &quot;nodeID&quot;: &quot;router-agent&quot;,
+        &quot;type&quot;: &quot;agent&quot;,
+        &quot;id&quot;: &quot;agents/loan-router-subject-id&quot;,
+        &quot;settings&quot;: { &quot;model_name&quot;: &quot;gpt-4o&quot; }
+      },
+      {
+        &quot;nodeID&quot;: &quot;financial-profile-agent&quot;,
+        &quot;type&quot;: &quot;agent&quot;,
+        &quot;id&quot;: &quot;agents/financial-profile-subject-id&quot;,
+        &quot;settings&quot;: { &quot;model_name&quot;: &quot;gpt-4o&quot; }
+      },
+      {
+        &quot;nodeID&quot;: &quot;market-risk-agent&quot;,
+        &quot;type&quot;: &quot;agent&quot;,
+        &quot;id&quot;: &quot;agents/market-risk-subject-id&quot;,
+        &quot;settings&quot;: { &quot;model_name&quot;: &quot;gpt-4o&quot; }
+      },
+      {
+        &quot;nodeID&quot;: &quot;collateral-evaluator-agent&quot;,
+        &quot;type&quot;: &quot;agent&quot;,
+        &quot;id&quot;: &quot;agents/collateral-evaluator-subject-id&quot;,
+        &quot;settings&quot;: { &quot;model_name&quot;: &quot;gpt-4o&quot; }
+      },
+      {
+        &quot;nodeID&quot;: &quot;fraud-investigation-workflow&quot;,
+        &quot;type&quot;: &quot;workflow&quot;,
+        &quot;id&quot;: &quot;fraud-investigation:1.0-stable&quot;
+      },
+      {
+        &quot;nodeID&quot;: &quot;loan-decision-agent&quot;,
+        &quot;type&quot;: &quot;agent&quot;,
+        &quot;id&quot;: &quot;agents/loan-decision-subject-id&quot;,
+        &quot;settings&quot;: { &quot;model_name&quot;: &quot;gpt-4o&quot; }
+      }
+    ],
+    &quot;graph&quot;: {
+      &quot;type&quot;: &quot;dynamic&quot;,
+      &quot;nodeID&quot;: &quot;router-agent&quot;
+    }
+  }
+}
+</code></pre>
+<p>And the corresponding router's <code>_route</code> logic maps to this execution flow:</p>
+<pre><code>First call
+    └─→ financial-profile-agent
+
+After financial-profile-agent
+    └─→ market-risk-agent, then collateral-evaluator-agent  (one batch)
+
+After the batch (both done)
+    ├─→ fraud-investigation-workflow   (if fraud signals detected)
+    └─→ loan-decision-agent            (if no fraud signals)
+
+After fraud-investigation-workflow
+    └─→ loan-decision-agent
+
+After loan-decision-agent
+    └─→ []  (done)
+</code></pre>
+<hr />
+<h2 id="9-common-mistakes-to-avoid">9. Common Mistakes to Avoid</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What goes wrong</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Duplicate <code>nodeID</code> values</td>
+<td><code>WorkflowSpecError</code> on init</td>
+<td>Every node must have a unique <code>nodeID</code></td>
+</tr>
+<tr>
+<td>Graph references a <code>nodeID</code> not in <code>nodes</code></td>
+<td><code>WorkflowSpecError</code> on init</td>
+<td>Double-check all IDs in your graph match nodes exactly</td>
+</tr>
+<tr>
+<td><code>policyType</code> missing on a <code>policy</code> node</td>
+<td><code>WorkflowSpecError</code></td>
+<td>Always set <code>policyType</code> for every policy node</td>
+</tr>
+<tr>
+<td>Missing <code>endpoint</code> in <code>central</code>/<code>function</code>/<code>job</code> settings</td>
+<td><code>WorkflowSpecError</code></td>
+<td>Check required settings per <code>policyType</code></td>
+</tr>
+<tr>
+<td>Router returns <code>[]</code> intending to wait for another node</td>
+<td>Workflow ends early</td>
+<td>The router is only called after the whole batch finishes — there is nothing to wait for. Use <code>last_executed_batch</code> to see which nodes just ran</td>
+</tr>
+<tr>
+<td>Router routes to itself</td>
+<td><code>WorkflowRouterError</code></td>
+<td>The router node cannot appear in its own response</td>
+</tr>
+<tr>
+<td>Router returns a step with a <code>nodeID</code> not in <code>nodes</code></td>
+<td><code>WorkflowRouterError</code></td>
+<td>Every step must reference a defined node</td>
+</tr>
+<tr>
+<td>Router or agent <code>on_preprocess</code> returns <code>None</code></td>
+<td>The workflow hangs — the executor waits for a result that never arrives</td>
+<td>Always return <code>[task]</code> from the router; return an error <code>AgentResult</code> from agents instead of skipping</td>
+</tr>
+<tr>
+<td>Not merging <code>initial_input</code> into downstream node inputs</td>
+<td>Later nodes lose the original request data</td>
+<td>Always spread <code>initial_input</code> into every step's <code>input</code> dict</td>
+</tr>
+<tr>
+<td>Typo in <code>nodeID</code> string in router</td>
+<td>A typo in a comparison silently falls through to the fallback <code>[]</code> and ends the workflow; a typo in a returned step raises <code>WorkflowRouterError</code></td>
+<td>Use constants for all node ID strings</td>
+</tr>
+<tr>
+<td><code>model_name</code> missing on agent node</td>
+<td>Warning at runtime, unpredictable agent behaviour</td>
+<td>Always set <code>model_name</code> in agent <code>settings</code></td>
+</tr>
+<tr>
+<td>Sub-workflow <code>id</code> doesn't match a registered <code>workflow_uri</code></td>
+<td><code>WorkflowNodeError</code> on the workflow node at runtime</td>
+<td>Ensure the target workflow is registered in the workflow service with the exact URI</td>
+</tr>
+</tbody>
+</table>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

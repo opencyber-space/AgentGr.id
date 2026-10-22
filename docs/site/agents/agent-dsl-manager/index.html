@@ -1,0 +1,2253 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../agent-memory/">
+      
+      
+        <link rel="next" href="../agent-code-generator/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>Managing and calling DSL Workflows - AgentGr.id</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#agent-dsl-manager-client-developer-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AgentGr.id" class="md-header__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AgentGr.id
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Managing and calling DSL Workflows
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AgentGr.id" class="md-nav__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AgentGr.id
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🧠 AgentGr.id
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            🧠 AgentGr.id
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-specification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Specifying an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-creation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-llm-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using LLMs and other AI models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Managing and calling DSL Workflows
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Managing and calling DSL Workflows
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registering-dsls-in-subject-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registering DSLs in Subject Specification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registering DSLs in Subject Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-class-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Class Reference
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimal-required-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimal Required Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-descriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Field Descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-in-a-subject-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example in a Subject Specification
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-and-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Import and Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-an-executor-from-a-dslitem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building an Executor from a DSLItem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dslworkflowsmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      DSLWorkflowsManager
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dslplanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      DSLPlanner
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planner-llm-integrated-dsl-selector" class="md-nav__link">
+    <span class="md-ellipsis">
+      Planner (LLM-integrated DSL Selector)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#human-interaction-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Human Interaction (Optional)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-a-custom-dsl-executor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing a Custom DSL Executor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-subject-spec-example-two-dsls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Subject Spec Example (two DSLs)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-end-to-end-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimal End-to-End Example
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-code-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Generating runtime code using Code Generator SDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Calling Functions and Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-eembeddings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Embedding Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-graph-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Graph Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-vector-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Vector Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-chat-p2p/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chat and P2P Communication with other agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../a2a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    A2A - Agent to Agent Communication Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-object-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing S3 Compatible Object Storage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-sub-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task Delegation, Behavior Planning, Verification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-association/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Association with other Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-config-store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_5" id="__nav_2_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Workflows
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Workflows
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/creating_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/onboarding_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Onboarding Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/writing_sample_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sample workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced Agent Memories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced Agent Memories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/agentic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agentic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Memory Types
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Memory Types
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/episodic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Episodic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/semantic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/procedural-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Procedural Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/reflective-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reflective Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/reward-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reward Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/context-kv-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Context KV Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/agent-fs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent FS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/learner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learner
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/incorporator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Incorporator & Feedback
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-memories/end-to-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    End-to-End Example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Architecture & Concepts
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture & Concepts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-context-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Context Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-llm-interaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent LLM Interaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-planning-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Planning System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-task-delegation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Task Delegation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-verification-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Verification System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agent-workflow-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Workflow Execution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/behaviour-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Behavior Controller
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/communication-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Communication System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registering-dsls-in-subject-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registering DSLs in Subject Specification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registering DSLs in Subject Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-class-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Class Reference
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimal-required-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimal Required Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-descriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Field Descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-in-a-subject-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example in a Subject Specification
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-and-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Import and Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-an-executor-from-a-dslitem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building an Executor from a DSLItem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dslworkflowsmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      DSLWorkflowsManager
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dslplanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      DSLPlanner
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planner-llm-integrated-dsl-selector" class="md-nav__link">
+    <span class="md-ellipsis">
+      Planner (LLM-integrated DSL Selector)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#human-interaction-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Human Interaction (Optional)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-a-custom-dsl-executor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing a Custom DSL Executor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-subject-spec-example-two-dsls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Subject Spec Example (two DSLs)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-end-to-end-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimal End-to-End Example
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="agent-dsl-manager-client-developer-documentation">Agent DSL Manager — Client Developer Documentation</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The <strong>DSL Manager</strong> module provides a unified interface to <strong>register</strong>, <strong>describe</strong>, and <strong>execute</strong> DSL-based workflows. It also includes utilities to <strong>render LLM-readable task descriptions</strong> and to <strong>plan</strong> which DSL/agent/tool to use for a goal.</p>
+<p>It provides:</p>
+<ul>
+<li><strong>Pluggable workflow backends</strong> (local loader / remote registry / custom)</li>
+<li><strong>Consistent execution API</strong> (<code>execute</code>, <code>deploy</code>, <code>execute_command</code>, etc.)</li>
+<li><strong>LLM-friendly descriptions</strong> via <code>DSLPlanner</code></li>
+<li><strong>Optional human-in-the-loop</strong> through NATS helpers</li>
+</ul>
+<p>A typical workflow is:</p>
+<ol>
+<li><strong>Declare a <code>DSLItem</code></strong> in the subject spec.</li>
+<li><strong>Build/resolve a DSL executor</strong> from the item.</li>
+<li><strong>Register the executor</strong> in <code>DSLWorkflowsManager</code>.</li>
+<li><strong>Describe DSLs</strong> with <code>DSLPlanner</code>, optionally plan with <code>Planner</code>.</li>
+<li><strong>Execute</strong> the chosen DSL and collect results/feedback.</li>
+</ol>
+<hr />
+<h2 id="registering-dsls-in-subject-specification">Registering DSLs in Subject Specification</h2>
+<p>DSLs are registered using a <code>DSLItem</code>.</p>
+<h3 id="data-class-reference">Data Class Reference</h3>
+<pre><code class="language-python">from dataclasses import dataclass, field
+from typing import Dict, Any
+
+@dataclass
+class DSLItem:
+    dsl_type: str                 # e.g. &quot;registry&quot;, &quot;local&quot;, &quot;remote&quot;
+    dsl_workflow_id: str          # workflow identifier/URI
+    dsl_parameters: Dict[str, Any] = field(default_factory=dict)
+</code></pre>
+<blockquote>
+<p><code>dsl_type</code>: Application specific type
+<code>dsl_workflow_id</code> is the logical route/URI (e.g., <code>"registry:add-workflow@1.0"</code>, <code>"local:math.add"</code>, <code>"remote://dsl-executor/add"</code>).
+<code>dsl_parameters</code> carries backend-specific settings (e.g., registry URL, module path, auth headers, timeouts).</p>
+</blockquote>
+<hr />
+<h3 id="minimal-required-configuration">Minimal Required Configuration</h3>
+<pre><code class="language-json">{
+  &quot;dsl_type&quot;: &quot;registry&quot;,
+  &quot;dsl_workflow_id&quot;: &quot;add-workflow@1.0&quot;,
+  &quot;dsl_parameters&quot;: {
+    &quot;registry_url&quot;: &quot;http://dsl-registry-service&quot;
+  }
+}
+</code></pre>
+<hr />
+<h3 id="field-descriptions">Field Descriptions</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Location</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>dsl_type</strong></td>
+<td>root</td>
+<td><code>str</code></td>
+<td>Loader/executor type: <code>"registry"</code>, <code>"local"</code>, or <code>"remote"</code>.</td>
+</tr>
+<tr>
+<td><strong>dsl_workflow_id</strong></td>
+<td>root</td>
+<td><code>str</code></td>
+<td>Workflow name/URI/version.</td>
+</tr>
+<tr>
+<td><strong>dsl_parameters</strong></td>
+<td>root</td>
+<td><code>dict</code></td>
+<td>Backend-specific config: <code>registry_url</code>, <code>module_path</code>, <code>executor_url</code>, <code>headers</code>, <code>timeout_s</code>, etc.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="example-in-a-subject-specification">Example in a Subject Specification</h3>
+<pre><code class="language-json">{
+  &quot;subject_id&quot;: &quot;agent-dsl-executor&quot;,
+  &quot;subject_type&quot;: &quot;agent&quot;,
+  &quot;dsls&quot;: [
+    {
+      &quot;dsl_type&quot;: &quot;registry&quot;,
+      &quot;dsl_workflow_id&quot;: &quot;add-workflow@1.0&quot;,
+      &quot;dsl_parameters&quot;: {
+        &quot;registry_url&quot;: &quot;http://dsl-registry-service&quot;,
+        &quot;extras&quot;: { &quot;x&quot;: 10 }
+      }
+    },
+    {
+      &quot;dsl_type&quot;: &quot;local&quot;,
+      &quot;dsl_workflow_id&quot;: &quot;math.add&quot;,
+      &quot;dsl_parameters&quot;: {
+        &quot;module_path&quot;: &quot;agents.dsl.math.add&quot;,
+        &quot;output_module&quot;: &quot;default_output&quot;
+      }
+    },
+    {
+      &quot;dsl_type&quot;: &quot;remote&quot;,
+      &quot;dsl_workflow_id&quot;: &quot;transform.text.summarize&quot;,
+      &quot;dsl_parameters&quot;: {
+        &quot;executor_url&quot;: &quot;http://dsl-executor.svc.cluster.local:8080/execute&quot;,
+        &quot;headers&quot;: { &quot;Authorization&quot;: &quot;Bearer $RUNTIME_TOKEN&quot; },
+        &quot;timeout_s&quot;: 20
+      }
+    }
+  ]
+}
+</code></pre>
+<hr />
+<h2 id="import-and-setup">Import and Setup</h2>
+<pre><code class="language-python">from agent_sdk.utils.dsl_manager import (
+    DSLWorkflowsManager,
+    DSLPlanner,
+    HumanInteractionClient
+)
+
+from agent_sdk.utils.planner import Planner  # LLM-based planning
+</code></pre>
+<hr />
+<h2 id="building-an-executor-from-a-dslitem">Building an Executor from a <code>DSLItem</code></h2>
+<pre><code class="language-python">def build_executor_from_dsl_item(item: dict):
+    dsl_type = item[&quot;dsl_type&quot;]
+    workflow_id = item[&quot;dsl_workflow_id&quot;]
+    params = item.get(&quot;dsl_parameters&quot;, {})
+
+    if dsl_type == &quot;registry&quot;:
+        # Resolve via Registry service
+        registry_url = params[&quot;registry_url&quot;]
+        return DSLWorkflowsManager(registry_url).get_workflow(workflow_id)
+
+    if dsl_type == &quot;local&quot;:
+        # Dynamically import &amp; construct local executor
+        module_path = params[&quot;module_path&quot;]  # e.g. &quot;agents.dsl.math.add&quot;
+        from importlib import import_module
+        mod = import_module(module_path)
+        return getattr(mod, &quot;Executor&quot;)(**params)
+
+    if dsl_type == &quot;remote&quot;:
+        # Wrap a remote HTTP/gRPC executor
+        from agent_sdk.utils.remote_dsl import RemoteDSLWorkflowExecutor
+        return RemoteDSLWorkflowExecutor(
+            executor_url=params[&quot;executor_url&quot;],
+            headers=params.get(&quot;headers&quot;),
+            timeout_s=params.get(&quot;timeout_s&quot;, 15)
+        )
+
+    raise NotImplementedError(f&quot;Unknown dsl_type: {dsl_type}&quot;)
+</code></pre>
+<hr />
+<h2 id="dslworkflowsmanager">DSLWorkflowsManager</h2>
+<pre><code class="language-python">manager = DSLWorkflowsManager(&quot;http://dsl-registry-service&quot;)
+
+# Register
+manager.register_new_dsl_workflow(&quot;add_workflow&quot;, &quot;add-workflow@1.0&quot;, extras={&quot;x&quot;: 10})
+
+# Execute (returns output of the workflow's configured output module)
+result = manager.execute(&quot;add_workflow&quot;, {&quot;x&quot;: 5}, output_module=&quot;default_output&quot;)
+
+# Other operations
+manager.deploy(&quot;add_workflow&quot;)             # preload modules / warmup
+manager.check_execute(&quot;add_workflow&quot;)      # dry-run validation
+manager.execute_command(&quot;add_workflow&quot;, &quot;reindex&quot;, {&quot;force&quot;: True})
+wf = manager.get_workflow(&quot;add_workflow&quot;)  # access underlying executor
+all_dsls = manager.list()                  # list registered
+search_meta = manager.get_searchable_representation()
+manager.unregister_dsl_workflow(&quot;add_workflow&quot;)
+</code></pre>
+<p><strong>Common parameters</strong></p>
+<ul>
+<li><code>name</code>: local alias in the manager’s registry.</li>
+<li><code>workflow_id</code>: backing workflow reference (same as <code>dsl_workflow_id</code>).</li>
+<li><code>output_module</code>: which terminal output node/module to read from if multiple.</li>
+<li><code>extras</code>: optional config passed to executor (e.g., constants, defaults).</li>
+</ul>
+<hr />
+<h2 id="dslplanner">DSLPlanner</h2>
+<p>Use <code>DSLPlanner</code> to generate <strong>LLM- and human-readable</strong> summaries of your available DSLs and how to call them.</p>
+<pre><code class="language-python">planner = DSLPlanner(dsl_workflows_manager=manager)
+planner.prepare_dsl_descriptions()                 # scans manager &amp; builds schema overview
+planner.add_task_description(&quot;Add two numbers&quot;)    # free-form task
+planner.add_input_conversion({&quot;x&quot;: 5})             # example input mapping
+full = planner.get_full_description()              # feed to an LLM or show to users
+print(full)
+</code></pre>
+<p><strong>What it does</strong></p>
+<ul>
+<li>Renders each registered DSL’s name, purpose, inputs/outputs, and example calls.</li>
+<li>Helps LLMs choose between DSLs based on a task description.</li>
+</ul>
+<hr />
+<h2 id="planner-llm-integrated-dsl-selector">Planner (LLM-integrated DSL Selector)</h2>
+<p><code>Planner</code> composes job metadata + DSL descriptions + agents/tools into a <strong>single prompt</strong> and calls a <strong>behavior controller</strong> (LLM) to propose a plan (e.g., “Use <code>add_workflow</code> with inputs {x: 5, y: 8}”).</p>
+<pre><code class="language-python">planner = Planner(
+    behavior_controller_url=&quot;http://behavior.svc/planner&quot;,
+    known_subjects=[...],
+    tools_functions_registry=[...]
+)
+
+planner.set_custom_description(&quot;project_type&quot;, &quot;NLP utilities&quot;)
+
+final_input = planner.generate_final_input(
+    job_goal={&quot;intent&quot;: &quot;summarization&quot;},
+    job_objectives={&quot;accuracy&quot;: &quot;high&quot;},
+    job_steerability_data={&quot;style&quot;: &quot;concise&quot;},
+    task_description=&quot;Summarize customer reviews&quot;
+)
+
+plan_response = planner.create_plan(&quot;Summarize customer reviews&quot;)
+</code></pre>
+<p><strong>Highlights</strong></p>
+<ul>
+<li><strong>Prompt construction</strong> with job goal/objectives + DSL/agent/tool metadata.</li>
+<li><strong>Behavior controller call</strong> via <code>TaskProcessorClient</code> (implementation detail).</li>
+<li><strong>Hooks</strong> via <code>set_custom_job_transformer</code> for custom formatting/filters.</li>
+</ul>
+<hr />
+<h2 id="human-interaction-optional">Human Interaction (Optional)</h2>
+<p>Use these if a workflow requires approval, data fixes, or confirmations:</p>
+<pre><code class="language-python">hic = HumanInteractionClient(nats_url=&quot;nats://nats:4222&quot;, topic=&quot;dsl.human&quot;)
+# Send question → await response via MessageResponseWaiter (internal utility)
+</code></pre>
+<hr />
+<h2 id="writing-a-custom-dsl-executor">Writing a Custom DSL Executor</h2>
+<p>Implement a simple interface (<code>execute</code>, optional <code>deploy</code>/<code>check_execute</code>/<code>execute_command</code>):</p>
+<pre><code class="language-python">class MyCustomDSLExecutor:
+    def __init__(self, **kwargs):
+        ...
+
+    def deploy(self):
+        # module preload / cache warmup
+        ...
+
+    def check_execute(self, input_data: dict) -&gt; bool:
+        # validate inputs; return True/raise
+        return True
+
+    def execute(self, input_data: dict, output_module: str = None):
+        # perform the workflow logic and return output
+        return {&quot;result&quot;: ...}
+
+    def execute_command(self, command_name: str, data: dict):
+        # custom control-plane actions (e.g., reindex)
+        return {&quot;ok&quot;: True}
+</code></pre>
+<p>Register with the manager:</p>
+<pre><code class="language-python">executor = MyCustomDSLExecutor(...)
+manager.register_new_dsl_workflow(&quot;custom.flow&quot;, &quot;custom.flow@1.0&quot;, extras={&quot;mode&quot;: &quot;fast&quot;})
+manager.deploy(&quot;custom.flow&quot;)
+out = manager.execute(&quot;custom.flow&quot;, {&quot;x&quot;: 1, &quot;y&quot;: 2})
+</code></pre>
+<hr />
+<h2 id="quick-subject-spec-example-two-dsls">Quick Subject Spec Example (two DSLs)</h2>
+<pre><code class="language-json">{
+  &quot;subject_id&quot;: &quot;agent-dsl&quot;,
+  &quot;subject_type&quot;: &quot;agent&quot;,
+  &quot;dsls&quot;: [
+    {
+      &quot;dsl_type&quot;: &quot;registry&quot;,
+      &quot;dsl_workflow_id&quot;: &quot;add-workflow@1.0&quot;,
+      &quot;dsl_parameters&quot;: {
+        &quot;registry_url&quot;: &quot;http://dsl-registry-service&quot;
+      }
+    },
+    {
+      &quot;dsl_type&quot;: &quot;remote&quot;,
+      &quot;dsl_workflow_id&quot;: &quot;transform.text.summarize&quot;,
+      &quot;dsl_parameters&quot;: {
+        &quot;executor_url&quot;: &quot;http://dsl-executor.svc.cluster.local:8080/execute&quot;,
+        &quot;timeout_s&quot;: 20
+      }
+    }
+  ]
+}
+</code></pre>
+<hr />
+<h2 id="minimal-end-to-end-example">Minimal End-to-End Example</h2>
+<pre><code class="language-python"># 1) Build executors from DSLItems (e.g., loaded from subject spec)
+items = [
+    {&quot;dsl_type&quot;: &quot;registry&quot;, &quot;dsl_workflow_id&quot;: &quot;add-workflow@1.0&quot;,
+     &quot;dsl_parameters&quot;: {&quot;registry_url&quot;: &quot;http://dsl-registry-service&quot;}},
+    {&quot;dsl_type&quot;: &quot;remote&quot;, &quot;dsl_workflow_id&quot;: &quot;transform.text.summarize&quot;,
+     &quot;dsl_parameters&quot;: {&quot;executor_url&quot;: &quot;http://dsl-exec:8080/execute&quot;}}
+]
+
+manager = DSLWorkflowsManager(&quot;http://dsl-registry-service&quot;)
+for it in items:
+    exec_obj = build_executor_from_dsl_item(it)
+    alias = it[&quot;dsl_workflow_id&quot;]
+    manager.register_new_dsl_workflow(alias, it[&quot;dsl_workflow_id&quot;])
+    # Optionally bind the resolved executor to alias if needed
+    # manager.override_executor(alias, exec_obj)
+
+# 2) Describe for LLM
+planner = DSLPlanner(manager)
+planner.prepare_dsl_descriptions()
+planner.add_task_description(&quot;Add two numbers&quot;)
+print(planner.get_full_description())
+
+# 3) Execute
+out = manager.execute(&quot;add-workflow@1.0&quot;, {&quot;x&quot;: 5, &quot;y&quot;: 7}, output_module=&quot;default_output&quot;)
+print(out)
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

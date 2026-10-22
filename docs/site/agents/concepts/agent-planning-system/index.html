@@ -1,0 +1,4041 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../agent-llm-interaction/">
+      
+      
+        <link rel="next" href="../agent-task-delegation/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>Agent Planning System - AgentGr.id</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#agents-planning-system" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AgentGr.id" class="md-header__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AgentGr.id
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Agent Planning System
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AgentGr.id" class="md-nav__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AgentGr.id
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🧠 AgentGr.id
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            🧠 AgentGr.id
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-specification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Specifying an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-creation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-llm-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using LLMs and other AI models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-dsl-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Managing and calling DSL Workflows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-code-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Generating runtime code using Code Generator SDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Calling Functions and Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-eembeddings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Embedding Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-graph-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Graph Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-vector-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Vector Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-chat-p2p/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chat and P2P Communication with other agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../a2a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    A2A - Agent to Agent Communication Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-object-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing S3 Compatible Object Storage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-sub-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task Delegation, Behavior Planning, Verification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-association/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Association with other Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-config-store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_5" id="__nav_2_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Workflows
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Workflows
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/creating_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/onboarding_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Onboarding Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/writing_sample_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sample workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced Agent Memories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced Agent Memories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/agentic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agentic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Memory Types
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Memory Types
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/episodic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Episodic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/semantic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/procedural-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Procedural Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/reflective-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reflective Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/reward-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reward Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/context-kv-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Context KV Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/agent-fs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent FS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/learner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learner
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/incorporator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Incorporator & Feedback
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/end-to-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    End-to-End Example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Architecture & Concepts
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture & Concepts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-context-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Context Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-llm-interaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent LLM Interaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Agent Planning System
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Planning System
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plannertask" class="md-nav__link">
+    <span class="md-ellipsis">
+      PlannerTask
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PlannerTask">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataclass-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      DataClass Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      Field Breakdown
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#taskdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      TaskData
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TaskData">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataclass-definition_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      DataClass Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-breakdown_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Field Breakdown
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planning-and-execution-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Planning and Execution Flow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Planning and Execution Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stage-1-planning-abstract-task-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stage 1 Planning – Abstract Task Decomposition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-2-planning-task-specialization-and-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stage 2 Planning – Task Specialization and Execution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-1-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stage 1 Planning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stage 1 Planning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#component-planner" class="md-nav__link">
+    <span class="md-ellipsis">
+      Component: Planner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inputs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prepare_job_datajob_goal-job_objectives-job_steerability_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      prepare_job_data(job_goal, job_objectives, job_steerability_data)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prepare_resources_description" class="md-nav__link">
+    <span class="md-ellipsis">
+      prepare_resources_description()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_task_descriptiontask_description" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_task_description(task_description)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate_final_input" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_final_input(...)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      create_plan(...)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behavior-controller-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Behavior Controller Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-case-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Case Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-2-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stage 2 Planning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stage 2 Planning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-to-stage-2-planner" class="md-nav__link">
+    <span class="md-ellipsis">
+      Input to Stage 2 Planner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-from-stage-2-planner" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output from Stage 2 Planner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behavior-controller-integration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Behavior Controller Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#planner-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      Planner Breakdown
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Planner Breakdown">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-agentsplanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. AgentsPlanner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-toolsplanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. ToolsPlanner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-llmselectorplanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. LLMSelectorPlanner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-dslplanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. DSLPlanner
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Case
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unified-execution-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unified Execution Layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unified Execution Layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#component-planandexecutel2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Component: PlanAndExecuteL2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Responsibilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input" class="md-nav__link">
+    <span class="md-ellipsis">
+      Input
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supported-sub-types-and-routing-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported Sub-Types and Routing Logic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-execute_moduleinput_data-dict-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method: execute_module(input_data: dict) -&gt; dict
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execution-backends" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execution Backends
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Execution Backends">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-agent-execution-p2p" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Agent Execution (P2P)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-tool-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Tool Execution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-llm-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. LLM Execution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-dsl-workflow-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. DSL Workflow Execution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#end-to-end-usage-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      End-to-End Usage Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimization-of-workflow-dag" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimization of Workflow DAG
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimization of Workflow DAG">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      When to Use
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available Options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Available Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-llm-based-optimizer-optimizationplanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 1: LLM-Based Optimizer (OptimizationPlanner)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-manual-rule-based-optimizer-manualoptimizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 2: Manual Rule-Based Optimizer (ManualOptimizer)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-subgraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Is a SubGraph?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Replanning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Replanning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-by-Step Workflow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-Step Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-mark-the-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Mark the Tasks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-call-the-replanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Call the Replanner
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-gets-updated" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Gets Updated?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Cases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-task-before-replanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Task Before Replanning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after-replanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      After Replanning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-guidance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration Guidance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration Guidance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#end-to-end-flow-with-optimization-replanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      End-to-End Flow with Optimization + Replanning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-task-delegation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Task Delegation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-verification-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Verification System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-workflow-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Workflow Execution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../behaviour-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Behavior Controller
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../communication-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Communication System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plannertask" class="md-nav__link">
+    <span class="md-ellipsis">
+      PlannerTask
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PlannerTask">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataclass-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      DataClass Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      Field Breakdown
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#taskdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      TaskData
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TaskData">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataclass-definition_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      DataClass Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-breakdown_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Field Breakdown
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planning-and-execution-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Planning and Execution Flow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Planning and Execution Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stage-1-planning-abstract-task-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stage 1 Planning – Abstract Task Decomposition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-2-planning-task-specialization-and-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stage 2 Planning – Task Specialization and Execution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-1-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stage 1 Planning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stage 1 Planning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#component-planner" class="md-nav__link">
+    <span class="md-ellipsis">
+      Component: Planner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inputs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prepare_job_datajob_goal-job_objectives-job_steerability_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      prepare_job_data(job_goal, job_objectives, job_steerability_data)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prepare_resources_description" class="md-nav__link">
+    <span class="md-ellipsis">
+      prepare_resources_description()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_task_descriptiontask_description" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_task_description(task_description)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate_final_input" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_final_input(...)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      create_plan(...)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behavior-controller-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Behavior Controller Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-case-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Case Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-2-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stage 2 Planning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stage 2 Planning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-to-stage-2-planner" class="md-nav__link">
+    <span class="md-ellipsis">
+      Input to Stage 2 Planner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-from-stage-2-planner" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output from Stage 2 Planner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behavior-controller-integration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Behavior Controller Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#planner-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      Planner Breakdown
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Planner Breakdown">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-agentsplanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. AgentsPlanner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-toolsplanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. ToolsPlanner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-llmselectorplanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. LLMSelectorPlanner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-dslplanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. DSLPlanner
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Case
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unified-execution-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unified Execution Layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unified Execution Layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#component-planandexecutel2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Component: PlanAndExecuteL2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Responsibilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input" class="md-nav__link">
+    <span class="md-ellipsis">
+      Input
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supported-sub-types-and-routing-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported Sub-Types and Routing Logic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-execute_moduleinput_data-dict-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method: execute_module(input_data: dict) -&gt; dict
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execution-backends" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execution Backends
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Execution Backends">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-agent-execution-p2p" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Agent Execution (P2P)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-tool-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Tool Execution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-llm-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. LLM Execution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-dsl-workflow-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. DSL Workflow Execution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#end-to-end-usage-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      End-to-End Usage Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimization-of-workflow-dag" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimization of Workflow DAG
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimization of Workflow DAG">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      When to Use
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available Options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Available Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-llm-based-optimizer-optimizationplanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 1: LLM-Based Optimizer (OptimizationPlanner)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-manual-rule-based-optimizer-manualoptimizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 2: Manual Rule-Based Optimizer (ManualOptimizer)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-subgraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Is a SubGraph?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Replanning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Replanning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-by-Step Workflow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-Step Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-mark-the-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Mark the Tasks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-call-the-replanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Call the Replanner
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-gets-updated" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Gets Updated?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Cases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-task-before-replanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Task Before Replanning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after-replanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      After Replanning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-guidance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration Guidance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration Guidance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#end-to-end-flow-with-optimization-replanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      End-to-End Flow with Optimization + Replanning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="agents-planning-system">Agents Planning System</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The <strong>Agents Planning System</strong> is a modular, two-stage task decomposition and execution engine designed to dynamically select and utilize intelligent agents, tools, DSLs, or LLMs to fulfill high-level job goals. The system is powered by a centralized <strong>Behavior Controller</strong> that uses LLMs to reason about job goals, decompose them into actionable plans, and generate structured inputs for execution.</p>
+<p>It consists of:</p>
+<ol>
+<li><strong>Stage 1 Planning</strong> – Decomposes job-level goals into a list of executable sub-tasks (<code>PlannerTask</code>s).</li>
+<li><strong>Stage 2 Planning &amp; Execution</strong> – For each sub-task, selects the appropriate execution mechanism (e.g., Agent, Tool, DSL, LLM), prepares the input format, and executes it.</li>
+</ol>
+<p>This system is used in decentralized or modular AI infrastructures to offload intelligent decisions to suitable agents or functions in a scalable, pluggable way.</p>
+<hr />
+<h2 id="schema">Schema</h2>
+<p>The Agents Planning System is centered around two key data structures:</p>
+<ol>
+<li><code>PlannerTask</code> – represents an individual executable unit of work.</li>
+<li><code>TaskData</code> – aggregates multiple <code>PlannerTask</code>s and tracks overall planning/execution state.</li>
+</ol>
+<p>Both are implemented using Python <code>@dataclass</code>es for structured access and serialization.</p>
+<hr />
+<h3 id="plannertask"><code>PlannerTask</code></h3>
+<p>Represents a single task generated by the planner. It contains metadata for execution, dependencies, schema info, and optional routing fields.</p>
+<h4 id="dataclass-definition">DataClass Definition</h4>
+<pre><code class="language-python">@dataclass
+class PlannerTask:
+    task_id: str = field(default_factory=lambda: str(uuid.uuid4()))
+    main_task_id: Optional[str] = &quot;&quot;
+    description: Optional[str] = &quot;&quot;
+    execution_type: Optional[str] = &quot;&quot;
+    dependencies: List[str] = field(default_factory=list)
+    tool_id: Optional[str] = None
+    function_id: Optional[str] = None
+    agent_id: Optional[str] = None
+    parameters: Dict = field(default_factory=dict)
+    arguments: Dict = field(default_factory=dict)
+    instructions: Optional[str] = None
+    convertor_code: Optional[str] = None
+    estimate_data = None
+    mark_replan = False
+    status: str = &quot;pending&quot;
+    output: Dict = field(default_factory=dict)
+    creation_time: datetime = field(default_factory=datetime.utcnow)
+    last_update_time: datetime = field(default_factory=datetime.utcnow)
+</code></pre>
+<h4 id="field-breakdown">Field Breakdown</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>task_id</code></td>
+<td><code>str</code></td>
+<td>Unique identifier for the task</td>
+</tr>
+<tr>
+<td><code>main_task_id</code></td>
+<td><code>Optional[str]</code></td>
+<td>Refers to the parent job or <code>TaskData</code> ID</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>Optional[str]</code></td>
+<td>Human-readable description of the task</td>
+</tr>
+<tr>
+<td><code>execution_type</code></td>
+<td><code>Optional[str]</code></td>
+<td>Type of execution target: <code>agent</code>, <code>tool</code>, <code>dsl</code>, or <code>llm</code></td>
+</tr>
+<tr>
+<td><code>dependencies</code></td>
+<td><code>List[str]</code></td>
+<td>Task IDs that must complete before this task is eligible</td>
+</tr>
+<tr>
+<td><code>tool_id</code></td>
+<td><code>Optional[str]</code></td>
+<td>ID of the tool (if any) to be executed</td>
+</tr>
+<tr>
+<td><code>function_id</code></td>
+<td><code>Optional[str]</code></td>
+<td>ID of the function (if relevant)</td>
+</tr>
+<tr>
+<td><code>agent_id</code></td>
+<td><code>Optional[str]</code></td>
+<td>Target agent ID (if applicable)</td>
+</tr>
+<tr>
+<td><code>parameters</code></td>
+<td><code>Dict</code></td>
+<td>Task configuration, including <code>sub_type</code></td>
+</tr>
+<tr>
+<td><code>arguments</code></td>
+<td><code>Dict</code></td>
+<td>Runtime arguments required by the executor</td>
+</tr>
+<tr>
+<td><code>instructions</code></td>
+<td><code>Optional[str]</code></td>
+<td>Free-form instruction block (optional)</td>
+</tr>
+<tr>
+<td><code>convertor_code</code></td>
+<td><code>Optional[str]</code></td>
+<td>Optional code snippet to convert input to schema</td>
+</tr>
+<tr>
+<td><code>estimate_data</code></td>
+<td><code>Any</code></td>
+<td>Cost/latency estimates (if any)</td>
+</tr>
+<tr>
+<td><code>mark_replan</code></td>
+<td><code>bool</code></td>
+<td>Flag indicating if replanning is required</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>str</code></td>
+<td>Current status (<code>pending</code>, <code>running</code>, <code>completed</code>, etc.)</td>
+</tr>
+<tr>
+<td><code>output</code></td>
+<td><code>Dict</code></td>
+<td>Final output from task execution</td>
+</tr>
+<tr>
+<td><code>creation_time</code></td>
+<td><code>datetime</code></td>
+<td>When the task was created</td>
+</tr>
+<tr>
+<td><code>last_update_time</code></td>
+<td><code>datetime</code></td>
+<td>Last status update timestamp</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="taskdata"><code>TaskData</code></h3>
+<p>Represents an entire planning session, containing multiple <code>PlannerTask</code>s and overall input/output tracking.</p>
+<h4 id="dataclass-definition_1">DataClass Definition</h4>
+<pre><code class="language-python">@dataclass
+class TaskData:
+    task_id: str = field(default_factory=lambda: str(uuid.uuid4()))
+    task_input_data: Dict = field(default_factory=dict)
+    completed_tasks: List[str] = field(default_factory=list)
+    output_data: Dict = field(default_factory=dict)
+    creation_time: datetime = field(default_factory=datetime.utcnow)
+    update_time: datetime = field(default_factory=datetime.utcnow)
+    planned_tasks: List[PlannerTask] = field(default_factory=list)
+    status: str = &quot;pending&quot;
+    original_job_data: Optional[Dict] = None
+</code></pre>
+<h4 id="field-breakdown_1">Field Breakdown</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>task_id</code></td>
+<td><code>str</code></td>
+<td>ID of the entire job or plan</td>
+</tr>
+<tr>
+<td><code>task_input_data</code></td>
+<td><code>Dict</code></td>
+<td>Initial input provided to the planner</td>
+</tr>
+<tr>
+<td><code>planned_tasks</code></td>
+<td><code>List[PlannerTask]</code></td>
+<td>List of decomposed tasks (phase 1 output)</td>
+</tr>
+<tr>
+<td><code>completed_tasks</code></td>
+<td><code>List[str]</code></td>
+<td>IDs of tasks that have completed</td>
+</tr>
+<tr>
+<td><code>output_data</code></td>
+<td><code>Dict</code></td>
+<td>Aggregated output from the job (if any)</td>
+</tr>
+<tr>
+<td><code>creation_time</code></td>
+<td><code>datetime</code></td>
+<td>Timestamp when this plan was initiated</td>
+</tr>
+<tr>
+<td><code>update_time</code></td>
+<td><code>datetime</code></td>
+<td>Timestamp of the last update</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>str</code></td>
+<td>Status of the overall task (<code>pending</code>, <code>in_progress</code>, <code>done</code>, etc.)</td>
+</tr>
+<tr>
+<td><code>original_job_data</code></td>
+<td><code>Optional[Dict]</code></td>
+<td>The job description before planning began</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="planning-and-execution-flow">Planning and Execution Flow</h2>
+<p>The Agents Planning System uses a <strong>two-stage planning architecture</strong> to transform high-level job specifications into executable actions across agents, tools, LLMs, or workflows. Each stage plays a distinct role in abstract reasoning and concrete execution.</p>
+<hr />
+<h3 id="stage-1-planning-abstract-task-decomposition">Stage 1 Planning – Abstract Task Decomposition</h3>
+<p><strong>Purpose</strong>: Stage 1 is responsible for breaking down a job into discrete, logical tasks with metadata indicating how each task should be executed.</p>
+<p><strong>Component</strong>: <code>Planner</code></p>
+<p><strong>Input</strong>:</p>
+<ul>
+<li><code>job_goal</code>: The primary objective of the job.</li>
+<li><code>job_objectives</code>: Supporting targets or sub-goals.</li>
+<li><code>job_steerability_data</code>: Constraints, preferences, or behavioral hints.</li>
+<li>Resource metadata: agents, tools, LLMs, DSLs.</li>
+</ul>
+<p><strong>Process</strong>:</p>
+<ul>
+<li>Uses an LLM via the <code>/process-phase-1-task</code> API of the Behavior Controller.</li>
+<li>Produces a list of structured <code>PlannerTask</code> instances.</li>
+</ul>
+<p><strong>Output</strong>:</p>
+<ul>
+<li>
+<p>A set of tasks, each with:</p>
+</li>
+<li>
+<p><code>execution_type</code>: Indicates how the task should be executed (<code>agent</code>, <code>tool</code>, <code>llm</code>, or <code>dsl</code>)</p>
+</li>
+<li><code>parameters</code>: Configuration values for further processing</li>
+<li><code>agent_id</code>, <code>tool_id</code>, <code>function_id</code>: Routing metadata</li>
+<li><code>description</code>, <code>dependencies</code>, <code>status</code>, etc.</li>
+</ul>
+<p><strong>Usefulness in the context of agents</strong>:</p>
+<ul>
+<li>Determines <strong>which sub-tasks are suitable for agent execution</strong>.</li>
+<li>Assigns tasks to specific agents based on traits, skills, or declared capabilities.</li>
+<li>Provides enough metadata to delegate to the correct stage 2 planner.</li>
+</ul>
+<hr />
+<h3 id="stage-2-planning-task-specialization-and-execution">Stage 2 Planning – Task Specialization and Execution</h3>
+<p><strong>Purpose</strong>: Stage 2 is responsible for translating a <code>PlannerTask</code> into a concrete input schema and dispatching it to the appropriate backend executor.</p>
+<p><strong>Component</strong>: One of the following:</p>
+<ul>
+<li><code>AgentsPlanner</code></li>
+<li><code>ToolsPlanner</code></li>
+<li><code>LLMSelectorPlanner</code></li>
+<li><code>DSLPlanner</code></li>
+</ul>
+<p><strong>Input</strong>:</p>
+<ul>
+<li>A <code>PlannerTask</code> from Stage 1</li>
+<li>Input payload or user-provided runtime arguments</li>
+</ul>
+<p><strong>Process</strong>:</p>
+<ul>
+<li>Uses the <code>/process-phase-2-task</code> API of the Behavior Controller.</li>
+<li>Injects agent/tool-specific metadata, schema information, and transformation logic into the planning prompt.</li>
+<li>Generates a finalized input format that the backend executor can consume.</li>
+</ul>
+<p><strong>Output</strong>:</p>
+<ul>
+<li>
+<p>A response containing:</p>
+</li>
+<li>
+<p><code>uid</code>: The selected agent, tool, or function identifier</p>
+</li>
+<li><code>input_data</code>: Input parameters structured according to expected schema</li>
+</ul>
+<p><strong>Execution</strong>:</p>
+<ul>
+<li>
+<p>The selected backend is invoked using:</p>
+</li>
+<li>
+<p>P2P messaging (for agents)</p>
+</li>
+<li>Tool execution framework</li>
+<li>LLM inference client</li>
+<li>DSL workflow engine</li>
+</ul>
+<p><strong>Usefulness in the context of planning</strong>:</p>
+<ul>
+<li>Stage 2 planning <strong>refines the task boundaries</strong> set by Stage 1.</li>
+<li>Converts abstract tasks into concrete, executable payloads using available metadata.</li>
+<li>Ensures the agent or tool receives well-structured, validated, and contextually relevant input.</li>
+</ul>
+<hr />
+<h3 id="summary">Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Role</th>
+<th>Responsible Component</th>
+<th>Key Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stage 1</td>
+<td>High-level task decomposition</td>
+<td><code>Planner</code></td>
+<td><code>PlannerTask</code> list with execution metadata</td>
+</tr>
+<tr>
+<td>Stage 2</td>
+<td>Task-specific input generation</td>
+<td>Sub-type planners</td>
+<td>Structured input for agent/tool/LLM/DSL</td>
+</tr>
+</tbody>
+</table>
+<p>Stage 1 answers the question: <strong>What tasks need to be done and who should do them?</strong>
+Stage 2 answers the question: <strong>How should the task be executed and with what input?</strong></p>
+<hr />
+<p>Certainly. Here's the structured documentation for <strong>Stage 1 Planning</strong>.</p>
+<hr />
+<h2 id="stage-1-planning">Stage 1 Planning</h2>
+<h3 id="overview">Overview</h3>
+<p>Stage 1 Planning is responsible for analyzing a high-level job specification and decomposing it into a set of executable units called <code>PlannerTask</code>s. This process is abstract and declarative—it identifies <strong>what needs to be done</strong>, the <strong>order of execution</strong>, and <strong>which executor type</strong> (e.g., agent, tool, LLM, or DSL) is appropriate for each task.</p>
+<p>The planning is LLM-assisted and centralized through the <strong>Behavior Controller</strong>, which responds to semantic prompts with structured planning output.</p>
+<hr />
+<h3 id="component-planner">Component: <code>Planner</code></h3>
+<p>The <code>Planner</code> class encapsulates the logic for:</p>
+<ul>
+<li>Collecting job-specific input (goals, objectives, constraints)</li>
+<li>Describing available execution resources (agents, tools, LLMs, DSLs)</li>
+<li>Constructing a planning prompt</li>
+<li>Submitting the prompt to the Behavior Controller</li>
+<li>Receiving a structured list of <code>PlannerTask</code> objects</li>
+</ul>
+<hr />
+<h3 id="inputs">Inputs</h3>
+<table>
+<thead>
+<tr>
+<th>Input Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>job_goal</code></td>
+<td><code>dict</code></td>
+<td>The overarching goal of the task</td>
+</tr>
+<tr>
+<td><code>job_objectives</code></td>
+<td><code>dict</code></td>
+<td>Specific measurable outcomes or criteria</td>
+</tr>
+<tr>
+<td><code>job_steerability_data</code></td>
+<td><code>dict</code></td>
+<td>Guidance data such as constraints, preferences, or limits</td>
+</tr>
+<tr>
+<td><code>task_description</code></td>
+<td><code>str</code></td>
+<td>Additional contextual description for LLM planning</td>
+</tr>
+<tr>
+<td><code>agents</code></td>
+<td><code>list</code></td>
+<td>Available agents retrieved from <code>KnownSubjects</code></td>
+</tr>
+<tr>
+<td><code>tools/functions</code></td>
+<td><code>list</code></td>
+<td>Available tools and functions from <code>ToolsFunctionsRegistry</code></td>
+</tr>
+<tr>
+<td><code>custom_descriptions</code></td>
+<td><code>dict</code></td>
+<td>Optional custom textual notes to inject into prompt</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="key-methods">Key Methods</h3>
+<h4 id="prepare_job_datajob_goal-job_objectives-job_steerability_data"><code>prepare_job_data(job_goal, job_objectives, job_steerability_data)</code></h4>
+<p>Combines and formats the job input into a prompt-ready block.</p>
+<h4 id="prepare_resources_description"><code>prepare_resources_description()</code></h4>
+<p>Adds structured descriptions of known agents and tools to the planning prompt.</p>
+<h4 id="add_task_descriptiontask_description"><code>add_task_description(task_description)</code></h4>
+<p>Adds a textual description of the task to the planning prompt.</p>
+<h4 id="generate_final_input"><code>generate_final_input(...)</code></h4>
+<p>Calls the above methods in sequence and returns the complete prompt sent to the LLM.</p>
+<h4 id="create_plan"><code>create_plan(...)</code></h4>
+<p>Calls the Behavior Controller’s <code>/process-phase-1-task</code> endpoint with the full prompt. Returns the LLM’s output in parsed dictionary form.</p>
+<hr />
+<h3 id="output">Output</h3>
+<p>The output of Stage 1 is a list of serialized <code>PlannerTask</code> objects, each with:</p>
+<ul>
+<li>A unique <code>task_id</code></li>
+<li>A <code>description</code> field</li>
+<li>
+<p>Execution metadata:</p>
+</li>
+<li>
+<p><code>execution_type</code> – e.g., <code>"agent"</code>, <code>"tool"</code>, <code>"llm"</code>, <code>"dsl"</code></p>
+</li>
+<li><code>parameters</code> – e.g., <code>{ "sub_type": "agent", ... }</code></li>
+<li>Optional fields like <code>tool_id</code>, <code>agent_id</code>, <code>function_id</code></li>
+<li>Dependency metadata</li>
+<li>Default <code>status = "pending"</code></li>
+</ul>
+<p>These tasks are then forwarded to Stage 2 for execution preparation and dispatching.</p>
+<hr />
+<h3 id="behavior-controller-integration">Behavior Controller Integration</h3>
+<p>The LLM prompt is sent to the Behavior Controller’s API:</p>
+<p><strong>Endpoint</strong>: <code>POST /process-phase-1-task</code>
+<strong>Payload</strong>:</p>
+<pre><code class="language-json">{
+  &quot;search_id&quot;: &quot;&lt;uuid&gt;&quot;,
+  &quot;phase_1_data&quot;: {
+    &quot;task_input_data&quot;: &quot;&lt;structured prompt&gt;&quot;,
+    &quot;n_history_samples&quot;: 0,
+    &quot;llm_data&quot;: { ... }
+  }
+}
+</code></pre>
+<p><strong>Response</strong>:</p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: [
+    {
+      &quot;task_id&quot;: &quot;...&quot;,
+      &quot;execution_type&quot;: &quot;agent&quot;,
+      &quot;parameters&quot;: { ... },
+      ...
+    },
+    ...
+  ]
+}
+</code></pre>
+<hr />
+<h3 id="use-case-example">Use Case Example</h3>
+<pre><code class="language-python">planner = Planner(
+    behavior_controller_url=&quot;http://controller.local&quot;,
+    known_subjects=subject_registry,
+    tools_functions_registry=tool_registry
+)
+
+planner.set_custom_description(&quot;note&quot;, &quot;Use only verified agents.&quot;)
+planner.generate_final_input(
+    job_goal={&quot;objective&quot;: &quot;Summarize dataset&quot;},
+    job_objectives={&quot;quality&quot;: &quot;high&quot;},
+    job_steerability_data={&quot;time_limit&quot;: &quot;2 minutes&quot;},
+    task_description=&quot;Decompose the summarization job.&quot;
+)
+
+task_plan = planner.create_plan(
+    task_description=planner.get_full_description()
+)
+</code></pre>
+<hr />
+<h2 id="stage-2-planning">Stage 2 Planning</h2>
+<h3 id="overview_1">Overview</h3>
+<p>Stage 2 Planning takes each individual task from the Stage 1 plan (<code>PlannerTask</code>) and translates it into a <strong>concrete, executable input</strong> tailored for a specific executor—such as an agent, tool, LLM, or DSL workflow. While Stage 1 answers <strong>"what needs to be done and who should do it?"</strong>, Stage 2 answers <strong>"how should it be done and with what input?"</strong></p>
+<p>Each task’s <code>execution_type</code> and <code>parameters["sub_type"]</code> determine which Stage 2 planner will handle the task.</p>
+<hr />
+<h3 id="purpose">Purpose</h3>
+<ul>
+<li>Convert high-level task metadata into detailed, structured input for downstream execution systems.</li>
+<li>Enrich execution context using schema information, traits, metadata, and task descriptions.</li>
+<li>Interface with the <strong>Behavior Controller's Phase 2 API</strong> to guide an LLM in generating well-formed inputs.</li>
+<li>Return the resolved target identifier (<code>uid</code>) and prepared input (<code>input_data</code>) for direct execution.</li>
+</ul>
+<hr />
+<h3 id="key-components">Key Components</h3>
+<table>
+<thead>
+<tr>
+<th>Planner Class</th>
+<th>Handles Sub-Type</th>
+<th>Execution Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AgentsPlanner</code></td>
+<td><code>"agent"</code></td>
+<td>Agent via <code>P2PManager</code></td>
+</tr>
+<tr>
+<td><code>ToolsPlanner</code></td>
+<td><code>"tools"</code></td>
+<td>Tool via <code>execute_tool()</code></td>
+</tr>
+<tr>
+<td><code>LLMSelectorPlanner</code></td>
+<td><code>"llm"</code></td>
+<td>LLM via <code>run_ai_inference()</code></td>
+</tr>
+<tr>
+<td><code>DSLPlanner</code></td>
+<td><code>"dsl"</code></td>
+<td>DSL via <code>execute()</code></td>
+</tr>
+</tbody>
+</table>
+<p>All planners follow a common structure:</p>
+<ol>
+<li>Construct the full planning prompt using resource descriptions, schemas, and task descriptions.</li>
+<li>Call <code>/process-phase-2-task</code> via <code>TaskProcessorClient</code>.</li>
+<li>Parse the LLM response and return structured execution data.</li>
+</ol>
+<hr />
+<h3 id="input-to-stage-2-planner">Input to Stage 2 Planner</h3>
+<p>Each planner consumes:</p>
+<ul>
+<li>A <code>PlannerTask</code> with <code>execution_type</code> and <code>parameters["sub_type"]</code></li>
+<li>Input data (<code>Dict</code>) from the calling execution framework</li>
+<li>Optional LLM configuration (model name, parameters, etc.)</li>
+</ul>
+<hr />
+<h3 id="output-from-stage-2-planner">Output from Stage 2 Planner</h3>
+<p>Each planner returns a dictionary with:</p>
+<ul>
+<li><code>uid</code>: Identifier of the agent/tool/llm/workflow to execute</li>
+<li><code>input_data</code>: Transformed input ready for direct execution</li>
+</ul>
+<hr />
+<h3 id="behavior-controller-integration_1">Behavior Controller Integration</h3>
+<p><strong>Endpoint</strong>: <code>POST /process-phase-2-task</code>
+<strong>Payload</strong>:</p>
+<pre><code class="language-json">{
+  &quot;search_id&quot;: &quot;&lt;uuid&gt;&quot;,
+  &quot;phase_2_data&quot;: {
+    &quot;task_input_data&quot;: &quot;&lt;full planning prompt&gt;&quot;,
+    &quot;n_history_samples&quot;: 0,
+    &quot;llm_data&quot;: { ... }
+  }
+}
+</code></pre>
+<p><strong>Response</strong>:</p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;&lt;agent/tool id&gt;&quot;,
+    &quot;input_data&quot;: { ... },
+    &quot;plan&quot;: &quot;&lt;optional reasoning steps&gt;&quot;
+  }
+}
+</code></pre>
+<hr />
+<h3 id="planner-breakdown">Planner Breakdown</h3>
+<h4 id="1-agentsplanner">1. <code>AgentsPlanner</code></h4>
+<ul>
+<li>Describes available agents (ID, traits, schema, description)</li>
+<li>Provides example input for conversion</li>
+<li>Delegates final input to <code>P2PManager.send_recv(...)</code></li>
+</ul>
+<h4 id="2-toolsplanner">2. <code>ToolsPlanner</code></h4>
+<ul>
+<li>Describes available tools/functions</li>
+<li>Provides metadata and input schemas</li>
+<li>Delegates execution to <code>known_tools.execute_tool(...)</code></li>
+</ul>
+<h4 id="3-llmselectorplanner">3. <code>LLMSelectorPlanner</code></h4>
+<ul>
+<li>Describes available LLM models</li>
+<li>Formats input for direct inference</li>
+<li>Calls <code>known_llms.run_ai_inference(...)</code></li>
+</ul>
+<h4 id="4-dslplanner">4. <code>DSLPlanner</code></h4>
+<ul>
+<li>Describes available workflows and DSL steps</li>
+<li>Maps task inputs to schema-defined parameters</li>
+<li>Calls <code>known_dsls.execute(...)</code></li>
+</ul>
+<hr />
+<h3 id="example-flow">Example Flow</h3>
+<p>For a task of type <code>agent</code>, the flow would be:</p>
+<ol>
+<li><code>PlanAndExecuteL2</code> receives a <code>PlannerTask</code> with <code>parameters["sub_type"] = "agent"</code></li>
+<li>Initializes <code>AgentsPlanner</code></li>
+<li>Builds full prompt with agents + schema + description</li>
+<li>Sends to <code>/process-phase-2-task</code></li>
+<li>
+<p>Receives:</p>
+</li>
+<li>
+<p><code>uid = "agent-42"</code></p>
+</li>
+<li><code>input_data = { "doc": "..." }</code></li>
+<li>Sends to <code>P2PManager.send_recv("agent-42", input_data)</code></li>
+</ol>
+<hr />
+<h3 id="use-case">Use Case</h3>
+<pre><code class="language-python">agents_planner = AgentsPlanner(controller_url)
+agents_planner.prepare_agents(agents=known_subjects.get_searchable_representation())
+agents_planner.add_task_description(&quot;Summarize the following input...&quot;)
+agents_planner.add_input_conversion({&quot;text&quot;: &quot;Full report goes here&quot;})
+
+response = agents_planner.create_plan(
+    task_description=agents_planner.get_full_description(),
+    llm_data={&quot;model&quot;: &quot;gpt-4&quot;}
+)
+
+subject_id = response['uid']
+input_data = response['input_data']
+</code></pre>
+<hr />
+<p>You're welcome. Here's the structured documentation for sections <strong>6 (Unified Execution Layer)</strong>, <strong>8 (Execution Backends)</strong>, and <strong>9 (Usage Examples)</strong>.</p>
+<hr />
+<h2 id="unified-execution-layer">Unified Execution Layer</h2>
+<h3 id="component-planandexecutel2">Component: <code>PlanAndExecuteL2</code></h3>
+<p>The <code>PlanAndExecuteL2</code> class is the <strong>execution bridge</strong> between planning and action. It takes a single <code>PlannerTask</code>—typically produced by Stage 1—and delegates it to the appropriate <strong>Stage 2 planner and executor</strong> based on the task’s <code>parameters["sub_type"]</code>.</p>
+<h3 id="responsibilities">Responsibilities</h3>
+<ul>
+<li>Select the correct Stage 2 planner (<code>AgentsPlanner</code>, <code>ToolsPlanner</code>, etc.)</li>
+<li>Construct and send phase-2 prompts to the Behavior Controller</li>
+<li>Invoke the corresponding execution backend (agent, tool, LLM, or DSL)</li>
+<li>Return structured output including execution result and, optionally, the generated plan</li>
+</ul>
+<h3 id="input">Input</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>task</code></td>
+<td><code>PlannerTask</code></td>
+<td>The task to execute (must be of type <code>"l2_task"</code>)</td>
+</tr>
+<tr>
+<td><code>known_llms</code></td>
+<td><code>KnownLLMs</code></td>
+<td>Registry of LLMs</td>
+</tr>
+<tr>
+<td><code>known_tools</code></td>
+<td><code>ToolsFunctionsRegistry</code></td>
+<td>Registered tools and functions</td>
+</tr>
+<tr>
+<td><code>known_subjects</code></td>
+<td><code>KnownSubjects</code></td>
+<td>Registered agents</td>
+</tr>
+<tr>
+<td><code>known_dsls</code></td>
+<td><code>DSLWorkflowsManager</code></td>
+<td>Available DSL workflows</td>
+</tr>
+<tr>
+<td><code>llm_config</code></td>
+<td><code>dict</code></td>
+<td>Optional LLM model config</td>
+</tr>
+</tbody>
+</table>
+<h3 id="supported-sub-types-and-routing-logic">Supported Sub-Types and Routing Logic</h3>
+<table>
+<thead>
+<tr>
+<th><code>sub_type</code></th>
+<th>Stage 2 Planner</th>
+<th>Executor Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"agent"</code></td>
+<td><code>AgentsPlanner</code></td>
+<td><code>P2PManager.send_recv(subject_id, input)</code></td>
+</tr>
+<tr>
+<td><code>"llm"</code></td>
+<td><code>LLMSelectorPlanner</code></td>
+<td><code>known_llms.run_ai_inference(...)</code></td>
+</tr>
+<tr>
+<td><code>"tools"</code></td>
+<td><code>ToolsPlanner</code></td>
+<td><code>known_tools.execute_tool(uid, input)</code></td>
+</tr>
+<tr>
+<td><code>"dsl"</code></td>
+<td><code>DSLPlanner</code></td>
+<td><code>known_dsls.execute(uid, input, ...)</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="method-execute_moduleinput_data-dict-dict">Method: <code>execute_module(input_data: dict) -&gt; dict</code></h3>
+<p>Executes the task using the proper planner and backend, returning a dictionary with:</p>
+<ul>
+<li><code>output</code>: result from the target system</li>
+<li><code>plan</code>: optional reasoning metadata from the planner (if available)</li>
+</ul>
+<hr />
+<h2 id="execution-backends">Execution Backends</h2>
+<p>After Stage 2 planning completes, execution is performed by one of the following mechanisms, depending on the task’s sub-type.</p>
+<h3 id="1-agent-execution-p2p">1. Agent Execution (P2P)</h3>
+<p><strong>Trigger</strong>: <code>P2PManager.send_recv(subject_id, input_data)</code></p>
+<ul>
+<li>Sends the input data to the target agent using a peer-to-peer communication channel.</li>
+<li>Waits synchronously for a response.</li>
+<li>Expects agent to process the task and return a <code>{"success": true, "data": ...}</code> payload.</li>
+</ul>
+<h3 id="2-tool-execution">2. Tool Execution</h3>
+<p><strong>Trigger</strong>: <code>known_tools.execute_tool(tool_id, input_data)</code></p>
+<ul>
+<li>Executes the specified tool (local function, API wrapper, etc.)</li>
+<li>Supports input transformation based on schema prepared in planning phase.</li>
+</ul>
+<h3 id="3-llm-execution">3. LLM Execution</h3>
+<p><strong>Trigger</strong>: <code>known_llms.run_ai_inference(name, input_data, session_id, frame_ptr)</code></p>
+<ul>
+<li>Selects the LLM to invoke based on planner response.</li>
+<li>Executes prompt or structured input against the registered model backend.</li>
+</ul>
+<h3 id="4-dsl-workflow-execution">4. DSL Workflow Execution</h3>
+<p><strong>Trigger</strong>: <code>known_dsls.execute(uid, input_data, output_module="")</code></p>
+<ul>
+<li>Invokes a DSL-defined multi-step pipeline.</li>
+<li>Useful for internal control flow, multi-stage validation, or compound logic execution.</li>
+</ul>
+<hr />
+<h2 id="end-to-end-usage-example">End-to-End Usage Example</h2>
+<pre><code class="language-python"># Step 1: Define your job inputs
+job_goal = {&quot;objective&quot;: &quot;Summarize research papers&quot;}
+job_objectives = {&quot;accuracy&quot;: &quot;high&quot;, &quot;summary_length&quot;: &quot;short&quot;}
+steerability = {&quot;tone&quot;: &quot;formal&quot;, &quot;max_tokens&quot;: 200}
+
+# Step 2: Instantiate the planner and generate a task plan
+planner = Planner(
+    behavior_controller_url=os.getenv(&quot;BEHAVIOR_CONTROLLER_URL&quot;),
+    known_subjects=known_subjects,
+    tools_functions_registry=known_tools
+)
+full_description = planner.generate_final_input(
+    job_goal=job_goal,
+    job_objectives=job_objectives,
+    job_steerability_data=steerability,
+    task_description=&quot;Break this job into tasks for agents or tools&quot;
+)
+response = planner.create_plan(full_description)
+
+# Step 3: Parse PlannerTask(s) from response
+task_plan = [PlannerTask.from_dict(t) for t in response['data']]
+
+# Step 4: Execute each task using PlanAndExecuteL2
+for task in task_plan:
+    if task.execution_type == &quot;l2_task&quot;:
+        executor = PlanAndExecuteL2(
+            task=task,
+            known_llms=known_llms,
+            known_tools=known_tools,
+            known_subjects=known_subjects,
+            known_dsls=known_dsls,
+            llm_config={&quot;model&quot;: &quot;gpt-4&quot;}
+        )
+        result = executor.execute_module(input_data={&quot;text&quot;: &quot;Paper text...&quot;})
+        print(f&quot;Task Output:\n{result['output']}&quot;)
+</code></pre>
+<hr />
+<h2 id="optimization-of-workflow-dag">Optimization of Workflow DAG</h2>
+<h3 id="overview_2">Overview</h3>
+<p>As workflows become more complex, a flat list of planned tasks is often inefficient to execute. The <strong>DAG Optimization module</strong> enables intelligent grouping of tasks into <strong>SubGraphs</strong>—units that can be executed independently or in parallel based on dependency satisfaction.</p>
+<p>This is especially valuable in agent-based distributed systems, where tasks can be dispatched to multiple agents simultaneously.</p>
+<hr />
+<h3 id="when-to-use">When to Use</h3>
+<p>Use the optimization module:</p>
+<ul>
+<li>After Stage 1 planning is complete (you have a <code>TaskData</code> instance)</li>
+<li>Before Stage 2 planning or execution begins</li>
+<li>When you want to run tasks in <strong>batches or parallel</strong>, preserving their dependency order</li>
+</ul>
+<hr />
+<h3 id="available-options">Available Options</h3>
+<h4 id="option-1-llm-based-optimizer-optimizationplanner">Option 1: LLM-Based Optimizer (<code>OptimizationPlanner</code>)</h4>
+<p>Use this when:</p>
+<ul>
+<li>Task dependency structures are non-trivial</li>
+<li>You want smart grouping decisions (semantic understanding of task purposes)</li>
+<li>You are fine with slightly longer planning time in exchange for better graph structure</li>
+</ul>
+<p><strong>Example</strong>:</p>
+<pre><code class="language-python">from agent_sdk.optimization import OptimizationPlanner
+
+optimizer = OptimizationPlanner(llm_api)
+subgraphs = optimizer.generate_subgraphs(task_data)
+</code></pre>
+<p><strong>Result</strong>: A list of <code>SubGraph</code> objects, each containing tasks and dependencies between subgraphs.</p>
+<hr />
+<h4 id="option-2-manual-rule-based-optimizer-manualoptimizer">Option 2: Manual Rule-Based Optimizer (<code>ManualOptimizer</code>)</h4>
+<p>Use this when:</p>
+<ul>
+<li>You want deterministic, fast grouping</li>
+<li>Task dependencies are simple and straightforward</li>
+<li>You're debugging or working in resource-constrained environments</li>
+</ul>
+<p><strong>Example</strong>:</p>
+<pre><code class="language-python">from agent_sdk.optimization import ManualOptimizer
+
+optimizer = ManualOptimizer()
+subgraphs = optimizer.generate_subgraphs(task_data.planned_tasks)
+</code></pre>
+<hr />
+<h3 id="what-is-a-subgraph">What Is a <code>SubGraph</code>?</h3>
+<p>A <code>SubGraph</code> is a lightweight wrapper around a set of <code>PlannerTask</code>s that can be executed as a unit. It includes:</p>
+<ul>
+<li>A unique <code>subgraph_id</code></li>
+<li>List of tasks</li>
+<li>List of other subgraph IDs it depends on</li>
+</ul>
+<p>Once generated, SubGraphs can be dispatched for execution or passed to the replanning module for refinement.</p>
+<hr />
+<h2 id="replanning">Replanning</h2>
+<h3 id="overview_3">Overview</h3>
+<p>Replanning allows you to <strong>selectively improve tasks</strong> that need revision after initial planning. Instead of re-running the entire Stage 1 pipeline, you can replace only the problematic parts of the plan.</p>
+<p>This is useful when:</p>
+<ul>
+<li>A task fails or returns unexpected output</li>
+<li>You’ve introduced a new agent, tool, or model</li>
+<li>You want to fine-tune performance or instructions on a per-task basis</li>
+</ul>
+<hr />
+<h3 id="step-by-step-workflow">Step-by-Step Workflow</h3>
+<h4 id="step-1-mark-the-tasks">Step 1: Mark the Tasks</h4>
+<p>Before invoking the replanner, make sure that tasks requiring revision are marked with:</p>
+<pre><code class="language-python">task.mark_replan = True
+</code></pre>
+<p>Only tasks with this flag will be included in the replanning request.</p>
+<hr />
+<h4 id="step-2-call-the-replanner">Step 2: Call the Replanner</h4>
+<pre><code class="language-python">from agent_sdk.replanning import SubGraphRePlanner
+
+replanner = SubGraphRePlanner(
+    llm_api=llm_inference_api,
+    known_subjects=subject_registry,
+    known_tools=tools_registry,
+    known_workflows=dsl_registry,
+    known_llms=llm_registry,
+    known_codegens=codegen_registry
+)
+
+updated_subgraph = replanner.replace_replan_tasks(
+    subgraph=original_subgraph,
+    custom_append_text=&quot;Ensure memory efficiency and clarity.&quot;
+)
+</code></pre>
+<hr />
+<h3 id="what-gets-updated">What Gets Updated?</h3>
+<p>Only:</p>
+<ul>
+<li>Tasks marked with <code>mark_replan = True</code></li>
+<li>Their <code>task_id</code>, <code>description</code>, <code>execution_type</code>, <code>parameters</code>, <code>arguments</code></li>
+</ul>
+<p>Preserved:</p>
+<ul>
+<li><code>main_task_id</code></li>
+<li>All dependencies</li>
+</ul>
+<hr />
+<h3 id="use-cases">Use Cases</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Replanning Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tool endpoint changes</td>
+<td>Update tool parameters without redoing full plan</td>
+</tr>
+<tr>
+<td>Agent skill upgrades</td>
+<td>Reassign task to improved agent with new traits</td>
+</tr>
+<tr>
+<td>LLM returns noisy/incomplete output</td>
+<td>Retry planning only for affected components</td>
+</tr>
+<tr>
+<td>Tasks require tighter performance constraints</td>
+<td>Inject steerability hints for task-specific tuning</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="example-task-before-replanning">Example Task Before Replanning</h3>
+<pre><code class="language-json">{
+  &quot;task_id&quot;: &quot;T003&quot;,
+  &quot;description&quot;: &quot;Query API and store result.&quot;,
+  &quot;execution_type&quot;: &quot;tool_call&quot;,
+  &quot;parameters&quot;: { &quot;url&quot;: &quot;http://api/endpoint&quot; },
+  &quot;mark_replan&quot;: true
+}
+</code></pre>
+<h3 id="after-replanning">After Replanning</h3>
+<pre><code class="language-json">{
+  &quot;task_id&quot;: &quot;T9001&quot;,
+  &quot;main_task_id&quot;: &quot;T003&quot;,
+  &quot;description&quot;: &quot;Query API, validate JSON schema, and store normalized results.&quot;,
+  &quot;execution_type&quot;: &quot;tool_call&quot;,
+  &quot;parameters&quot;: {
+    &quot;url&quot;: &quot;http://api/endpoint&quot;,
+    &quot;validation_schema&quot;: &quot;schema_v2&quot;
+  }
+}
+</code></pre>
+<hr />
+<h2 id="integration-guidance">Integration Guidance</h2>
+<h3 id="end-to-end-flow-with-optimization-replanning">End-to-End Flow with Optimization + Replanning</h3>
+<pre><code class="language-python"># 1. Generate initial plan
+planner = Planner(...)
+task_data = planner.create_plan(...)
+
+# 2. Optimize the task plan
+optimizer = OptimizationPlanner(llm_api)
+subgraphs = optimizer.generate_subgraphs(task_data)
+
+# 3. Mark problematic tasks for replanning
+for sg in subgraphs:
+    for task in sg.tasks:
+        if some_custom_check(task):
+            task.mark_replan = True
+
+# 4. Replan only the marked tasks
+replanner = SubGraphRePlanner(...)
+updated_subgraphs = [replanner.replace_replan_tasks(sg) for sg in subgraphs]
+
+# 5. Continue to Stage 2 planning and execution
+</code></pre>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

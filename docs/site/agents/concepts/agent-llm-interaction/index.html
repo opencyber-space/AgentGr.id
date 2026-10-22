@@ -1,0 +1,3070 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../agent-context-cache/">
+      
+      
+        <link rel="next" href="../agent-planning-system/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>Agent LLM Interaction - AgentGr.id</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#agent-llm-interface" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AgentGr.id" class="md-header__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AgentGr.id
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Agent LLM Interaction
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AgentGr.id" class="md-nav__button md-logo" aria-label="AgentGr.id" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AgentGr.id
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🧠 AgentGr.id
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            🧠 AgentGr.id
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-specification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Specifying an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-creation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-llm-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using LLMs and other AI models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-dsl-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Managing and calling DSL Workflows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-code-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Generating runtime code using Code Generator SDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Calling Functions and Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-eembeddings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Embedding Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-graph-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Graph Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-vector-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing Vector Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-chat-p2p/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chat and P2P Communication with other agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../a2a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    A2A - Agent to Agent Communication Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-object-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accessing S3 Compatible Object Storage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-sub-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task Delegation, Behavior Planning, Verification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-association/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Association with other Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-config-store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agent-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_5" id="__nav_2_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Workflows
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Workflows
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/creating_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/onboarding_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Onboarding Workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflows/writing_sample_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sample workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced Agent Memories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced Agent Memories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/agentic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agentic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Memory Types
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Memory Types
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/episodic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Episodic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/semantic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/procedural-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Procedural Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/reflective-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reflective Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/reward-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reward Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/context-kv-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Context KV Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/agent-fs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent FS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/learner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learner
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/incorporator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Incorporator & Feedback
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-memories/end-to-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    End-to-End Example
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Architecture & Concepts
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture & Concepts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-context-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Context Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Agent LLM Interaction
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent LLM Interaction
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Goals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Cases
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent-llm-inference-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent LLM Inference Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Agent LLM Inference Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#input-parsing-and-execution-dispatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Input Parsing and Execution Dispatch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsl-workflow-execution-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      DSL &amp; Workflow Execution Engine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#planner-module-model-pool-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Planner Module &amp; Model Pool Interaction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inference-constraint-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inference Constraint Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inference-execution-and-policy-rule-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inference Execution and Policy Rule System
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-inference-webhook-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remote Inference &amp; Webhook Execution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai-data-and-webhook-support-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      AI Data and Webhook Support Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#human-intervention-agent-configuration-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Human Intervention &amp; Agent Configuration APIs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end-to-end-flow-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      End-to-End Flow Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modules-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modules Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#importing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Importing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registering-and-running-inference-on-llm-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registering and Running Inference on LLM Models
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registering and Running Inference on LLM Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registering-a-remote-model-by-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registering a Remote Model by ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registering-a-custom-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registering a Custom LLM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-and-removing-registered-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listing and Removing Registered LLMs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#querying-registry-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Querying Registry Blocks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-inference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Inference
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estimating-execution-feasibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estimating Execution Feasibility
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieving-searchable-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retrieving Searchable Metadata
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discovering-models-using-block-query-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discovering Models Using Block Query Manager
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Discovering Models Using Block Query Manager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initialization_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Query Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-filter-based-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Filter-Based Query
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Filter-Based Query">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-similarity-based-search-with-ranking-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Similarity-Based Search (with Ranking Policy)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Similarity-Based Search (with Ranking Policy)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#payload-internals-for-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Payload Internals (for reference)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Payload Internals (for reference)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filter-payload-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filter Payload Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#similarity-search-payload-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Similarity Search Payload Structure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrating-discovered-models-with-knownllms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrating Discovered Models with KnownLLMs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integrating Discovered Models with KnownLLMs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-and-registering-a-custom-llm-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating and Registering a Custom LLM Model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating and Registering a Custom LLM Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-understanding-the-llminferenceapi-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Understanding the LLMInferenceAPI Interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-implementing-a-custom-llm-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Implementing a Custom LLM Backend
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-creating-and-registering-the-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Creating and Registering the Block
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-running-inference-on-the-custom-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Running Inference on the Custom Model
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-planning-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Planning System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-task-delegation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Task Delegation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-verification-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Verification System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-workflow-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Workflow Execution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../behaviour-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Behavior Controller
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../communication-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Communication System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Goals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Cases
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent-llm-inference-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent LLM Inference Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Agent LLM Inference Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#input-parsing-and-execution-dispatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Input Parsing and Execution Dispatch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsl-workflow-execution-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      DSL &amp; Workflow Execution Engine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#planner-module-model-pool-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Planner Module &amp; Model Pool Interaction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inference-constraint-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inference Constraint Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inference-execution-and-policy-rule-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inference Execution and Policy Rule System
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-inference-webhook-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remote Inference &amp; Webhook Execution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai-data-and-webhook-support-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      AI Data and Webhook Support Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#human-intervention-agent-configuration-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Human Intervention &amp; Agent Configuration APIs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end-to-end-flow-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      End-to-End Flow Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modules-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modules Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#importing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Importing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registering-and-running-inference-on-llm-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registering and Running Inference on LLM Models
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registering and Running Inference on LLM Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registering-a-remote-model-by-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registering a Remote Model by ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registering-a-custom-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registering a Custom LLM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-and-removing-registered-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listing and Removing Registered LLMs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#querying-registry-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Querying Registry Blocks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-inference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Inference
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estimating-execution-feasibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estimating Execution Feasibility
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieving-searchable-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retrieving Searchable Metadata
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discovering-models-using-block-query-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discovering Models Using Block Query Manager
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Discovering Models Using Block Query Manager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initialization_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Query Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-filter-based-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Filter-Based Query
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Filter-Based Query">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-similarity-based-search-with-ranking-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Similarity-Based Search (with Ranking Policy)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Similarity-Based Search (with Ranking Policy)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#payload-internals-for-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Payload Internals (for reference)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Payload Internals (for reference)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filter-payload-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filter Payload Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#similarity-search-payload-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Similarity Search Payload Structure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrating-discovered-models-with-knownllms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrating Discovered Models with KnownLLMs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integrating Discovered Models with KnownLLMs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-and-registering-a-custom-llm-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating and Registering a Custom LLM Model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating and Registering a Custom LLM Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-understanding-the-llminferenceapi-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Understanding the LLMInferenceAPI Interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-implementing-a-custom-llm-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Implementing a Custom LLM Backend
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-creating-and-registering-the-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Creating and Registering the Block
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-running-inference-on-the-custom-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Running Inference on the Custom Model
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="agent-llm-interface">Agent LLM interface</h1>
+<h2 id="introduction">Introduction</h2>
+<p>This module provides a <strong>flexible and extensible framework</strong> for managing, querying, and executing <strong>LLM (Large Language Model)</strong> and <strong>optimizer blocks</strong> within a distributed AI orchestration environment. The system abstracts over heterogeneous backends (OpenAI, internal gRPC servers, and REST APIs) and provides a unified interface for:</p>
+<ul>
+<li>Registering known or custom models and optimizers</li>
+<li>Performing inference using pluggable strategies</li>
+<li>Interacting with behavioral controllers for task planning</li>
+<li>Generating human-readable prompts with metadata and schema descriptions</li>
+<li>Estimating model capabilities before execution</li>
+</ul>
+<h3 id="key-goals">Key Goals</h3>
+<ul>
+<li><strong>Pluggability</strong>: Define backends like OpenAI, AIOS, and OrgLLM using a common interface (<code>LLMInferenceAPI</code>)</li>
+<li><strong>Extensibility</strong>: Add new models and optimizers dynamically, including custom logic</li>
+<li><strong>Interoperability</strong>: Integrate seamlessly with external registries, inference engines, and planning APIs</li>
+<li><strong>Modularity</strong>: Clean separation between block metadata management, inference execution, and planner logic</li>
+</ul>
+<h3 id="use-cases">Use Cases</h3>
+<ul>
+<li>Deploying a local or distributed <strong>LLM registry</strong> and running inference tasks through configurable infrastructure</li>
+<li>Performing <strong>ranking and optimizer selection</strong> via LLM-driven prompting</li>
+<li><strong>Schema-aware task planning</strong>, enriched with task metadata and historical descriptions</li>
+<li>Interfacing with a <strong>behavior controller or planner</strong> that coordinates multiple agents or components in a workflow</li>
+</ul>
+<p>This framework is ideal for AI platforms, orchestration systems, or DSL interpreters that need to incorporate LLMs and optimize execution strategies dynamically.</p>
+<hr />
+<h2 id="agent-llm-inference-architecture">Agent LLM Inference Architecture</h2>
+<p>The <strong>Agent LLM Inference System</strong> is a modular AI execution pipeline designed to dynamically discover, plan, and execute LLM (Large Language Model) and optimizer-based tasks across heterogeneous backends. It enables DSL workflows, agents, and behavior controllers to submit requests in natural language or structured formats and routes them through a configurable planning and inference stack. The architecture supports constraint checking, stateful execution, model selection, dynamic prompt construction, and backend-agnostic model execution over REST, WebSocket, and gRPC.</p>
+<p><img alt="llm-arch" src="../../../images/ai-instance-sdk.png" /></p>
+<p><a href="../../../images/ai-instance-sdk.png">Download Image</a></p>
+<hr />
+<h3 id="input-parsing-and-execution-dispatch">Input Parsing and Execution Dispatch</h3>
+<p>At the entry point of the system is the <strong>input interface</strong> that accepts structured task execution requests, either from external clients or internal agent workflows:</p>
+<ul>
+<li><strong>Input Interface</strong>: Entry for task payloads from DSL agents or user interfaces. Supports default brain selection and agent-specific config bootstrapping.</li>
+<li><strong>Initial Constraint Checker</strong>: Enforces preliminary validation using policy rules or access control logic (e.g., organization-specific ACLs).</li>
+<li><strong>Initial Input Parser</strong>: Normalizes input into structured DSL or inference specifications. Supports execution by DSL action ID or direct model selection.</li>
+</ul>
+<p>If a DSL workflow is detected, it’s passed to the workflow executor. If the request is a direct inference, it’s routed to the model selection and planner modules.</p>
+<hr />
+<h3 id="dsl-workflow-execution-engine">DSL &amp; Workflow Execution Engine</h3>
+<p>The system supports dynamic workflows using an embedded DSL executor and associated selectors:</p>
+<ul>
+<li><strong>DSL Action Verifier</strong>: Checks whether the action ID is authorized for the current organization.</li>
+<li><strong>Intelligence Workflow Executor</strong>: Executes the DSL via either a standalone block or a composed DAG.</li>
+<li><strong>DAG/Workflow Selectors</strong>: Parses the DAG or ensemble spec and dispatches it to the appropriate workflow executor.</li>
+<li><strong>Context Window API Client</strong>: Pulls historical context for use in prompt enrichment or memory-aware inference.</li>
+</ul>
+<p>These components allow the system to support both standalone models and orchestrated multi-step inference chains.</p>
+<hr />
+<h3 id="planner-module-model-pool-interaction">Planner Module &amp; Model Pool Interaction</h3>
+<p>At the heart of the model selection process is the <strong>Planner Module</strong>, which includes AI model discovery, ranking, and prompt-based refinement:</p>
+<ul>
+<li><strong>Agents AI Pool Client API</strong>: Retrieves model metadata and availability from the internal agent model pool.</li>
+<li><strong>Historical Contexts API</strong>: Feeds contextual traces into the planner for refined prompt generation or decision branching.</li>
+<li>
+<p><strong>Planner Execution Modes</strong>:</p>
+</li>
+<li>
+<p><strong>Finetune DSL</strong>: Adjusts model configurations or selects block variants based on task characteristics.</p>
+</li>
+<li><strong>Search + Retrieve + Finetune</strong>: Retrieves matching blocks and dynamically adjusts planning parameters.</li>
+<li><strong>Plan + Search + Retrieve + Execute</strong>: Full planning pipeline for complex queries requiring multiple stages of resolution.</li>
+</ul>
+<blockquote>
+<p>Models can be hardcoded, retrieved using tags, or selected through similarity-based semantic matching.</p>
+</blockquote>
+<hr />
+<h3 id="inference-constraint-pipeline">Inference Constraint Pipeline</h3>
+<p>Before running inference, all requests are validated against execution and policy constraints:</p>
+<ul>
+<li><strong>Constraint Checker</strong>: Evaluates the model's execution feasibility and compliance.</li>
+<li><strong>Request Parser</strong>: Decides the execution flow depending on whether the spec is known, estimated, or incomplete.</li>
+<li><strong>Inference Specification Receiver</strong>: Validated model and block IDs are handed off to the downstream executor.</li>
+<li><strong>Selected Block Pool</strong>: Prepared model pool for execution, possibly influenced by prior estimation or rule checks.</li>
+</ul>
+<p>This ensures that resource limits, protocol compliance, and model readiness are enforced before invocation.</p>
+<hr />
+<h3 id="inference-execution-and-policy-rule-system">Inference Execution and Policy Rule System</h3>
+<p>The actual inference logic is executed using a <strong>policy-aware runtime executor</strong>:</p>
+<ul>
+<li><strong>Inference Executor</strong>: Executes the request based on the selected model and protocol.</li>
+<li><strong>AI Inference Policy Rule Executor</strong>: Uses a preloaded policy-rule client to determine input handling, retry rules, or fallback strategies.</li>
+<li><strong>Local State Cache</strong>: Maintains batched or streaming inputs, historical output context, and temporal buffers for chained workflows.</li>
+<li><strong>Policy Rules Cache</strong>: Ensures low-latency policy enforcement by caching rules from remote registries.</li>
+</ul>
+<p>These modules support deterministic and reproducible inference using rules set at the model, org, or request level.</p>
+<hr />
+<h3 id="remote-inference-webhook-execution">Remote Inference &amp; Webhook Execution</h3>
+<p>Inference can be routed to external or backend-specific executors via protocol-agnostic interfaces:</p>
+<ul>
+<li><strong>REST API</strong>: Standard POST-based request/response execution.</li>
+<li><strong>WebSocket Executor</strong>: Enables real-time streaming inference and multi-turn conversations.</li>
+<li><strong>gRPC Executor</strong>: High-performance protocol for AIOS/OrgLLM deployments with <code>RunInferenceRequest</code>.</li>
+</ul>
+<p>Each backend conforms to the <code>LLMInferenceAPI</code> and can be dynamically plugged in via the <code>KnownLLMs</code> registry.</p>
+<hr />
+<h3 id="ai-data-and-webhook-support-layer">AI Data and Webhook Support Layer</h3>
+<p>A set of AIOS-native webhooks support runtime operations like similarity search, constraint updates, and resource usage estimation:</p>
+<ul>
+<li><strong>Similarity Search Module</strong>: Used by planners to match models to task descriptions using embedding or tag-based policies.</li>
+<li><strong>Component Registry Webhook</strong>: Loads dynamic blocks and optimizers.</li>
+<li><strong>Block Metrics Webhook</strong>: Updates usage statistics, latency logs, and success rates.</li>
+<li><strong>Resource Allocation Webhook</strong>: Enforces runtime limits or routes inference to compliant infrastructure nodes.</li>
+</ul>
+<p>These hooks provide dynamic feedback and model reconfiguration capabilities in real-time.</p>
+<hr />
+<h3 id="human-intervention-agent-configuration-apis">Human Intervention &amp; Agent Configuration APIs</h3>
+<p>In cases requiring manual oversight or approval:</p>
+<ul>
+<li><strong>Human Intervention Module</strong>: Provides pause-and-continue control during planning or inference if specified by the DSL.</li>
+<li><strong>Agents DB Webhook</strong>: Reads model settings, behavioral policies, or default configurations from the agent’s persistent config database.</li>
+<li><strong>Agent Default Brain Config</strong>: Allows default model, prompt template, and rule loading at startup or fallback.</li>
+</ul>
+<p>These features ensure that inference is safe, supervised, and in line with organizational policies when required.</p>
+<hr />
+<h3 id="end-to-end-flow-summary">End-to-End Flow Summary</h3>
+<ol>
+<li><strong>Input</strong> is parsed and validated.</li>
+<li><strong>DSL or direct inference</strong> is chosen based on input.</li>
+<li>If DSL, the <strong>workflow executor</strong> runs; if direct inference, the <strong>planner selects the model</strong>.</li>
+<li><strong>Constraint and policy rules</strong> are enforced.</li>
+<li><strong>Inference is executed</strong> via REST/WebSocket/gRPC.</li>
+<li><strong>Results</strong> are optionally cached, logged, or streamed back.</li>
+<li><strong>Human intervention</strong> or planner interaction is applied as per DSL or org rules.</li>
+</ol>
+<hr />
+<h2 id="modules-overview">Modules Overview</h2>
+<p>This section provides a high-level breakdown of the primary modules and classes within the system, outlining their roles and interconnections. The system is modular by design, enabling decoupled interaction between model registries, inference backends, planning utilities, and external APIs.</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>Block</code> &amp; <code>Metadata</code></strong></td>
+<td>Core data models used to represent LLMs, optimizers, and their associated metadata (tags, descriptions, protocols, etc.).</td>
+</tr>
+<tr>
+<td><strong><code>KnownLLMs</code></strong></td>
+<td>Manages a registry of known or custom LLM blocks. Provides methods for adding, removing, querying, and running inference.</td>
+</tr>
+<tr>
+<td><strong><code>KnownLLMOptimizers</code></strong></td>
+<td>Similar to <code>KnownLLMs</code>, but manages optimization blocks that can be dynamically selected for LLM task enhancement.</td>
+</tr>
+<tr>
+<td><strong><code>LLMSelectorPlanner</code></strong></td>
+<td>Builds textual prompts from available LLM metadata and task descriptions. Used for planner interactions with behavioral controllers.</td>
+</tr>
+<tr>
+<td><strong><code>OptimizerSelector</code></strong></td>
+<td>Constructs prompts to select optimizers based on task requirements and available optimizer metadata.</td>
+</tr>
+<tr>
+<td><strong><code>BlocksQueryManager</code></strong></td>
+<td>Provides REST API-based interaction with an external block registry. Supports block fetching, filtering, and similarity search.</td>
+</tr>
+<tr>
+<td><strong><code>OrgLLMsManager</code></strong></td>
+<td>Handles model registration, unregistration, and lookup in an organizational registry using RESTful endpoints.</td>
+</tr>
+<tr>
+<td><strong><code>LLMInferenceAPI</code> (abstract)</strong></td>
+<td>Defines a standard interface for all LLM inference backends. Ensures consistent access to <code>run_inference</code>, <code>check_execute</code>, and <code>get_current_estimates</code>.</td>
+</tr>
+<tr>
+<td><strong><code>OpenAIInferenceAPI</code></strong></td>
+<td>Concrete implementation of <code>LLMInferenceAPI</code> using the OpenAI Chat API.</td>
+</tr>
+<tr>
+<td><strong><code>AIOSInferenceAPI</code></strong></td>
+<td>gRPC-based inference backend used for interacting with AIOS-deployed models via <code>BlockInferenceService</code>.</td>
+</tr>
+<tr>
+<td><strong><code>OrgLLMInferenceAPI</code></strong></td>
+<td>gRPC-based inference for organizational models, with a focus on <code>RunInferenceRequest</code>.</td>
+</tr>
+<tr>
+<td><strong><code>AIOSEstimatorClient</code></strong></td>
+<td>Provides HTTP-based estimation and execution validation via <code>/discovery/estimate</code> and <code>/discovery/check_execute</code>. Supports pre-evaluation before actual model execution.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="importing">Importing</h2>
+<p>The LLM inference subsystem can be imported using </p>
+<pre><code>from agents_sdk.llm import *
+</code></pre>
+<p>Certainly. Here's the cleaned and formal version of the documentation section:</p>
+<hr />
+<h2 id="registering-and-running-inference-on-llm-models">Registering and Running Inference on LLM Models</h2>
+<p>The <code>KnownLLMs</code> class provides a central interface for managing and executing registered LLM blocks. These blocks may be retrieved from a remote registry or defined locally with custom inference logic. The class exposes methods to register models, remove them, query metadata, and execute inference in a backend-agnostic manner.</p>
+<hr />
+<h3 id="initialization">Initialization</h3>
+<pre><code class="language-python">from agents_sdk.llm import KnownLLMs
+
+llm_manager = KnownLLMs(
+    base_url=&quot;http://registry.local&quot;,
+    adhoc_inference_url=&quot;http://inference.local&quot;
+)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>base_url</code></td>
+<td>str</td>
+<td>URL of the external block registry to query LLM metadata and listings</td>
+</tr>
+<tr>
+<td><code>adhoc_inference_url</code></td>
+<td>str</td>
+<td>URL of the inference backend for executing registry-based LLMs</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="registering-a-remote-model-by-id">Registering a Remote Model by ID</h3>
+<p>Registers a block retrieved from the external registry using its block ID.</p>
+<pre><code class="language-python">llm_manager.add_llm(name=&quot;my-llm&quot;, block_id=&quot;llm-block-123&quot;)
+</code></pre>
+<hr />
+<h3 id="registering-a-custom-llm">Registering a Custom LLM</h3>
+<p>Custom blocks can be manually defined and registered using <code>add_custom_llm</code>.</p>
+<pre><code class="language-python">custom_block_data = {
+    &quot;id&quot;: &quot;custom-llm-block&quot;,
+    &quot;blockMetadata&quot;: {
+        &quot;description&quot;: &quot;Custom summarization model&quot;,
+        &quot;tags&quot;: [&quot;summary&quot;, &quot;text&quot;]
+    },
+    &quot;inputProtocols&quot;: [&quot;text/plain&quot;],
+    &quot;outputProtocols&quot;: [&quot;text/plain&quot;]
+}
+
+llm_manager.add_custom_llm(&quot;my-llm&quot;, block_data=custom_block_data)
+</code></pre>
+<p>Alternatively, use <code>create_custom_llm_block</code> to register a block and attach a custom inference implementation:</p>
+<pre><code class="language-python">from agents_sdk.llm_inference import OpenAIInferenceAPI
+
+openai_backend = OpenAIInferenceAPI(api_key=&quot;sk-...&quot;, model=&quot;gpt-4&quot;)
+
+llm_manager.create_custom_llm_block(
+    id=&quot;openai-wrapper&quot;,
+    description=&quot;OpenAI GPT-4 wrapper&quot;,
+    tags=[&quot;openai&quot;, &quot;chat&quot;],
+    input_protocols=[&quot;text/plain&quot;],
+    output_protocols=[&quot;text/plain&quot;],
+    block_inference_object=openai_backend
+)
+</code></pre>
+<hr />
+<h3 id="listing-and-removing-registered-llms">Listing and Removing Registered LLMs</h3>
+<pre><code class="language-python"># List all registered LLMs
+for name, block in llm_manager.list_llms().items():
+    print(name, block.to_dict())
+
+# Remove an LLM from the registry
+llm_manager.remove_llm(&quot;my-llm&quot;)
+</code></pre>
+<hr />
+<h3 id="querying-registry-blocks">Querying Registry Blocks</h3>
+<p>Fetch and filter blocks based on metadata (e.g., tags or input protocols):</p>
+<pre><code class="language-python">query = {&quot;tags&quot;: [&quot;qa&quot;], &quot;inputProtocols&quot;: [&quot;text/plain&quot;]}
+results = llm_manager.query_blocks(query)
+
+for block in results:
+    print(block.id, block.blockMetadata.description)
+</code></pre>
+<hr />
+<h3 id="running-inference">Running Inference</h3>
+<p>Use <code>run_ai_inference</code> to perform inference on a registered LLM.</p>
+<pre><code class="language-python">response = llm_manager.run_ai_inference(
+    name=&quot;openai-wrapper&quot;,
+    input_data={
+        &quot;prompts&quot;: [
+            {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;What is quantum computing?&quot;}
+        ]
+    },
+    session_id=&quot;session-xyz&quot;,
+    frame_ptr=b&quot;&quot;
+)
+
+print(response)
+</code></pre>
+<p>If a custom inference backend (<code>custom_block_inference</code>) is attached, it will be used. Otherwise, the system uses <code>AIOSInferenceAPI</code> to call the ad-hoc inference service.</p>
+<hr />
+<h3 id="estimating-execution-feasibility">Estimating Execution Feasibility</h3>
+<p>Use <code>estimate</code> to check model feasibility or pre-execution resource requirements.</p>
+<pre><code class="language-python">result = llm_manager.estimate(
+    name=&quot;openai-wrapper&quot;,
+    session_id=&quot;session-xyz&quot;,
+    query={&quot;input_size&quot;: 2048}
+)
+
+print(result)
+</code></pre>
+<p>This functionality is supported for backends that integrate estimation APIs, such as AIOS.</p>
+<hr />
+<h3 id="retrieving-searchable-metadata">Retrieving Searchable Metadata</h3>
+<p>To retrieve metadata suitable for search or display:</p>
+<pre><code class="language-python">searchable_data = llm_manager.get_searchable_representation()
+
+for item in searchable_data:
+    print(item[&quot;id&quot;], item[&quot;description&quot;], item[&quot;tags&quot;])
+</code></pre>
+<p>This representation includes the model ID, description, tags, input protocols, and output protocols.</p>
+<hr />
+<p>Certainly. Below is the official documentation for the <strong>Block Query Manager</strong>, including usage of <strong>filter-based</strong> and <strong>similarity-based</strong> model discovery, followed by integration with the <code>KnownLLMs</code> registry.</p>
+<hr />
+<h2 id="discovering-models-using-block-query-manager">Discovering Models Using Block Query Manager</h2>
+<p>The <code>BlocksQueryManager</code> class is responsible for querying model blocks from an external registry or discovery service. It supports two primary discovery mechanisms:</p>
+<ul>
+<li><strong>Filter-based querying</strong>: Finds blocks that meet specific field-level constraints (e.g., tags, input protocols).</li>
+<li><strong>Similarity-based searching</strong>: Uses a ranking policy to return the most relevant models based on dynamic task descriptions and a configured similarity policy.</li>
+</ul>
+<p>Discovered models can be programmatically added to the <code>KnownLLMs</code> registry for execution and orchestration.</p>
+<hr />
+<h3 id="initialization_1">Initialization</h3>
+<pre><code class="language-python">from agents_sdk.llm import BlocksQueryManager
+
+query_manager = BlocksQueryManager(base_url=&quot;http://registry.local&quot;)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>base_url</code></td>
+<td>str</td>
+<td>Base URL of the block registry or discovery API</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="query-types">Query Types</h2>
+<h3 id="1-filter-based-query">1. Filter-Based Query</h3>
+<p>This query returns models that match specified static attributes such as tags, protocols, or block type.</p>
+<h4 id="example">Example</h4>
+<pre><code class="language-python">conditions = [
+    {&quot;variable&quot;: &quot;tags&quot;, &quot;operator&quot;: &quot;IN&quot;, &quot;value&quot;: [&quot;qa&quot;]},
+    {&quot;variable&quot;: &quot;inputProtocols&quot;, &quot;operator&quot;: &quot;==&quot;, &quot;value&quot;: &quot;text/plain&quot;}
+]
+
+blocks = query_manager.filter_data(conditions)
+
+for block in blocks:
+    print(block.id, block.blockMetadata.description)
+</code></pre>
+<blockquote>
+<p>The conditions follow a logical structure and are internally passed to a <code>clusterQuery</code> filter with <code>AND</code> logic.</p>
+</blockquote>
+<hr />
+<h3 id="2-similarity-based-search-with-ranking-policy">2. Similarity-Based Search (with Ranking Policy)</h3>
+<p>This query supports similarity search based on a text description of the task, using a ranking policy configured on the server.</p>
+<h4 id="example_1">Example</h4>
+<pre><code class="language-python">conditions = [
+    {&quot;variable&quot;: &quot;task_description&quot;, &quot;operator&quot;: &quot;LIKE&quot;, &quot;value&quot;: &quot;summarize research paper&quot;}
+]
+
+policy_code_path = &quot;policies/similarity_policy.zip&quot;
+
+blocks = query_manager.similarity_search(
+    conditions=conditions,
+    policy_code_path=policy_code_path
+)
+
+for block in blocks:
+    print(block.id, block.blockMetadata.description)
+</code></pre>
+<hr />
+<h2 id="payload-internals-for-reference">Payload Internals (for reference)</h2>
+<h3 id="filter-payload-structure">Filter Payload Structure</h3>
+<pre><code class="language-json">{
+  &quot;body&quot;: {
+    &quot;values&quot;: {
+      &quot;matchType&quot;: &quot;cluster&quot;,
+      &quot;filter&quot;: {
+        &quot;clusterQuery&quot;: {
+          &quot;logicalOperator&quot;: &quot;AND&quot;,
+          &quot;conditions&quot;: [...]
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<h3 id="similarity-search-payload-structure">Similarity Search Payload Structure</h3>
+<pre><code class="language-json">{
+  &quot;body&quot;: {
+    &quot;values&quot;: {
+      &quot;matchType&quot;: &quot;cluster&quot;,
+      &quot;rankingPolicyRule&quot;: {
+        &quot;values&quot;: {
+          &quot;executionMode&quot;: &quot;code&quot;,
+          &quot;policyCodePath&quot;: &quot;...&quot;,
+          &quot;settings&quot;: {
+            &quot;maxResults&quot;: 10,
+            &quot;enableCaching&quot;: true
+          },
+          &quot;parameters&quot;: {
+            &quot;filterRule&quot;: { ... },
+            &quot;return&quot;: 5
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<hr />
+<h2 id="integrating-discovered-models-with-knownllms">Integrating Discovered Models with KnownLLMs</h2>
+<p>Once blocks are retrieved using filter or similarity queries, they can be registered into the <code>KnownLLMs</code> registry dynamically.</p>
+<h4 id="example_2">Example</h4>
+<pre><code class="language-python">from agents_sdk.llm import KnownLLMs
+
+# Initialize managers
+llm_registry = KnownLLMs(
+    base_url=&quot;http://registry.local&quot;,
+    adhoc_inference_url=&quot;http://inference.local&quot;
+)
+query_manager = BlocksQueryManager(base_url=&quot;http://registry.local&quot;)
+
+# Discover models with a filter query
+conditions = [{&quot;variable&quot;: &quot;tags&quot;, &quot;operator&quot;: &quot;IN&quot;, &quot;value&quot;: [&quot;summarization&quot;]}]
+discovered_blocks = query_manager.filter_data(conditions)
+
+# Register the discovered blocks
+for block in discovered_blocks:
+    llm_registry.add_custom_llm(name=block.id, block_data=block.to_dict())
+
+# Run inference using the discovered model
+response = llm_registry.run_ai_inference(
+    name=discovered_blocks[0].id,
+    input_data={&quot;prompts&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Summarize the following paragraph...&quot;}]},
+    session_id=&quot;session-123&quot;,
+    frame_ptr=b&quot;&quot;
+)
+
+print(response)
+</code></pre>
+<p>This workflow allows dynamic discovery, registration, and usage of LLM models without predefining them in code.</p>
+<hr />
+<h2 id="creating-and-registering-a-custom-llm-model">Creating and Registering a Custom LLM Model</h2>
+<p>To support custom backends, the system provides an abstract interface called <code>LLMInferenceAPI</code>. Any custom model implementation must subclass this interface and implement its methods. Once defined, the custom logic can be wrapped in a <code>Block</code> object and registered with <code>KnownLLMs</code> for inference.</p>
+<hr />
+<h3 id="step-1-understanding-the-llminferenceapi-interface">Step 1: Understanding the <code>LLMInferenceAPI</code> Interface</h3>
+<p>All backend implementations must inherit from <code>LLMInferenceAPI</code> and implement the following methods:</p>
+<pre><code class="language-python">from abc import ABC, abstractmethod
+from typing import Dict
+
+class LLMInferenceAPI(ABC):
+
+    @abstractmethod
+    def run_inference(self, input_data: Dict) -&gt; str:
+        &quot;&quot;&quot;
+        Execute inference on the model using input data.
+        Returns a string result.
+        &quot;&quot;&quot;
+        pass
+
+    @abstractmethod
+    def check_execute(self, query: dict):
+        &quot;&quot;&quot;
+        Perform a lightweight execution check (e.g., validation or preview).
+        Returns a tuple (success: bool, data: Any).
+        &quot;&quot;&quot;
+        pass
+
+    @abstractmethod
+    def get_current_estimates(self):
+        &quot;&quot;&quot;
+        Optionally return resource or usage estimates before full execution.
+        Returns a tuple (success: bool, data: Any).
+        &quot;&quot;&quot;
+        pass
+</code></pre>
+<p>This interface standardizes how models are accessed, ensuring full compatibility with <code>KnownLLMs</code>.</p>
+<hr />
+<h3 id="step-2-implementing-a-custom-llm-backend">Step 2: Implementing a Custom LLM Backend</h3>
+<p>Here's an example of a simple custom model that returns a reversed input string.</p>
+<pre><code class="language-python">from agents_sdk.llm_inference import LLMInferenceAPI
+from typing import Dict
+
+class ReverseTextLLM(LLMInferenceAPI):
+    def run_inference(self, input_data: Dict) -&gt; str:
+        text = input_data.get(&quot;text&quot;, &quot;&quot;)
+        return text[::-1]  # Reverse the input text
+
+    def check_execute(self, query: dict):
+        return True, {&quot;status&quot;: &quot;Ready&quot;}
+
+    def get_current_estimates(self):
+        return True, {&quot;estimated_latency&quot;: &quot;1ms&quot;}
+</code></pre>
+<hr />
+<h3 id="step-3-creating-and-registering-the-block">Step 3: Creating and Registering the Block</h3>
+<p>Use the <code>create_custom_llm_block()</code> method from <code>KnownLLMs</code> to wrap your custom implementation in a <code>Block</code>:</p>
+<pre><code class="language-python">from agents_sdk.llm import KnownLLMs
+from agents_sdk.llm_inference import ReverseTextLLM
+
+# Initialize KnownLLMs
+llm_manager = KnownLLMs(
+    base_url=&quot;http://registry.local&quot;,
+    adhoc_inference_url=&quot;http://inference.local&quot;
+)
+
+# Create the custom block
+custom_backend = ReverseTextLLM()
+
+llm_manager.create_custom_llm_block(
+    id=&quot;reverse-llm&quot;,
+    description=&quot;Reverses the input text&quot;,
+    tags=[&quot;test&quot;, &quot;reverse&quot;],
+    input_protocols=[&quot;text/plain&quot;],
+    output_protocols=[&quot;text/plain&quot;],
+    block_inference_object=custom_backend
+)
+</code></pre>
+<p>This registers the model internally as <code>reverse-llm</code> and attaches the custom inference logic.</p>
+<hr />
+<h3 id="step-4-running-inference-on-the-custom-model">Step 4: Running Inference on the Custom Model</h3>
+<pre><code class="language-python">result = llm_manager.run_ai_inference(
+    name=&quot;reverse-llm&quot;,
+    input_data={&quot;text&quot;: &quot;hello world&quot;},
+    session_id=&quot;session-001&quot;,
+    frame_ptr=b&quot;&quot;
+)
+
+print(result)  # Output: &quot;dlrow olleh&quot;
+</code></pre>
+<p>The <code>KnownLLMs</code> registry automatically routes the inference to the <code>ReverseTextLLM</code> implementation based on its registration.</p>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

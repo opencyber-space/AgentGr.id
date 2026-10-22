@@ -1,0 +1,142 @@
+{
+  "identity": {
+    "subject_id": "doc-analyst-agent-001",
+    "subject_name": "document-analyst-agent",
+    "subject_type": "analysis",
+    "subject_version": {
+      "version": "1.0.0",
+      "release_tag": "stable"
+    }
+  },
+
+  "metadata": {
+    "subject_description": "Extracts structured facts from text documents, versions every processing stage in a Redis-backed VFS, and accumulates episodic and semantic memory across runs.",
+    "subject_search_tags": ["document-analysis", "knowledge-extraction", "memory", "versioned-fs"],
+    "subject_traits": ["analytical", "persistent", "versioned", "knowledge-graph"],
+    "subject_metadata": {}
+  },
+
+  "persona": {
+    "role": "Knowledge Extraction Analyst",
+    "goal": "Extract subject–predicate–object facts from unstructured text, checkpoint every processing stage, and maintain a growing knowledge base across sessions.",
+    "persona": "A meticulous analyst that processes documents systematically, versions every artefact, and builds a persistent knowledge graph over time.",
+    "default_system_message": "",
+    "config": {
+      "parameters": {
+        "MEMORY_CONFIG": {
+          "weaviate": {
+            "host": "34.93.251.223",
+            "port": 8080,
+            "grpc_port": 50051,
+            "collection_prefix": "DocAnalyst",
+            "embedding_dim": 1536
+          },
+          "arango": {
+            "url": "http://34.93.251.223:8529",
+            "username": "root",
+            "password": "password",
+            "database": "doc_analyst_memory"
+          },
+          "postgres": {
+            "host": "34.93.251.223",
+            "port": 5432,
+            "database": "doc_analyst_memory",
+            "username": "postgres",
+            "password": "postgres"
+          },
+          "embedding_model": "text-embedding-3-small",
+          "top_k": 5
+        },
+
+        "FS_CONFIG": {
+          "path": "/var/agent_workspaces",
+          "author_name": "DocumentAnalystAgent",
+          "author_email": "doc-analyst@agents.local"
+        },
+
+        "OPENAI_CONFIG": {
+          "api_key": "sk-replace-me",
+          "embedding_model": "text-embedding-3-small"
+        }
+      }
+    }
+  },
+
+  "prompting": {
+    "default_system_template": null,
+    "input_template": null,
+    "output_template": null,
+    "prompts_config": {}
+  },
+
+  "execution": {
+    "logging_level": "INFO",
+    "support_delegations": false,
+    "execute_code": false,
+    "enabled_memory_classes": ["episodic", "semantic"]
+  },
+
+  "integrations": {
+    "policies": [],
+    "dsls": [],
+    "models": [],
+    "addons": [],
+    "contracts": [],
+    "subject_tools": [],
+    "subject_functions": [],
+
+    "memory_systems": [
+      {
+        "memory_id": "episodic-store",
+        "memory_type": "episodic",
+        "memory_backend": "postgres+weaviate+arango",
+        "memory_custom_config": {
+          "description": "Logs each document-processing event as a time-stamped episode with outcome and importance score.",
+          "weaviate_collection": "DocAnalystEpisodic",
+          "arango_collection": "episodic",
+          "postgres_table": "episodic_memories"
+        }
+      },
+      {
+        "memory_id": "semantic-knowledge-graph",
+        "memory_type": "semantic",
+        "memory_backend": "postgres+weaviate+arango",
+        "memory_custom_config": {
+          "description": "Stores subject–predicate–object triples extracted from documents; supports knowledge-graph traversal between entities.",
+          "weaviate_collection": "DocAnalystSemantic",
+          "arango_collection": "semantic",
+          "arango_edge_collection": "entity_relations",
+          "postgres_table": "semantic_memories"
+        }
+      }
+    ],
+
+    "sub_systems": [],
+    "builtin_modules": []
+  },
+
+  "runtime": {
+    "resources": {
+      "device": "cpu",
+      "cpu_cores": 2.0,
+      "memory_mb": 4096,
+      "storage_mb": 1024,
+      "gpu_count": 0,
+      "gpu_memory_mb": null,
+      "node_selector": {},
+      "env": {}
+    },
+    "management_commands": [],
+    "exchanges": []
+  },
+
+  "owner": {
+    "org_id": "demo-org",
+    "org_name": "Demo Organization",
+    "team": "AI Engineering",
+    "owners": ["admin@opencyberspace.org"],
+    "contacts": {
+      "primary": "admin@opencyberspace.org"
+    }
+  }
+}

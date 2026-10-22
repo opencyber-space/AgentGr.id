@@ -1,0 +1,15 @@
+boto3>=1.34.0
+redis>=5.0.0
+sqlalchemy>=2.0.0
+prometheus-client>=0.20.0
+scrapy
+
+[all]
+psutil>=5.9.0
+scrapy>=2.11.0
+
+[metrics-hw]
+psutil>=5.9.0
+
+[scraping]
+scrapy>=2.11.0
